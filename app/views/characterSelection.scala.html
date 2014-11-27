@@ -1,0 +1,52 @@
+@main(title = "Select a Character") {
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="btn-group-vertical">
+                    <a class="btn btn-primary" href="characterSelection.scala.html">New Game</a>
+                    <a class="btn btn-primary" href="#">Load Game</a>
+                    <a class="btn btn-primary" href="#">View Your Statistics</a></div>
+            </div>
+            <div class="col-sm-6">
+                <table class="table table-bordered">
+                    <thead class="tb-heading"><p>Select your character to join a new game</p></thead>
+                    <tbody>
+                        <tr>
+                            <td class="td_char col-md-4">
+                                Bob <br>
+                                <img src=@routes.Assets.at("images/Bob-avatar-mini.png")/>
+                            </td>
+                            <td class="td_char col-md-4">
+                                Not Bob <br>
+                                <img src=@routes.Assets.at("images/Bob-avatar-mini.png")/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_char col-md-4">
+                                Not Bob <br>
+                                <img src=@routes.Assets.at("images/Bob-avatar-mini.png")/>
+                            </td>
+                            <td class="td_char col-md-4">
+                                Not Bob <br>
+                                <img src=@routes.Assets.at("images/Bob-avatar-mini.png")/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_char col-md-4">
+                                Not Bob <br>
+                                <img src=@routes.Assets.at("images/Bob-avatar-mini.png")/>
+                            </td>
+                            <td class="td_char col-md-4">Bild6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-3">
+                <p>Description of the character</p>
+                <textarea class="form-control" readonly cols="35" rows="10" name="description" id="description">This is the description of the character you just selected. Bla bla bla bla bla bla bla bla Bla bla bla bla bla bla bla bla Bla bla bla bla bla bla bla bla Bla bla bla bla bla bla bla bla	Bla bla bla bla bla bla bla bla Bla bla bla bla BlaBla bla bla bla bla bla bla bla Bla bla bla bla Bla bla bla bla bla bla bla bla Bla bla bla bla bla bla bla bla Bla bla bla bla bla bla bla bla Bla bla bla bla bla bla bla bla </textarea>
+            </div>
+        </div>
+    </div>
+
+}
