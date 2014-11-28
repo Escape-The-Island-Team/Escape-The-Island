@@ -1,4 +1,6 @@
-@main(title = "Select a Character") {
+@(message: String)
+
+@main(title = "Select a character") {
 
     <div class="jumbotron">
         <div class="row">
@@ -18,8 +20,8 @@
                                 <img src=@routes.Assets.at("images/Bob-avatar-mini.png")/>
                             </td>
                             <td class="td_char col-md-4">
-                                Not Bob <br>
-                                <img src=@routes.Assets.at("images/Bob-avatar-mini.png")/>
+                                Alice <br>
+                                <img src=@routes.Assets.at("images/alice-mini.png")/>
                             </td>
                         </tr>
                         <tr>

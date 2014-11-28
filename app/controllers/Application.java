@@ -8,15 +8,11 @@ import views.html.*;
 public class Application extends Controller {
 
     public static Result index() {
-        String url = request().path().toString();
-        if (url.equals("/index.scala.html")) {
-            return ok(index.render("Success"));
-        }
-        else return redirect("login.scala.html");
+        return ok(index.render("Success"));
     }
 
     public static Result login() {
-        return ok(login.render());
+        return ok(login.render("Success"));
     }
 
     public static Result initial() {
@@ -28,11 +24,15 @@ public class Application extends Controller {
     }
 
     public static Result editProfile() {
-        return ok(editProfile.render());
+        return ok(editProfile.render("Success"));
     }
 
     public static Result characterSelection() {
-        return ok(characterSelection.render());
+        return ok(characterSelection.render("Success"));
     }
+
+    public static Result about() { return ok(about.render("Success")); }
+
+    public static Result contact() { return ok(contact.render("Success")); }
 
 }

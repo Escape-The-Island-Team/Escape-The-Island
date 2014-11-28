@@ -3,13 +3,14 @@
 # ~~~~
 
 # Home page
-GET         /                              controllers.Application.initial()
-GET         /index.scala.html              controllers.Application.index()
-GET         /login.scala.html              controllers.Application.login()
-GET         /register.scala.html           controllers.Application.register()
-GET         /editProfile.scala.html        controllers.Application.editProfile()
-GET         /characterSelection.scala.html controllers.Application.characterSelection()
-
+GET        /                                     controllers.Application.initial()
+GET        /index.scala.html                     controllers.Application.index()
+GET        /login.scala.html                     controllers.Application.login()
+GET        /register.scala.html                  controllers.Application.register()
+GET        /editProfile.scala.html               controllers.Application.editProfile()
+GET        /characterSelection.scala.html        controllers.Application.characterSelection()
+GET        /about.scala.html                     controllers.Application.about()
+GET        /contact.scala.html                   controllers.Application.contact()
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file                  controllers.Assets.at(path="/public", file)
+GET        /assets/*file                         controllers.Assets.at(path="/public", file)

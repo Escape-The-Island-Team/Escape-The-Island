@@ -99,19 +99,20 @@ textarea {
 **************************/
 
 .carousel-indicators {
+    margin-top: 10px;
     bottom: 0;
 }
 .carousel-indicators .active {
-    background-color: #222;
+    background-color: #222222;
 }
 .carousel-indicators li {
-    border-color: #222;
+    border-color: #222222;
 }
 .icon-prev {
-    color: #000;
+    color: #000000;
 }
 .icon-next {
-    color: #000;
+    color: #000000;
 }
 #myCarousel {
     color: #fff;

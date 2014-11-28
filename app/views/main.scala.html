@@ -23,8 +23,8 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="@("active".when(request.path == controllers.routes.Application.index().toString()))"><a href="index.scala.html">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li class="@("active".when(request.path == controllers.routes.Application.about().toString()))"><a href="about.scala.html">About</a></li>
+                        <li class="@("active".when(request.path == controllers.routes.Application.contact().toString()))"><a href="contact.scala.html">Contact</a></li>
                         <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile.scala.html">Edit Profile</a></li>
                         <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="login.scala.html">Login</a></li>
                     </ul>
