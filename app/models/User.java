@@ -78,6 +78,11 @@ public class User extends Model
         return find.where().eq("user_name", user_name).findUnique();
     }
 
+    public static long nextId()
+    {
+        return find.findRowCount() + 1;
+    }
+
     /**
      * Authenticate a User, from a email and clear password.
      *

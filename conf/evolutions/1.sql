@@ -42,6 +42,43 @@ CREATE TABLE char
     PRIMARY KEY (id)
   );
 
+CREATE TABLE item
+  (
+    id                bigint not null unique,
+    char_id           bigint not null,
+    name              varchar(255) not null,
+    old               boolean not null,
+    PRIMARY KEY (id)
+  );
+
+CREATE TABLE statistics
+  (
+    id                bigint not null unique,
+    game_id           bigint not null unique,
+    usedactionpoints  int not null,
+    itemscollected    int not null,
+    itemscreated      int not null,
+    PRIMARY KEY (id)
+  );
+
+CREATE TABLE npc
+  (
+    id                bigint not null unique,
+    game_id           bigint not null,
+    name              varchar(255) not null,
+    old               boolean not null,
+    position          varchar(255) not null,
+    PRIMARY KEY (id)
+  );
+
+CREATE TABLE quest
+  (
+    id                bigint not null unique,
+    game_id           bigint not null unique,
+    completed         boolean not null,
+    active            boolean not null,
+    PRIMARY KEY (id)
+  );
 # --- !Downs
 DROP TABLE user;
 
