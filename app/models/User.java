@@ -1,5 +1,6 @@
 package models;
 
+import com.avaje.ebean.ExpressionList;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
@@ -8,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -54,8 +56,8 @@ public class User extends Model
      * @param email email to search
      * @return a user
      */
-    public static User findByEmail(String email) {
-        return find.where().eq("email", email).findUnique();
+    public static User findByEmail(String e_mail) {
+        return find.where().eq("e_mail", e_mail).findUnique();
     }
 
     /**
@@ -71,11 +73,22 @@ public class User extends Model
     /**
      * Retrieve a user from a fullname.
      *
-     * @param user_name Full name
+     * @param nickname Full name
      * @return a user
      */
-    public static User findByUsername(String user_name) {
-        return find.where().eq("user_name", user_name).findUnique();
+    public static User findByUsername(String nickname) {
+
+        ExpressionList<User> users = find.where().eq("nickname", nickname);
+
+        if(users == null)
+        {
+            return null;
+        }
+        else
+        {
+            return users.findUnique();
+        }
+
     }
 
     public static long nextId()

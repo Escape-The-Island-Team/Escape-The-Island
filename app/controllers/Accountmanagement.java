@@ -94,7 +94,7 @@ public class Accountmanagement extends Controller
        }
 
 
-       return ok(register.render("Successful!\nWith success."));
+       return ok(login.render("Successful!\nWith success."));
 
    }
 
