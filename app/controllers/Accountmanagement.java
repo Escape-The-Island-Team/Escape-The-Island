@@ -118,7 +118,8 @@ public class Accountmanagement extends Controller
             if(PasswordHash.validatePassword(password, "5000:" + user.password_hash + ":" + user.password_salt))
             {
                 session("nickname", nickname);
-                return ok(editProfile.render("Welcome, " + nickname + "!"));
+                return ok("Welcome, " + nickname + "!");
+                //return ok(editProfile.render("Welcome, " + nickname + "!"));
             }
             else
             {
