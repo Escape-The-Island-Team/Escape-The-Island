@@ -73,7 +73,7 @@ public class PasswordHash
     public static String createHash(char[] password)
         throws NoSuchAlgorithmException, InvalidKeySpecException
     {
-        // Generate a random salt
+        // Generate a random salt.
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_BYTE_SIZE];
         random.nextBytes(salt);
