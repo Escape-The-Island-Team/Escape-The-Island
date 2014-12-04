@@ -10,6 +10,9 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src=@routes.Assets.at("javascripts/bootstrap.min.js") type="text/javascript"></script>
+
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,15 +22,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand text-muted hidden-xs" href="index">Escape the Island - A point and click adventure</a>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="@("active".when(request.path == controllers.routes.Application.index().toString()))"><a href="index">Home</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.about().toString()))"><a href="about">About</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.contact().toString()))"><a href="contact">Contact</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile">Edit Profile</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="login">Login</a></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img class="logo" alt="Logo" src=@routes.Assets.at("images/logo.png")/>
+                    </div>
+                    <div class="col-sm-5">
+                        <a class="navbar-brand text-muted hidden-xs" href="index">Escape the Island - A point and click adventure</a>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="@("active".when(request.path == controllers.routes.Application.index().toString()))"><a href="index">Home</a></li>
+                                <li class="@("active".when(request.path == controllers.routes.Application.about().toString()))"><a href="about">About</a></li>
+                                <li class="@("active".when(request.path == controllers.routes.Application.contact().toString()))"><a href="contact">Contact</a></li>
+                                <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile">Edit Profile</a></li>
+                                <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="login">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,10 +50,7 @@
                 <!-- Footer -->
             <footer class="main-footer">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <img alt="Logo" src=@routes.Assets.at("images/logo.png")/>
-                    </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-12">
                         <ul class="link-list">
                             <li class="heading">Get in touch</li>
                             <li><a href="http://itsoftwareeng.wordpress.com">Visit our Blog</a></li>
@@ -53,8 +62,5 @@
             </footer>
                 <!-- End Footer -->
         </div>
-
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src=@routes.Assets.at("javascripts/bootstrap.min.js") type="text/javascript"></script>
     </body>
 </html>
