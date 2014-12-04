@@ -5,6 +5,8 @@ import java.sql.Date;
 import models.User;
 import play.data.Form;
 import play.mvc.Result;
+import views.html.editProfile;
+import views.html.login;
 import views.html.register;
 
 /**
@@ -58,6 +60,16 @@ public class Accountmanagement extends Controller
        user.time_creation = new Date(System.currentTimeMillis());
        user.nickname = nickname;
        user.e_mail = email;
+
+       try
+       {
+           password = PasswordHash.createHash(password);
+       }
+       catch(Exception e)
+       {
+           return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+       }
+
        user.password_hash = getHashy(password);
        user.password_salt = getSalty(password);
        user.time_password = new Date(System.currentTimeMillis());
@@ -82,7 +94,7 @@ public class Accountmanagement extends Controller
        }
 
 
-       return ok(register.render("Successful!\nWith success."));
+       return ok(login.render("Successfully registered! Now try to log-in."));
 
    }
 
@@ -90,16 +102,43 @@ public class Accountmanagement extends Controller
     {
         //nickname, password
 
-        return ok();
+        String nickname = Form.form().bindFromRequest().field("nickname").value();
+        String password = Form.form().bindFromRequest().field("password").value();
+
+        User user = User.findByUsername(nickname);
+
+        if(user == null)
+        {
+            return ok(login.render("Your password or username was wrong. (user == null)"));
+        }
+
+        try
+        {
+
+            if(PasswordHash.validatePassword(password, "5000:" + user.password_hash + ":" + user.password_salt))
+            {
+                session("nickname", nickname);
+                return ok(editProfile.render("Welcome, " + nickname + "!"));
+            }
+            else
+            {
+                return ok(login.render("Your password or username was wrong. (password doof)"));
+            }
+        }
+        catch(Exception e)
+        {
+            return ok(login.render("Oops, seems we occured a problem. Maybe our Server drowned.\n (Hash-exception)"));
+        }
+
     }
 
     public static String getHashy(String hash)
     {
+        int colonOne = -1;
+        int colonTwo = -1;
+
         for(int i = 0; i<hash.length(); i++)
         {
-            int colonOne = -1;
-            int colonTwo = -1;
-
             if(hash.charAt(i) == ':')
             {
                 if(colonOne == -1)
@@ -114,16 +153,16 @@ public class Accountmanagement extends Controller
             }
         }
 
-        return null;
+        return  null;
     }
 
     public static String getSalty(String hash)
     {
+        int colonOne = -1;
+        int colonTwo = -1;
+
         for(int i = 0; i<hash.length(); i++)
         {
-            int colonOne = -1;
-            int colonTwo = -1;
-
             if(hash.charAt(i) == ':')
             {
                 if(colonOne == -1)
@@ -133,7 +172,7 @@ public class Accountmanagement extends Controller
                 else
                 {
                     colonTwo = i;
-                    return hash.substring(colonTwo);
+                    return hash.substring(colonTwo + 1);
                 }
             }
         }

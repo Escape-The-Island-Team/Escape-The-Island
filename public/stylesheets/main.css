@@ -228,6 +228,15 @@ body {
     font-weight: bold;
 }
 
+.logo {
+    width: 100px;
+    height: 40px;
+    padding-top: 9px;
+}
+
+#error-message {
+    color: red;
+}
 
 
 /**************************
