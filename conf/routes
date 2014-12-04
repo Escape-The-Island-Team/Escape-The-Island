@@ -3,17 +3,15 @@
 # ~~~~
 
 # Home page
-GET         /                          controllers.Application.initial()
-GET         /index                     controllers.Application.index()
-GET         /login                     controllers.Application.login()
-GET         /register                  controllers.Application.register()
-POST        /register                  controllers.Accountmanagement.register()
-GET         /editProfile               controllers.Application.editProfile()
-GET         /characterSelection        controllers.Application.characterSelection()
-GET         /about                     controllers.Application.about()
-GET         /contact                   controllers.Application.contact()
-
+GET        /                        controllers.Application.initial()
+GET        /index                   controllers.Application.index()
+GET        /login                   controllers.Application.login()
+GET        /register                controllers.Application.register()
+POST       /register                controllers.Accountmanagement.register()
+GET        /editProfile             controllers.Application.editProfile()
+GET        /characterSelection      controllers.Application.characterSelection()
+GET        /about                   controllers.Application.about()
+GET        /contact                 controllers.Application.contact()
+GET        /termsofuse              controllers.Application.termsofuse()
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file              controllers.Assets.at(path="/public", file)
-GET         /addUser                   controllers.Application.addUser()
-GET         /getUser                   controllers.Application.displayUser()
+GET        /assets/*file                         controllers.Assets.at(path="/public", file)

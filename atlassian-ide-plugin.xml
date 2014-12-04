@@ -2,7 +2,7 @@
   <project-configuration id="1">
     <servers id="2">
       <jira id="3">
-        <server-id id="4">b22f2103-4a0d-416e-8a50-e1caa7eafc07</server-id>
+        <server-id id="4">1addaae5-ca89-489d-822f-4d16c58d7531</server-id>
         <name>Escape-The-Island</name>
         <url>http://jira.it.dh-karlsruhe.de:8080</url>
         <shared>false</shared>
