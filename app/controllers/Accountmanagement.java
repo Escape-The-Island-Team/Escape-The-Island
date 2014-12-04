@@ -94,7 +94,7 @@ public class Accountmanagement extends Controller
        }
 
 
-       return ok(login.render("Successful!\nWith success."));
+       return ok(login.render("Successfully registered! Now try to log-in."));
 
    }
 
@@ -109,7 +109,7 @@ public class Accountmanagement extends Controller
 
         if(user == null)
         {
-            return ok(login.render("Your password or username was wrong."));
+            return ok(login.render("Your password or username was wrong. (user == null)"));
         }
 
         try
@@ -118,28 +118,27 @@ public class Accountmanagement extends Controller
             if(PasswordHash.validatePassword(password, "5000:" + user.password_hash + ":" + user.password_salt))
             {
                 session("nickname", nickname);
-                return ok("Welcome, " + nickname + "!");
-                //return ok(editProfile.render("Welcome, " + nickname + "!"));
+                return ok(editProfile.render("Welcome, " + nickname + "!"));
             }
             else
             {
-                return ok(login.render("Your password or username was wrong."));
+                return ok(login.render("Your password or username was wrong. (password doof)"));
             }
         }
         catch(Exception e)
         {
-            return ok(login.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+            return ok(login.render("Oops, seems we occured a problem. Maybe our Server drowned.\n (Hash-exception)"));
         }
 
     }
 
     public static String getHashy(String hash)
     {
+        int colonOne = -1;
+        int colonTwo = -1;
+
         for(int i = 0; i<hash.length(); i++)
         {
-            int colonOne = -1;
-            int colonTwo = -1;
-
             if(hash.charAt(i) == ':')
             {
                 if(colonOne == -1)
@@ -154,16 +153,16 @@ public class Accountmanagement extends Controller
             }
         }
 
-        return null;
+        return  null;
     }
 
     public static String getSalty(String hash)
     {
+        int colonOne = -1;
+        int colonTwo = -1;
+
         for(int i = 0; i<hash.length(); i++)
         {
-            int colonOne = -1;
-            int colonTwo = -1;
-
             if(hash.charAt(i) == ':')
             {
                 if(colonOne == -1)
@@ -173,7 +172,7 @@ public class Accountmanagement extends Controller
                 else
                 {
                     colonTwo = i;
-                    return hash.substring(colonTwo);
+                    return hash.substring(colonTwo + 1);
                 }
             }
         }
