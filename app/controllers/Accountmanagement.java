@@ -28,25 +28,25 @@ public class Accountmanagement extends Controller
        //check for empty
        if(nickname == null || nickname.equals(""))
        {
-           error += "The field \"nickname\" was not filled in correctly";
+           error += "The field \"nickname\" was not filled in correctly.\n";
        }
        if(email == null || email.equals(""))
        {
-           error += "The field \"email\" was not filled in correctly";
+           error += "The field \"email\" was not filled in correctly.\n";
        }
        if(password == null || password.equals(""))
        {
-           error += "The field \"password\" was not filled in correctly";
+           error += "The field \"password\" was not filled in correctly.\n";
        }
        if(termsOfUse == null)
        {
-           error += "You have to accept our well designed terms of use.";
+           error += "You have to accept our well designed terms of use!\n";
        }
 
        //check for password matching
        if(!password.equals(repeat))
        {
-           error += "Your passwords didn't match";
+           error += "Your passwords didn't match.\n";
        }
 
        if(!error.equals(""))
@@ -65,11 +65,11 @@ public class Accountmanagement extends Controller
        //check if username already used
        if(null != User.findByUsername(nickname))
        {
-            return ok(register.render("Seems your nickname is already used."));
+            return ok(register.render("Seems your nickname is already used.\n"));
        }
        if(null != User.findByEmail(email))
        {
-           return ok(register.render("Seems your e-mail address is already registered."));
+           return ok(register.render("Seems your e-mail address is already registered.\n"));
        }
 
        try
@@ -78,11 +78,11 @@ public class Accountmanagement extends Controller
        }
        catch(Exception e)
        {
-           return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned."));
+           return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
        }
 
 
-       return ok(register.render("Successful!"));
+       return ok(register.render("Successful!\nWith success."));
 
    }
 
