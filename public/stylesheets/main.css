@@ -234,6 +234,10 @@ body {
     padding-top: 9px;
 }
 
+#error-message {
+    color: red;
+}
+
 
 /**************************
 		Media Queries

@@ -1,6 +1,8 @@
 
 function select(name) {
     document.getElementById('start-game').disabled=false;
+    document.getElementById('Alice').style.border = "none";
+    document.getElementById('Bob').style.border = "none";
 
     switch (name) {
         case "Bob":
