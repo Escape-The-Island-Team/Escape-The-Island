@@ -19,14 +19,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand text-muted hidden-xs" href="index.scala.html">Escape the Island - A point and click adventure</a>
+                <a class="navbar-brand text-muted hidden-xs" href="index">Escape the Island - A point and click adventure</a>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="@("active".when(request.path == controllers.routes.Application.index().toString()))"><a href="index.scala.html">Home</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.about().toString()))"><a href="about.scala.html">About</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.contact().toString()))"><a href="contact.scala.html">Contact</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile.scala.html">Edit Profile</a></li>
-                        <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="login.scala.html">Login</a></li>
+                        <li class="@("active".when(request.path == controllers.routes.Application.index().toString()))"><a href="index">Home</a></li>
+                        <li class="@("active".when(request.path == controllers.routes.Application.about().toString()))"><a href="about">About</a></li>
+                        <li class="@("active".when(request.path == controllers.routes.Application.contact().toString()))"><a href="contact">Contact</a></li>
+                        <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile">Edit Profile</a></li>
+                        <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="login">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -34,16 +34,22 @@
 
         @content
 
-
         <div class="container">
                 <!-- Footer -->
             <footer class="main-footer">
-                <ul class="link-list">
-                    <li class="heading">Get in touch</li>
-                    <li><a href="http://itsoftwareeng.wordpress.com">Visit our Blog</a></li>
-                    <li><a href="https://github.com/Escape-The-Island-Team/Escape-The-Island.git">Visit us on GitHub</a></li>
-                </ul>
-                <p class="copyright">&copy; 2014 Escape the Island Team</p>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img alt="Logo" src=@routes.Assets.at("images/logo.png")/>
+                    </div>
+                    <div class="col-sm-8">
+                        <ul class="link-list">
+                            <li class="heading">Get in touch</li>
+                            <li><a href="http://itsoftwareeng.wordpress.com">Visit our Blog</a></li>
+                            <li><a href="https://github.com/Escape-The-Island-Team/Escape-The-Island.git">Visit us on GitHub</a></li>
+                            <li><p class="copyright">&copy; 2014 Escape the Island Team</p></li>
+                        </ul>
+                    </div>
+                </div>
             </footer>
                 <!-- End Footer -->
         </div>
