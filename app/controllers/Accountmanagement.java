@@ -14,6 +14,15 @@ import views.html.register;
  */
 public class Accountmanagement extends Controller
 {
+
+   /**
+    * Collecting, validating and if applicable saving data from website input.
+    * If the account is created the user will be directed to the loginpage.
+    * If something went wrong, the user will be directed back to the register
+    * page and recieve a message about what wen wrong.
+    *
+    * @return the respective html result
+    */
    public static Result register()
    {
        //field-names: nickname, email, password, repeat-password, termsOfUse
@@ -98,6 +107,14 @@ public class Accountmanagement extends Controller
 
    }
 
+
+    /**
+     * Collecting and validating login data.
+     * If the data was correct user will be directed to profile page.
+     * Else he/she will be directed to the login page with an error displayed.
+     *
+     * @return the respective html result
+     */
     public static Result login()
     {
         //nickname, password
@@ -132,6 +149,12 @@ public class Accountmanagement extends Controller
 
     }
 
+    /**
+     * Extracts the hash part of the hashed password.
+     *
+     * @param hash the hased password
+     * @return the hash part
+     */
     public static String getHashy(String hash)
     {
         int colonOne = -1;
@@ -156,6 +179,11 @@ public class Accountmanagement extends Controller
         return  null;
     }
 
+    /**
+     * Extracts the salt part of the hashed password.
+     * @param hash the hashed password
+     * @return the salt of the hashed password
+     */
     public static String getSalty(String hash)
     {
         int colonOne = -1;
