@@ -16,6 +16,7 @@ GET         /characterSelection        controllers.Application.characterSelectio
 GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
+GET         /loadingGame               controllers.Application.loadingGame()
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -239,6 +239,18 @@ body {
 }
 
 
+.loading-game {
+    max-width: 100%;
+    /* This will remove the outer padding, and push content edge to edge */
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.loading-game img {
+    height: 400px;
+}
+
+
 /**************************
 		Media Queries
 **************************/
