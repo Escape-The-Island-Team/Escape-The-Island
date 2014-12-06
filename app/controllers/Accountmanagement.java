@@ -8,6 +8,8 @@ import play.mvc.Result;
 import views.html.editProfile;
 import views.html.login;
 import views.html.register;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 /**
  * Created by Maik Wandrei on 04.12.2014.
@@ -41,7 +43,7 @@ public class Accountmanagement extends Controller
        {
            error += "The field \"nickname\" was not filled in correctly.\n";
        }
-       if(email == null || email.equals(""))
+       if(email == null || email.equals("") || !emailValid(email))
        {
            error += "The field \"email\" was not filled in correctly.\n";
        }
@@ -107,7 +109,6 @@ public class Accountmanagement extends Controller
 
    }
 
-
     /**
      * Collecting and validating login data.
      * If the data was correct user will be directed to profile page.
@@ -117,16 +118,21 @@ public class Accountmanagement extends Controller
      */
     public static Result login()
     {
-        //nickname, password
+        //collecting input from website
 
         String nickname = Form.form().bindFromRequest().field("nickname").value();
         String password = Form.form().bindFromRequest().field("password").value();
+
+        if(nickname.equals("") || nickname == null)
+        {
+
+        }
 
         User user = User.findByUsername(nickname);
 
         if(user == null)
         {
-            return ok(login.render("Your password or username was wrong. (user == null)"));
+            return ok(login.render("Your password or username was wrong."));
         }
 
         try
@@ -139,12 +145,12 @@ public class Accountmanagement extends Controller
             }
             else
             {
-                return ok(login.render("Your password or username was wrong. (password doof)"));
+                return ok(login.render("Your password or username was wrong."));
             }
         }
         catch(Exception e)
         {
-            return ok(login.render("Oops, seems we occured a problem. Maybe our Server drowned.\n (Hash-exception)"));
+            return ok(login.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
         }
 
     }
@@ -157,6 +163,32 @@ public class Accountmanagement extends Controller
     {
         session().clear();
         return ok(login.render("Logout successful."));
+    }
+
+    public static Result editProfile()
+    {
+        //collecting input from website
+        Form form = Form.form();
+        String email = form.field("email").value();
+        String oldpw = form.field("old-password").value();
+        String newpw = form.field("new-password").value();
+        String repeatpw = form.field("repeat-new-password").value();
+
+        //validate input
+
+
+        //find user
+        User user = null;
+        try
+        {
+            user = User.findByUsername(session("nickname"));
+
+            return ok("tbd c:");
+        }
+        catch(Exception e)
+        {
+            return ok(editProfile.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+        }
     }
 
     /**
@@ -216,5 +248,16 @@ public class Accountmanagement extends Controller
         }
 
         return null;
+    }
+
+    public static boolean emailValid(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
     }
 }
