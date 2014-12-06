@@ -43,7 +43,7 @@ public class Accountmanagement extends Controller
        {
            error += "The field \"nickname\" was not filled in correctly.\n";
        }
-       if(email == null || email.equals("") || !emailValid(email))
+       if(email == null || email.equals(""))
        {
            error += "The field \"email\" was not filled in correctly.\n";
        }
@@ -173,11 +173,9 @@ public class Accountmanagement extends Controller
         String oldpw = form.field("old-password").value();
         String newpw = form.field("new-password").value();
         String repeatpw = form.field("repeat-new-password").value();
+        String error = "";
 
-        //validate input
-
-
-        //find user
+        //find user and check old pw
         User user = User.findByUsername(session("nickname"));
 
         if(user == null)
@@ -195,6 +193,11 @@ public class Accountmanagement extends Controller
         catch(Exception e)
         {
             return ok(editProfile.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+        }
+
+        if(!email.equals("") && email != null)
+        {
+
         }
 
         return ok("tbd c:");
@@ -257,16 +260,5 @@ public class Accountmanagement extends Controller
         }
 
         return null;
-    }
-
-    public static boolean emailValid(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
     }
 }
