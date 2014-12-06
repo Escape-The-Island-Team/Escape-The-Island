@@ -7,12 +7,16 @@ GET         /                          controllers.Application.initial()
 GET         /index                     controllers.Application.index()
 GET         /login                     controllers.Application.login()
 POST        /login                     controllers.Accountmanagement.login()
+GET         /logout                    controllers.Accountmanagement.logout()
 GET         /register                  controllers.Application.register()
 POST        /register                  controllers.Accountmanagement.register()
 GET         /editProfile               controllers.Application.editProfile()
+POST        /editProfile               controllers.Accountmanagement.editProfile()
 GET         /characterSelection        controllers.Application.characterSelection()
 GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file              controllers.Assets.at(path="/public", file)

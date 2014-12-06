@@ -17,9 +17,9 @@ public class Accountmanagement extends Controller
 
    /**
     * Collecting, validating and if applicable saving data from website input.
-    * If the account is created the user will be directed to the loginpage.
+    * If the account is created the user will be directed to the login page.
     * If something went wrong, the user will be directed back to the register
-    * page and recieve a message about what wen wrong.
+    * page and receive a message about what wen wrong.
     *
     * @return the respective html result
     */
@@ -76,7 +76,7 @@ public class Accountmanagement extends Controller
        }
        catch(Exception e)
        {
-           return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+           return ok(register.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
        }
 
        user.password_hash = getHashy(password);
@@ -99,7 +99,7 @@ public class Accountmanagement extends Controller
        }
        catch(Exception e)
        {
-           return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+           return ok(register.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
        }
 
 
@@ -148,7 +148,7 @@ public class Accountmanagement extends Controller
         }
         catch(Exception e)
         {
-            return ok(login.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+            return ok(login.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
         }
 
     }
@@ -178,7 +178,7 @@ public class Accountmanagement extends Controller
 
         if(user == null)
         {
-            return ok(editProfile.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+            return ok(editProfile.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
         }
 
         try
@@ -190,7 +190,7 @@ public class Accountmanagement extends Controller
         }
         catch(Exception e)
         {
-            return ok(editProfile.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+            return ok(editProfile.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
         }
 
         if(!email.equals("") && email != null)
