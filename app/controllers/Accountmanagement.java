@@ -8,8 +8,6 @@ import play.mvc.Result;
 import views.html.editProfile;
 import views.html.login;
 import views.html.register;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 /**
  * Created by Maik Wandrei on 04.12.2014.
@@ -197,9 +195,17 @@ public class Accountmanagement extends Controller
 
         if(!email.equals("") && email != null)
         {
-
+            user.changeEmail(email);
         }
 
+        if(!newpw.equals("") && newpw != null)
+        {
+            if(newpw == repeatpw)
+            {
+                newpw = PasswordHash.createHash(newpw);
+                user.changePassword(getHashy(newpw), getSalty(newpw));
+            }
+        }
         return ok("tbd c:");
     }
 
