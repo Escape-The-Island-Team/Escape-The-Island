@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -47,8 +46,8 @@ public class User extends Model
     @Formats.NonEmpty
     public Date time_password;
 
-    // -- Queries (long id, user.class)
-    public static Model.Finder<Long, User> find = new Model.Finder<Long, User>(Long.class, User.class);
+    // -- Queries
+    public static Model.Finder<String, User> find = new Model.Finder<>(String.class, User.class);
 
     /**
      * Retrieve a user from an email.
