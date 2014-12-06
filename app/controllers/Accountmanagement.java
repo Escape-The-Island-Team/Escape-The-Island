@@ -178,17 +178,26 @@ public class Accountmanagement extends Controller
 
 
         //find user
-        User user = null;
+        User user = User.findByUsername(session("nickname"));
+
+        if(user == null)
+        {
+            return ok(editProfile.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+        }
+
         try
         {
-            user = User.findByUsername(session("nickname"));
-
-            return ok("tbd c:");
+            if(!PasswordHash.validatePassword(oldpw, "5000:" + user.password_hash + ":" + user.password_salt))
+            {
+                return ok(editProfile.render("Your password is incorrect."));
+            }
         }
         catch(Exception e)
         {
             return ok(editProfile.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
         }
+
+        return ok("tbd c:");
     }
 
     /**
