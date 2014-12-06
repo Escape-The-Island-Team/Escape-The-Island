@@ -171,7 +171,7 @@ public class Accountmanagement extends Controller
         String oldpw = form.field("old-password").value();
         String newpw = form.field("new-password").value();
         String repeatpw = form.field("repeat-new-password").value();
-        String error = "";
+        String message = "";
 
         //find user and check old pw
         User user = User.findByUsername(session("nickname"));
@@ -196,17 +196,26 @@ public class Accountmanagement extends Controller
         if(!email.equals("") && email != null)
         {
             user.changeEmail(email);
+            message += "Your e-mail has been changed.\n";
         }
 
         if(!newpw.equals("") && newpw != null)
         {
             if(newpw == repeatpw)
             {
-                newpw = PasswordHash.createHash(newpw);
+                try
+                {
+                    newpw = PasswordHash.createHash(newpw);
+                }
+                catch(Exception e)
+                {
+                    return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+                }
                 user.changePassword(getHashy(newpw), getSalty(newpw));
+                message += "Your password has been changed.\n";
             }
         }
-        return ok("tbd c:");
+        return ok(editProfile.render(message));
     }
 
     /**
