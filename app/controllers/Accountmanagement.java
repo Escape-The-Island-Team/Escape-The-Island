@@ -150,6 +150,16 @@ public class Accountmanagement extends Controller
     }
 
     /**
+     * Destroying session of logged in user and direct to login page
+     * @return
+     */
+    public static Result logout()
+    {
+        session().clear();
+        return ok(login.render("Logout successful."));
+    }
+
+    /**
      * Extracts the hash part of the hashed password.
      *
      * @param hash the hased password
