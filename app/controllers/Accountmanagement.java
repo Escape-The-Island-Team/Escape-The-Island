@@ -166,7 +166,7 @@ public class Accountmanagement extends Controller
     public static Result editProfile()
     {
         //collecting input from website
-        Form form = Form.form();
+        Form form = Form.form().bindFromRequest();
         String email = form.field("email").value();
         String oldpw = form.field("old-password").value();
         String newpw = form.field("new-password").value();
@@ -179,6 +179,11 @@ public class Accountmanagement extends Controller
         if(user == null)
         {
             return ok(editProfile.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
+        }
+
+        if(oldpw.equals("") || oldpw == null)
+        {
+            return ok(editProfile.render("The field \"Old password:\" needs to be filled."));
         }
 
         try
@@ -201,7 +206,7 @@ public class Accountmanagement extends Controller
 
         if(!newpw.equals("") && newpw != null)
         {
-            if(newpw == repeatpw)
+            if(newpw.equals(repeatpw))
             {
                 try
                 {
@@ -213,6 +218,10 @@ public class Accountmanagement extends Controller
                 }
                 user.changePassword(getHashy(newpw), getSalty(newpw));
                 message += "Your password has been changed.\n";
+            }
+            else
+            {
+                message += "To change your password, the new password, and the repeated one must be equal.\n";
             }
         }
         return ok(editProfile.render(message));
