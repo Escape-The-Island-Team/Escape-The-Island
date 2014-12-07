@@ -200,8 +200,15 @@ public class Accountmanagement extends Controller
 
         if(!email.equals("") && email != null)
         {
-            user.changeEmail(email);
-            message += "Your e-mail has been changed.\n";
+            if(User.findByEmail(email) == null)
+            {
+                user.changeEmail(email);
+                message += "Your e-mail has been changed.\n";
+            }
+            else
+            {
+                message += "The e-mail you choose is already assigned to another account.";
+            }
         }
 
         if(!newpw.equals("") && newpw != null)

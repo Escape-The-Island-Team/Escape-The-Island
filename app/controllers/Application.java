@@ -10,7 +10,14 @@ public class Application extends Controller {
     }
 
     public static Result login() {
-        return ok(login.render(""));
+        if(session("nickname") == null || session("nickname").equals(""))
+        {
+            return ok(login.render(""));
+        }
+        else
+        {
+            return redirect(routes.Application.index());
+        }
     }
 
     public static Result initial() {
@@ -18,15 +25,36 @@ public class Application extends Controller {
     }
 
     public static Result register() {
-        return ok(register.render(""));
+        if(session("nickname") == null || session("nickname").equals(""))
+        {
+            return ok(register.render(""));
+        }
+        else
+        {
+            return redirect(routes.Application.index());
+        }
     }
 
     public static Result editProfile() {
-        return ok(editProfile.render(""));
+        if(session("nickname") == null || session("nickname").equals(""))
+        {
+            return redirect(routes.Application.login());
+        }
+        else
+        {
+            return ok(editProfile.render(""));
+        }
     }
 
     public static Result characterSelection() {
-        return ok(characterSelection.render(""));
+        if(session("nickname") == null || session("nickname").equals(""))
+        {
+            return redirect(routes.Application.login());
+        }
+        else
+        {
+            return ok(characterSelection.render(""));
+        }
     }
 
     public static Result about() { return ok(about.render("")); }
