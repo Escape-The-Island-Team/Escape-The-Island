@@ -14,6 +14,15 @@ import views.html.register;
  */
 public class Accountmanagement extends Controller
 {
+
+   /**
+    * Collecting, validating and if applicable saving data from website input.
+    * If the account is created the user will be directed to the login page.
+    * If something went wrong, the user will be directed back to the register
+    * page and receive a message about what wen wrong.
+    *
+    * @return the respective html result
+    */
    public static Result register()
    {
        //field-names: nickname, email, password, repeat-password, termsOfUse
@@ -67,7 +76,7 @@ public class Accountmanagement extends Controller
        }
        catch(Exception e)
        {
-           return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+           return ok(register.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
        }
 
        user.password_hash = getHashy(password);
@@ -90,7 +99,7 @@ public class Accountmanagement extends Controller
        }
        catch(Exception e)
        {
-           return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+           return ok(register.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
        }
 
 
@@ -98,18 +107,30 @@ public class Accountmanagement extends Controller
 
    }
 
+    /**
+     * Collecting and validating login data.
+     * If the data was correct user will be directed to profile page.
+     * Else he/she will be directed to the login page with an error displayed.
+     *
+     * @return the respective html result
+     */
     public static Result login()
     {
-        //nickname, password
+        //collecting input from website
 
         String nickname = Form.form().bindFromRequest().field("nickname").value();
         String password = Form.form().bindFromRequest().field("password").value();
+
+        if(nickname.equals("") || nickname == null)
+        {
+
+        }
 
         User user = User.findByUsername(nickname);
 
         if(user == null)
         {
-            return ok(login.render("Your password or username was wrong. (user == null)"));
+            return ok(login.render("Your password or username was wrong."));
         }
 
         try
@@ -122,16 +143,103 @@ public class Accountmanagement extends Controller
             }
             else
             {
-                return ok(login.render("Your password or username was wrong. (password doof)"));
+                return ok(login.render("Your password or username was wrong."));
             }
         }
         catch(Exception e)
         {
-            return ok(login.render("Oops, seems we occured a problem. Maybe our Server drowned.\n (Hash-exception)"));
+            return ok(login.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
         }
 
     }
 
+    /**
+     * Destroying session of logged in user and direct to login page
+     * @return
+     */
+    public static Result logout()
+    {
+        session().clear();
+        return ok(login.render("Logout successful."));
+    }
+
+    public static Result editProfile()
+    {
+        //collecting input from website
+        Form form = Form.form().bindFromRequest();
+        String email = form.field("email").value();
+        String oldpw = form.field("old-password").value();
+        String newpw = form.field("new-password").value();
+        String repeatpw = form.field("repeat-new-password").value();
+        String message = "";
+
+        //find user and check old pw
+        User user = User.findByUsername(session("nickname"));
+
+        if(user == null)
+        {
+            return ok(editProfile.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
+        }
+
+        if(oldpw.equals("") || oldpw == null)
+        {
+            return ok(editProfile.render("The field \"Old password:\" needs to be filled."));
+        }
+
+        try
+        {
+            if(!PasswordHash.validatePassword(oldpw, "5000:" + user.password_hash + ":" + user.password_salt))
+            {
+                return ok(editProfile.render("Your password is incorrect."));
+            }
+        }
+        catch(Exception e)
+        {
+            return ok(editProfile.render("Oops, seems we occurred a problem. Maybe our Server drowned.\n"));
+        }
+
+        if(!email.equals("") && email != null)
+        {
+            if(User.findByEmail(email) == null)
+            {
+                user.changeEmail(email);
+                message += "Your e-mail has been changed.\n";
+            }
+            else
+            {
+                message += "The e-mail you choose is already assigned to another account.";
+            }
+        }
+
+        if(!newpw.equals("") && newpw != null)
+        {
+            if(newpw.equals(repeatpw))
+            {
+                try
+                {
+                    newpw = PasswordHash.createHash(newpw);
+                }
+                catch(Exception e)
+                {
+                    return ok(register.render("Oops, seems we occured a problem. Maybe our Server drowned.\n"));
+                }
+                user.changePassword(getHashy(newpw), getSalty(newpw));
+                message += "Your password has been changed.\n";
+            }
+            else
+            {
+                message += "To change your password, the new password, and the repeated one must be equal.\n";
+            }
+        }
+        return ok(editProfile.render(message));
+    }
+
+    /**
+     * Extracts the hash part of the hashed password.
+     *
+     * @param hash the hased password
+     * @return the hash part
+     */
     public static String getHashy(String hash)
     {
         int colonOne = -1;
@@ -156,6 +264,11 @@ public class Accountmanagement extends Controller
         return  null;
     }
 
+    /**
+     * Extracts the salt part of the hashed password.
+     * @param hash the hashed password
+     * @return the salt of the hashed password
+     */
     public static String getSalty(String hash)
     {
         int colonOne = -1;

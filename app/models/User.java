@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -47,17 +46,27 @@ public class User extends Model
     @Formats.NonEmpty
     public Date time_password;
 
-    // -- Queries (long id, user.class)
-    public static Model.Finder<Long, User> find = new Model.Finder<Long, User>(Long.class, User.class);
+    // -- Queries
+    public static Model.Finder<String, User> find = new Model.Finder<>(String.class, User.class);
 
     /**
      * Retrieve a user from an email.
      *
-     * @param email email to search
+     * @param e_mail email to search
      * @return a user
      */
-    public static User findByEmail(String e_mail) {
-        return find.where().eq("e_mail", e_mail).findUnique();
+    public static User findByEmail(String e_mail)
+    {
+        ExpressionList<User> users = find.where().eq("e_mail", e_mail);
+
+        if(users == null)
+        {
+            return null;
+        }
+        else
+        {
+            return users.findUnique();
+        }
     }
 
     /**
@@ -66,8 +75,19 @@ public class User extends Model
      * @param id id to search
      * @return a user
      */
-    public static User findById(Long id) {
-        return find.where().eq("id", id).findUnique();
+    public static User findById(Long id)
+    {
+
+        ExpressionList<User> users = find.where().eq("id", id);
+
+        if(users == null)
+        {
+            return null;
+        }
+        else
+        {
+            return users.findUnique();
+        }
     }
 
     /**
@@ -91,36 +111,29 @@ public class User extends Model
 
     }
 
-    public static long nextId()
+
+    /**
+     * Takes the hash and salt and writes it into the database
+     *
+     * @param hash the hashpart
+     * @param salt the saltpart
+     */
+    public void changePassword(String hash, String salt)
     {
-        return find.findRowCount() + 1;
+        this.password_hash = hash;
+        this.password_salt = salt;
+        this.time_password = new Date(System.currentTimeMillis());
+        this.save();
     }
 
     /**
-     * Authenticate a User, from a email and clear password.
+     * Recieves an email String and writes it into the database.
      *
-     * @param email         email
-     * @param clearPassword clear password
-     * @return User if authenticated, null otherwise
-     * @throws AppException App Exception
+     * @param email the new email
      */
-   /* public static User authenticate(String email, String clearPassword) throws AppException {
-
-        // get the user with email only to keep the salt password
-        User user = find.where().eq("email", email).findUnique();
-        if (user != null) {
-            // get the hash password from the salt + clear password
-            if (Hash.checkPassword(clearPassword, user.passwordHash)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public void changePassword(String password) throws AppException {
-        this.passwordHash = Hash.createPassword(password);
+    public void changeEmail(String email)
+    {
+        this.e_mail = email;
         this.save();
     }
-     */
-
 }

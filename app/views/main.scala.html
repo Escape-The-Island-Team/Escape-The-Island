@@ -1,3 +1,4 @@
+
 @(title: String)(content: Html)
 
 <!DOCTYPE html>
@@ -35,8 +36,13 @@
                                 <li class="@("active".when(request.path == controllers.routes.Application.index().toString()))"><a href="index">Home</a></li>
                                 <li class="@("active".when(request.path == controllers.routes.Application.about().toString()))"><a href="about">About</a></li>
                                 <li class="@("active".when(request.path == controllers.routes.Application.contact().toString()))"><a href="contact">Contact</a></li>
-                                <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile">Edit Profile</a></li>
-                                <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="login">Login</a></li>
+
+                                @if(session().isEmpty){
+                                    <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="@routes.Application.login()">Login</a></li>
+                                } else {
+                                    <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile">Edit Profile</a></li>
+                                    <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="@routes.Accountmanagement.logout()">Logout</a></li>
+                                }
                             </ul>
                         </div>
                     </div>
