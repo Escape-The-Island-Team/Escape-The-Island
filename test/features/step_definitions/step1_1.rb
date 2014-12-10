@@ -60,7 +60,7 @@ When(/^The user accepts our terms of use$/) do
 end
 
 Then(/^An error message that tells the user that the email is invalid gets displayed$/) do
-  passed # express the regexp above with the code you wish you had
+  pending # express the regexp above with the code you wish you had
 end
 
 Then(/^Nothing is stored in our database$/) do
