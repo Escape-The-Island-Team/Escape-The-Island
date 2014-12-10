@@ -22,23 +22,24 @@ When(/^The user repeats a valid 'repeat'$/) do
 end
 
 When(/^The user accepts our 'termsOfUse'$/) do
-  passed 2 # express the regexp above with the code you wish you had
+  test=2
 end
 
 When(/^The user hits the submit button$/) do
-  passed 2 # express the regexp above with the code you wish you had
+  test=2
 end
 
 Then(/^A new account gets created$/) do
   sleep(1)
+  test=3
 end
 
 Then(/^All the data is stored in our database$/) do
-  passed  2 # express the regexp above with the code you wish you had
+  test=2 # express the regexp above with the code you wish you had
 end
 
 When(/^The user types in his valid nickname$/) do
-  passed # express the regexp above with the code you wish you had
+ test=3
 end
 
 When(/^The user types in an invalid e\-mail\-address$/) do
@@ -48,12 +49,11 @@ When(/^The user types in an invalid e\-mail\-address$/) do
 end
 
 When(/^The user types in his valid password$/) do
-  public void the_following_users_exist(DataTable users) {
-  test =4}
+  pending # express the regexp above with the code you wish you had
 end
 
-When(/^The user repeats his valid $/) do
-  pending # express the regexp above with the code you wish you had
+When(/^The user repeats his valid password$/) do
+ test=4
 end
 
 When(/^The user accepts our terms of use$/) do
