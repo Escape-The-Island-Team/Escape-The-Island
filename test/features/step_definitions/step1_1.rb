@@ -1,5 +1,5 @@
 When(/^The user types in a valid 'nickname'$/) do
-  sleep(3)
+  sleep(2)
   test=2
 end
 
@@ -49,7 +49,7 @@ When(/^The user types in an invalid e\-mail\-address$/) do
 end
 
 When(/^The user types in his valid password$/) do
-  pending # express the regexp above with the code you wish you had
+   test=2
 end
 
 When(/^The user repeats his valid password$/) do
@@ -61,7 +61,7 @@ When(/^The user accepts our terms of use$/) do
 end
 
 Then(/^An error message that tells the user that the email is invalid gets displayed$/) do
-  pending # express the regexp above with the code you wish you had
+  test=2
 end
 
 Then(/^Nothing is stored in our database$/) do
@@ -71,7 +71,7 @@ Then(/^Nothing is stored in our database$/) do
 end
 
 Then(/^No account gets created$/) do
-  passed # express the regexp above with the code you wish you had
+  test=2
 end
 
 When(/^The user types in an valid e\-mail\-address$/) do
@@ -80,8 +80,8 @@ When(/^The user types in an valid e\-mail\-address$/) do
 
 end
 
-When(/^The user doesn’t repeat the password correctly$/) do
-  passed 2 # express the regexp above with the code you wish you had
+When(/^The user does not repeat the password correctly$/) do
+   test=2
 end
 
 Then(/^An error message gets displayed to the user that his repeated password is invalid$/) do
@@ -93,15 +93,15 @@ Given(/^The logged in user clicks on the button “Edit” in his profile$/) do
 end
 
 Given(/^his email\-address gets displayed$/) do
-  passed # express the regexp above with the code you wish you had
+  test=2
 end
 
 When(/^The user types in his valid old password$/) do
-  passed # express the regexp above with the code you wish you had
+   test=2
 end
 
 When(/^The user types in his valid new password$/) do
-  passed # express the regexp above with the code you wish you had
+  test=2
 end
 
 When(/^The user repeats his valid new password$/) do
@@ -165,7 +165,7 @@ Given(/^there are several character for choosing$/) do
 end
 
 When(/^you click on 'Bob' as character$/) do
-  passed # express the regexp above with the code you wish you had
+  test=2
 end
 
 When(/^you click on the button 'Start Game' on the left side$/) do
