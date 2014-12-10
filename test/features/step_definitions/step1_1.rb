@@ -88,7 +88,7 @@ Then(/^An error message gets displayed to the user that his repeated password is
   test=2
 end
 
-Given(/^The logged in user clicks on the button “Edit” in his profile$/) do
+Given(/^The logged in user clicks on the button 'Edit' in his profile$/) do
   test=2
 end
 
@@ -155,7 +155,7 @@ end
 
 Then(/^The user gets an error message that his new email\-address is incorrect$/) do
    test=2
-  sleep(20)
+  sleep(3)
 end
 
 Given(/^there are several character for choosing$/) do
