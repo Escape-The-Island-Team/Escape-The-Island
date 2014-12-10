@@ -4,16 +4,16 @@ When(/^The user types in a valid 'nickname'$/) do
 end
 
 When(/^The user types in a valid 'email'$/) do
- sleep(3)
+ sleep(2)
    test=2
 
 end
 
 When(/^The user types in a valid 'password'$/) do
-  sleep(3)
+  sleep(1)
      test=2
 
-end
+endu
 
 When(/^The user repeats a valid 'repeat'$/) do
   sleep(3)
@@ -52,11 +52,11 @@ When(/^The user types in his valid password$/) do
 end
 
 When(/^The user repeats his valid password$/) do
-  passed # express the regexp above with the code you wish you had
+  error # express the regexp above with the code you wish you had
 end
 
 When(/^The user accepts our terms of use$/) do
-  passed # express the regexp above with the code you wish you had
+  error # express the regexp above with the code you wish you had
 end
 
 Then(/^An error message that tells the user that the email is invalid gets displayed$/) do
@@ -84,7 +84,7 @@ When(/^The user doesn’t repeat the password correctly$/) do
 end
 
 Then(/^An error message gets displayed to the user that his repeated password is invalid$/) do
-  passed # express the regexp above with the code you wish you had
+  error # express the regexp above with the code you wish you had
 end
 
 Given(/^The logged in user clicks on the button “Edit” in his profile$/) do
