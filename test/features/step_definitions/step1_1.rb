@@ -48,11 +48,12 @@ When(/^The user types in an invalid e\-mail\-address$/) do
 end
 
 When(/^The user types in his valid password$/) do
-  passed # express the regexp above with the code you wish you had
+  public void the_following_users_exist(DataTable users) {
+  test =4}
 end
 
 When(/^The user repeats his valid password$/) do
-  passed # express the regexp above with the code you wish you had
+  pending # express the regexp above with the code you wish you had
 end
 
 When(/^The user accepts our terms of use$/) do
