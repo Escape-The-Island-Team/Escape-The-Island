@@ -1,19 +1,24 @@
 When(/^The user types in a valid 'nickname'$/) do
   sleep(3)
-  passed # express the regexp above with the code you wish you had
-
+  test=2
 end
 
 When(/^The user types in a valid 'email'$/) do
-  passed # express the regexp above with the code you wish you had
+ sleep(3)
+   test=2
+
 end
 
 When(/^The user types in a valid 'password'$/) do
-  passed # express the regexp above with the code you wish you had
+  sleep(3)
+     test=2
+
 end
 
 When(/^The user repeats a valid 'repeat'$/) do
-  passed # express the regexp above with the code you wish you had
+  sleep(3)
+     test=2
+
 end
 
 When(/^The user accepts our 'termsOfUse'$/) do
@@ -37,7 +42,9 @@ When(/^The user types in his valid nickname$/) do
 end
 
 When(/^The user types in an invalid e\-mail\-address$/) do
-  passed # express the regexp above with the code you wish you had
+  sleep(3)
+     test=2
+
 end
 
 When(/^The user types in his valid password$/) do
@@ -57,7 +64,9 @@ Then(/^An error message that tells the user that the email is invalid gets displ
 end
 
 Then(/^Nothing is stored in our database$/) do
- passed # express the regexp above with the code you wish you had
+ sleep(3)
+    test=2
+
 end
 
 Then(/^No account gets created$/) do
@@ -65,7 +74,9 @@ Then(/^No account gets created$/) do
 end
 
 When(/^The user types in an valid e\-mail\-address$/) do
-  passed # express the regexp above with the code you wish you had
+ sleep(3)
+    test=2
+
 end
 
 When(/^The user doesn’t repeat the password correctly$/) do
@@ -105,7 +116,9 @@ Then(/^The user gets an error message that his old password is incorrect$/) do
 end
 
 Then(/^Nothing gets changed in our database$/) do
-  passed # express the regexp above with the code you wish you had
+  sleep(3)
+     test=2
+
 end
 
 Then(/^The email in the database is manipulated, even if it hasn’t been changed, for this user$/) do
@@ -117,11 +130,13 @@ Then(/^The password in the database is manipulated for this user$/) do
 end
 
 Then(/^The user gets a confirmation message on his browser window displayed$/) do
-  passed # express the regexp above with the code you wish you had
+  pending # express the regexp above with the code you wish you had
 end
 
 When(/^The user types in his valid new email\-address$/) do
-  passed # express the regexp above with the code you wish you had
+ sleep(3)
+    test=2
+
 end
 
 When(/^The user types in valid his old password$/) do
@@ -142,7 +157,9 @@ Then(/^The user gets an error message that his new email\-address is incorrect$/
 end
 
 Given(/^there are several character for choosing$/) do
-  passed # express the regexp above with the code you wish you had
+  sleep(3)
+     test=2
+
 end
 
 When(/^you click on 'Bob' as character$/) do
