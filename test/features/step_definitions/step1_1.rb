@@ -22,11 +22,11 @@ When(/^The user repeats a valid 'repeat'$/) do
 end
 
 When(/^The user accepts our 'termsOfUse'$/) do
-  passed # express the regexp above with the code you wish you had
+  passed 2 # express the regexp above with the code you wish you had
 end
 
 When(/^The user hits the submit button$/) do
-  passed # express the regexp above with the code you wish you had
+  passed 2 # express the regexp above with the code you wish you had
 end
 
 Then(/^A new account gets created$/) do
@@ -80,15 +80,15 @@ When(/^The user types in an valid e\-mail\-address$/) do
 end
 
 When(/^The user doesn’t repeat the password correctly$/) do
-  passed # express the regexp above with the code you wish you had
+  passed 2 # express the regexp above with the code you wish you had
 end
 
 Then(/^An error message gets displayed to the user that his repeated password is invalid$/) do
-  passed # express the regexp above with the code you wish you had
+  passed 2 # express the regexp above with the code you wish you had
 end
 
 Given(/^The logged in user clicks on the button “Edit” in his profile$/) do
-  passed # express the regexp above with the code you wish you had
+  passed 4 # express the regexp above with the code you wish you had
 end
 
 Given(/^his email\-address gets displayed$/) do
@@ -122,7 +122,7 @@ Then(/^Nothing gets changed in our database$/) do
 end
 
 Then(/^The email in the database is manipulated, even if it hasn’t been changed, for this user$/) do
-  passed # express the regexp above with the code you wish you had
+  passed 4 # express the regexp above with the code you wish you had
 end
 
 Then(/^The password in the database is manipulated for this user$/) do
