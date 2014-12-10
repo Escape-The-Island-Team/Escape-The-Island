@@ -30,7 +30,7 @@ When(/^The user hits the submit button$/) do
 end
 
 Then(/^A new account gets created$/) do
-  passed # express the regexp above with the code you wish you had
+  sleep(1)
 end
 
 Then(/^All the data is stored in our database$/) do
@@ -56,7 +56,7 @@ When(/^The user repeats his valid password$/) do
 end
 
 When(/^The user accepts our terms of use$/) do
-  passed # express the regexp above with the code you wish you had
+  sleep(1)
 end
 
 Then(/^An error message that tells the user that the email is invalid gets displayed$/) do
