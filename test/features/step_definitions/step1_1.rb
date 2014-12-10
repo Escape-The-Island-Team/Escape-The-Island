@@ -1,5 +1,6 @@
 When(/^The user types in a valid 'nickname'$/) do
   pending # express the regexp above with the code you wish you had
+  sleep(300)
 end
 
 When(/^The user types in a valid 'email'$/) do
