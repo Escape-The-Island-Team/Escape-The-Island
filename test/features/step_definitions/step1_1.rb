@@ -136,6 +136,7 @@ end
 
 Then(/^The user gets an error message that his new email\-address is incorrect$/) do
   pending # express the regexp above with the code you wish you had
+  sleep(50)
 end
 
 Given(/^there are several character for choosing$/) do
