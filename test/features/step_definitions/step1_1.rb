@@ -52,7 +52,7 @@ When(/^The user types in his valid password$/) do
   test =4}
 end
 
-When(/^The user repeats his valid password$/) do
+When(/^The user repeats his valid $/) do
   pending # express the regexp above with the code you wish you had
 end
 
