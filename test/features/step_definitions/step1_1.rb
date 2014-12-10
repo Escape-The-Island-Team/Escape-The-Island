@@ -4,7 +4,7 @@ When(/^The user types in a valid 'nickname'$/) do
 end
 
 When(/^The user types in a valid 'email'$/) do
- sleep(2)
+ sleep(3)
    test=2
 
 end
@@ -13,7 +13,7 @@ When(/^The user types in a valid 'password'$/) do
   sleep(1)
      test=2
 
-endu
+end
 
 When(/^The user repeats a valid 'repeat'$/) do
   sleep(3)
@@ -22,8 +22,7 @@ When(/^The user repeats a valid 'repeat'$/) do
 end
 
 When(/^The user accepts our 'termsOfUse'$/) do
-  passed
-  3 # express the regexp above with the code you wish you had
+  passed # express the regexp above with the code you wish you had
 end
 
 When(/^The user hits the submit button$/) do
@@ -31,12 +30,11 @@ When(/^The user hits the submit button$/) do
 end
 
 Then(/^A new account gets created$/) do
-  passed 4
-  # express the regexp above with the code you wish you had
+  passed # express the regexp above with the code you wish you had
 end
 
 Then(/^All the data is stored in our database$/) do
-  passed # express the regexp above with the code you wish you had
+  passed  2 # express the regexp above with the code you wish you had
 end
 
 When(/^The user types in his valid nickname$/) do
@@ -58,7 +56,7 @@ When(/^The user repeats his valid password$/) do
 end
 
 When(/^The user accepts our terms of use$/) do
-  passed 10 # express the regexp above with the code you wish you had
+  passed # express the regexp above with the code you wish you had
 end
 
 Then(/^An error message that tells the user that the email is invalid gets displayed$/) do
