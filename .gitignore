@@ -5,6 +5,7 @@ target
 tmp
 .history
 dist
+*.db
 /.idea
 /*.iml
 /out
@@ -14,4 +15,4 @@ dist
 /RUNNING_PID
 /.settings
 /atlassian-ide-plugin.xml
-/*.db
+/database
