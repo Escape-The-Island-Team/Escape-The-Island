@@ -17,6 +17,8 @@ GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
 GET         /loadingGame               controllers.Application.loadingGame()
+GET         /deleteAccount             controllers.Application.deleteAccount
+POST        /deleteAccount             controllers.Accountmanagement.deleteAccount()
 
 
 # Map static resources from the /public folder to the /assets URL path
