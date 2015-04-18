@@ -64,4 +64,9 @@ public class Application extends Controller {
     public static Result termsofuse() { return ok(termsofuse.render(""));}
 
     public static Result loadingGame() { return ok(loadingGame.render("")); }
+
+    public static Result deleteAccount()
+    {
+        return ok(deleteAccount.render());
+    }
 }
