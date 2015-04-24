@@ -63,5 +63,7 @@ public class Application extends Controller {
 
     public static Result termsofuse() { return ok(termsofuse.render(""));}
 
-    public static Result loadingGame() { return ok(loadingGame.render("")); }
+    public static Result loadingGame() { return ok(gameSurface.render("")); }
+
+    public static Result loadingScreen() { return ok(loadingScreen.render(""));}
 }

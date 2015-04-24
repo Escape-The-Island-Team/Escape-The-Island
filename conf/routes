@@ -17,9 +17,12 @@ GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
 GET         /loadingGame               controllers.Application.loadingGame()
-GET         /GetString                 controllers.TestReturnForJS.getString()
-GET         /GetInt                    controllers.TestReturnForJS.getInt()
-GET         /GetDouble                 controllers.TestReturnForJS.getDouble()
+GET         /loadingScreen             controllers.Application.loadingScreen()
+
+POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
+POST        /getLocation/:location     controllers.Connections.giveLocation(location: String)
+POST        /getLocationTest/:location controllers.Connections.giveLocationTest(location: String)
+
 
 
 # Map static resources from the /public folder to the /assets URL path
