@@ -1,0 +1,12 @@
+benötigt werden:
+
+1.  eine Methode für changeLocation
+    bekommt beim Aufruf ein String Array mit 2 Parametern (arr[0]=aktuelle Location, arr[1]=Location zu der man wechseln möchte)
+    soll eine String-Liste zurückgeben mit allen benötigten Werten ( z.B: "accessGranted"/"accessDenied", "rumBottle", "torch", "rope" )
+
+2.  Methode 1 benötigt einen Parser, der intern eine id zu einem passenden String ändert und anstelle einer ID-Liste eine String-Liste zurückgibt
+
+3.  eine Methode für getStartingLocation
+    bekommt nichts, soll sich über die session den user und dessen aktuelle location suchen und diese mit den vorhandenen objekten zurückgeben
+    sobald die Location bekannt ist, kann die Methode 1 benutzt werden, da die Rückgabe in derselben Form erfolgen soll
+
