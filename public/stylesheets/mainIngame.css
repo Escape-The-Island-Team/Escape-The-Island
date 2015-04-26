@@ -12,16 +12,14 @@ body
 }
 
 
-#containerSave
+.containerSave
 {
     position: relative;
     margin-left: 89%;
 }
-#overallContainer
+.overallContainer
 {
     height: 100%;
-
-    background-color: antiquewhite;
 }
 
 .buttonsSave {
@@ -72,6 +70,7 @@ body
 #location
 {
     height: 100%;
+    background-image: url("/assets/images/locations/beach-mid");
 }
 
 #object1
@@ -135,10 +134,176 @@ body
 
 #loadingScreen
 {
+    background-color: blue;
     height: 100%;
 }
-#ttt
+
+#body_beach-mid
 {
-    background-color: yellow;
+    background-size: auto 100px;
 }
+#resizeImg
+{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
+
+/**************************
+		beach-mid
+**************************/
+
+#beach-mid_arrowLeft
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#beach-mid_arrowLeft_container
+{
+    width: 6%;
+    height: 15%;
+    position: absolute;
+    margin-top: 15%;
+}
+
+#beach-mid_arrowRight
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#beach-mid_arrowRight_container
+{
+    width: 6%;
+    height: 15%;
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 92%;
+}
+
+#beach-mid_arrowTop
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#beach-mid_arrowTop_container
+{
+    width: 8%;
+    height: 15%;
+    position: absolute;
+    margin-top: -4%;
+    margin-left: 46%;
+}
+
+/**************************
+		beach-left
+**************************/
+
+#beach-left_arrowRight
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#beach-left_arrowRight_container
+{
+    width: 6%;
+    height: 15%;
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 92%;
+}
+
+/**************************
+		beach-right
+**************************/
+
+#arrowLeft_beach-right
+{
+    width: 6%;
+    height: 15%;
+    position: absolute;
+    margin-top: 15%;
+}
+
+/**************************
+		jungle
+**************************/
+
+#body_jungle
+{
+    background-size: auto 50px;
+}
+#resizeImgJungle
+{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#arrowLeft_jungle
+{
+    width: 6%;
+    height: 15%;
+    position: absolute;
+    margin-top: 15%;
+}
+#arrowTop_jungle
+{
+    width: 6%;
+    height: 15%;
+    position: absolute;
+    margin-top: 0;
+    margin-left: 47%;
+}
+
+#jungle_arrowDown
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#jungle_arrowDown_container
+{
+    width:12%;
+    height: 10%;
+    margin-left: 44%;
+    margin-top: 35%;
+    position: absolute;
+}
+
+
 

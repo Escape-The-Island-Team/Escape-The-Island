@@ -16,8 +16,14 @@ GET         /characterSelection        controllers.Application.characterSelectio
 GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
-GET         /loadingGame               controllers.Application.loadingGame()
-GET         /loadingScreen             controllers.Application.loadingScreen()
+
+
+
+GET         /loadBeachMid              controllers.Application.loadBeachMid()
+GET         /loadBeachLeft             controllers.Application.loadBeachLeft()
+GET         /loadBeachRight            controllers.Application.loadBeachRight()
+GET         /loadJungle                controllers.Application.loadJungle()
+
 
 POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
 POST        /getLocation/:location     controllers.Connections.giveLocation(location: String)

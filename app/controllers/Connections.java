@@ -24,15 +24,45 @@ public class Connections extends Controller
     // giveLocation is being called from Javascript. It calls a method to get the details for the next location
     public static Result giveLocation(String location)
     {
-        String[] locations = parseLocationFromJS(location);
-        if(locations[0]=="getStartLocation")
-        {
 
+        List<String> locations = parseLocationFromJS(location);
+
+
+        // following line obsolet
+        String toReturn = "";
+        if(locations.get(0)=="getStartLocation")
+        {
+            toReturn="beach-midAvailable-platziereRumfass-platziereSeil-";
         }
         else
         {
-
+            switch(locations.get(0))
+            {
+                case "beachMid":
+                    switch(locations.get(1))
+                    {
+                        case "beachLeft":
+                            toReturn="beachLeftAvailable-";
+                            break;
+                        case "beachRight":
+                            toReturn="beachRightAvailable-";
+                            break;
+                        case "jungle":
+                            toReturn="jungleAvailable-";
+                            break;
+                    }
+                    break;
+                case "jungle":
+                    switch(locations.get(1))
+                    {
+                        case "beachMid":
+                            toReturn="beachMidAvailable-";
+                            break;
+                    }
+                    break;
+            }
         }
+
         // ToDo: call method for details for the next location and return a list which is being parsed for JS
         // method to write: receives String array with 2 values (arr[0]=actualLocation, arr[1]=location to switch to)
         // -> parseLocationFromJS(location)
@@ -43,18 +73,24 @@ public class Connections extends Controller
 
 
         //String toReturn = parseForJS(locationsForJS);
-        return ok(Json.toJson("beach-leftAvailable#platziereRumfass#platziereSeil#"));
+
+         return ok(Json.toJson(toReturn));
+
+        //return ok(Json.toJson("beach-leftAvailable#"));
+        //return ok(Json.toJson(toReturn));
     }
 
     // takes the String from JS and returns an array of strings with 2 parameters (arr[0]=actualLocation, arr[1]=location to switch to)
-    public static String[] parseLocationFromJS(String infoGiven)
+    public static List<String> parseLocationFromJS(String infoGiven)
     {
-        String[] locations = new String[2];
+        List<String> locations;
+        locations=new ArrayList<String>();
         for(int i=0; i<infoGiven.length(); i++)
         {
-            if(infoGiven.substring(i,i+1)=="#")
+            if(infoGiven.substring(i, i+1).equals("-"))
             {
-                locations[i]=infoGiven.substring(i,infoGiven.length()-i)+" ";
+                System.out.println("in if");
+                locations.add(infoGiven.substring(0,i));
                 infoGiven=infoGiven.substring(i+1);
                 i=0;
             }
@@ -68,7 +104,7 @@ public class Connections extends Controller
        String toReturn="";
        for(int i=0; i<listOfStrings.size(); i++)
        {
-           toReturn+=listOfStrings.get(i)+"#";
+           toReturn+=listOfStrings.get(i)+"-";
        }
         return(toReturn);
     }
