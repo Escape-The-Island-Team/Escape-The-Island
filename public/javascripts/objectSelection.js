@@ -39,7 +39,9 @@ function selectObject(objectName) {
 function getNewLocation(info) {
 
 
-    var test7 = "beach-mid#beach-left";
+    var test7 = "beachMid-beachLeft-";
+    test7=info;
+
 
     var result;
 
@@ -59,24 +61,32 @@ function getNewLocation(info) {
         success: function (response) {
             response = JSON.parse(response);
             result = response;
-            document.getElementById('textTest').textContent = result;
+            //document.getElementById('textTest').textContent = result;
             for(var i=0; i<result.length; i++)
             {
-                if(result[i]=="#")
+                if(result[i]=="-")
                 {
                     splitResult+=result.substring(i,result.size-i)+" ";
                     switch(result.substring(i,result.size-i))
                     {
-                        case "beach-mid":
+                        case "beachMidAvailable": window.location ="loadBeachMid";
+                             break;
+                        case "beachLeftAvailable": window.location ="loadBeachLeft";
+                            break;
+                        case "beachRightAvailable": window.location ="loadBeachRight";
+                            break;
+                        case "jungleAvailable": window.location ="loadJungle";
+                            break;
+                        default: break;
                     }
                     result=result.substring(i+1);
                     i=0;
                 }
             }
-            document.getElementById('textTest').textContent = splitResult;
+            //document.getElementById('textTest').textContent = splitResult;
         },
         error: function (data, request) {
-            alert("FAIL " + data);
+            alert("FAIL " + data+result);
         },
     });
 }
@@ -84,10 +94,25 @@ function getNewLocation(info) {
 
 function loadingSurface()
 {
-    window.location='loadingGame';
+    //window.location='loadingGame';
     getNewLocation("start");
 }
 function loadingSurface2()
 {
     window.location='loadingGame';
 }
+
+
+
+
+function makeArrowVisible(id)
+{
+    //document.getElementById('arrowLeft_beach-mid').style.display = 'block';
+    $("#"+id).css({"visibility": "visible"});
+}
+function makeArrowInvisible(id)
+{
+    $("#"+id).css({"visibility": "hidden"});
+}
+
+
