@@ -16,16 +16,16 @@ public class Character extends Model
 
     @Constraints.Required
     @Column(unique = true)
-    long game_id;
+    public long game_id;
 
     @Constraints.Required
-    String name;
+    public String name;
 
     @Constraints.Required
-    boolean old;
+    public boolean old;
 
     @Constraints.Required
-    int action_points;
+    public int action_points;
 
     @Constraints.Required
     String position;
