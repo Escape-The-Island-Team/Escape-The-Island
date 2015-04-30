@@ -2,6 +2,9 @@
 
 @main(title = "Select a character") {
     <script src=@routes.Assets.at("javascripts/selection.js") type="text/javascript"></script>
+    <script src=@routes.Assets.at("javascripts/selection.js") type="text/javascript"></script>
+    <script src=@routes.Assets.at("javascripts/jquery-1.9.0.min.js") type="text/javascript"></script>
+    <script src=@routes.Assets.at("javascripts/objectSelection.js") type="text/javascript"></script>
     <div class="jumbotron">
         <div class="row">
             <div class="col-sm-2">
@@ -10,7 +13,10 @@
                     <a class="btn btn-primary" href="#" title="Continue an existing game">Load Game</a>
                     <a class="btn btn-primary" href="editProfile" title="Make changes on your profile">Edit Profile</a>
                     <a class="btn btn-primary" href="#" title="View your statistics">View Your Statistics</a>
-                   <button type="text" id="start-game" class="btn btn-success" name="start-game" disabled="true" onclick="window.location='loadingGame'">Start Game</button>
+                    <!-- old:
+                    <button type="text" id="start-game" class="btn btn-success" name="start-game" disabled="true" onclick="window.location='loadingGame'">Start Game</button>
+                    -->
+                   <button type="text" id="start-game" class="btn btn-success" name="start-game" disabled="true" onclick="getNewLocation('getStartLocation')">Start Game</button>
                 </div>
             </div>
             <div class="col-sm-6">

@@ -63,7 +63,14 @@ public class Application extends Controller {
 
     public static Result termsofuse() { return ok(termsofuse.render(""));}
 
-    public static Result loadingGame() { return ok(loadingGame.render("")); }
+    //public static Result loadingGame() { return ok(gameSurface.render("")); }
+    //public static Result loadingGame() { return ok(loadingScreen.render("")); }
+    //public static Result loadingScreen() { return ok(gameSurface.render(""));}
+
+    public static Result loadBeachMid() { return ok(locBeachMid.render("")); }
+    public static Result loadBeachLeft() { return ok(locBeachLeft.render("")); }
+    public static Result loadBeachRight() { return ok(locBeachRight.render("")); }
+    public static Result loadJungle() { return ok(locJungle.render("")); }
 
     public static Result deleteAccount()
     {

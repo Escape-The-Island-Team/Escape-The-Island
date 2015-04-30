@@ -1,0 +1,45 @@
+@(message: String)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beach-Mid</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/mainIngame.css")">
+        <script src=@routes.Assets.at("javascripts/selection.js") type="text/javascript"></script>
+        <script src=@routes.Assets.at("javascripts/jquery-1.9.0.min.js") type="text/javascript"></script>
+        <script src=@routes.Assets.at("javascripts/objectSelection.js") type="text/javascript"></script>
+
+        <style type="text/css">
+            #myImg{
+                background-image: url(@routes.Assets.at("images/test.png"));
+            }
+        </style>
+
+    </head>
+
+    <body id="body_beach-mid">
+        <img id="resizeImg" src="@routes.Assets.at("images/locations/beach-mid.jpg")">
+        <div class="overallContainer">
+
+            <div class="containerSave">
+                <table>
+                    <tr>
+                        <td><button type="text" class="buttonsSave" name="save" onclick="window.location='loadingGame'">Save</button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="text" class="buttonsSave" name="save and exit" onclick="window.location='loadingGame'">Save and Exit</button></td>
+                    </tr>
+                </table>
+            </div>
+
+    <!-- Location on the island-->
+                <div id="myImg">
+                    <label hidden="false">beach left</label>
+                    <div id="beach-mid_arrowLeft_container" onmouseover="makeArrowVisible('beach-mid_arrowLeft')" onmouseout="makeArrowInvisible('beach-mid_arrowLeft')"><img id="beach-mid_arrowLeft" src="@routes.Assets.at("images/systemObjects/arrowLeft.png")" onclick="getNewLocation('beachMid-beachLeft-')"></div>
+                    <div id="beach-mid_arrowRight_container" onmouseover="makeArrowVisible('beach-mid_arrowRight')" onmouseout="makeArrowInvisible('beach-mid_arrowRight')"><img id="beach-mid_arrowRight" src="@routes.Assets.at("images/systemObjects/arrowRight.png")" onclick="getNewLocation('beachMid-beachRight-')"></div>
+                    <div id="beach-mid_arrowTop_container" onmouseover="makeArrowVisible('beach-mid_arrowTop')" onmouseout="makeArrowInvisible('beach-mid_arrowTop')"><img id="beach-mid_arrowTop" src="@routes.Assets.at("images/systemObjects/arrowTop.png")" onclick="getNewLocation('beachMid-jungle-')"></div>
+                </div>
+         </div>
+    </body>
+</html>
+
