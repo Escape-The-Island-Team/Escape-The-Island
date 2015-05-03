@@ -10,13 +10,25 @@ import java.util.List;
 public class LocationParser
 {
     static String[] nameArray =
-            {
-                "beach_mid",
-                "beach_right",
-                "beach_left",
+        {
+                "beachMid",
+                "beachRight",
+                "beachLeft",
                 "jungle"
-            };
+        };
     static ArrayList<String> locations = new ArrayList<String>(Arrays.asList(nameArray));
+
+    // array containing all possible location changed: currentLocation_targetLocation
+    static String[] pathArray =
+            {
+                    "beachMid_beachLeft",
+                    "beachMid_beachRight",
+                    "beachMid_Jungle",
+                    "beachRight_beachMid",
+                    "beachLeft_beachMid",
+                    "jungle_beachMid"
+            };
+    static ArrayList<String> paths = new ArrayList<String>(Arrays.asList(pathArray));
 
     public static int getId(String locationName)
     {
@@ -39,11 +51,11 @@ public class LocationParser
 
         switch (location)
         {
-        case "beach_mid":   result.add("Stone");
+        case "beachMid":   result.add("Stone");
                             break;
-        case "beach_right": result.add("Banana");
+        case "beachRight": result.add("Banana");
                             break;
-        case "beach_left":  result.add("Bottle");
+        case "beachLeft":  result.add("Bottle");
                             break;
         }
 
@@ -56,10 +68,23 @@ public class LocationParser
 
         switch (location)
         {
-        case "beach_left":  result.add("Alisa");
+        case "beachLeft":  result.add("Alisa");
                             break;
         }
 
         return result;
+    }
+
+    public static boolean pathExists(String currentLocation, String targetLocation)
+    {
+        for (String path: paths)
+        {
+            if (path.startsWith(currentLocation) && path.endsWith(targetLocation))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
