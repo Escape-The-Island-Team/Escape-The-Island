@@ -15,9 +15,9 @@ public class ObjectParser
             };
     static ArrayList<String> objects = new ArrayList<String>(Arrays.asList(nameArray));
 
-    public int getId(String locationName)
+    public int getId(String objectName)
     {
-        return objects.indexOf(locationName);
+        return objects.indexOf(objectName);
     }
 
     public String getName(int id)

@@ -23,10 +23,6 @@ public class Object extends Model
     String name;
 
     @Constraints.Required
-    @Formats.NonEmpty
-    String description;
-
-    @Constraints.Required
     boolean old;
 
     @Constraints.Required
