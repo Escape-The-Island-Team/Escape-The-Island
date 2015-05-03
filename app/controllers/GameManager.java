@@ -56,7 +56,70 @@ public class GameManager extends Controller
             return GameManager.loadGame(locationParams.get(1));
         }
 
-        throw new NotImplementedException();
+        if (LocationParser.pathExists(locationParams.get(0), locationParams.get(1)))
+        {
+            String targetLocation = locationParams.get(1);
+
+            List<String> result = new ArrayList<>();
+
+            result.add("loc_" + targetLocation + "_AccessGranted");
+
+            List<String> objects = LocationParser.getObjects(targetLocation);
+
+            for(String object: objects)
+            {
+                result.add("obj_" + object);
+            }
+
+            List<String> npcs = LocationParser.getNpcs(targetLocation);
+
+            for(String npc: npcs)
+            {
+                result.add("npc_" + npc);
+            }
+
+            if (!session().containsKey("game_id"))
+            {
+                result.clear();
+                result.add("ErrorNoGameLoaded");
+                return result;
+            }
+
+            String game_id = session().get("game_id");
+
+            long parsedId = 0;
+
+            try
+            {
+                parsedId = Long.parseLong(game_id);
+            }
+            catch (Exception exc)
+            {
+                result.clear();
+                result.add("ErrorParseGameId");
+                return result;
+            }
+
+            Character currentCharacter = Character.findByGameId(parsedId);
+
+            if (currentCharacter == null)
+            {
+                result.clear();
+                result.add("ErrorCharacterNotFound");
+                return result;
+            }
+
+            currentCharacter.position = targetLocation;
+            currentCharacter.save();
+
+            return result;
+        }
+
+        List<String> result = new ArrayList<>();
+
+        result.add("ErrorInvalidLocationChange");
+
+        return result;
     }
 
     public static List<String> newGame(String selectedChar)
