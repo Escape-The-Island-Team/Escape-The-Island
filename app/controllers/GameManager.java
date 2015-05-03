@@ -51,6 +51,11 @@ public class GameManager extends Controller
             return result;
         }
 
+        if (locationParams.get(0).equals("loadNewGame"))
+        {
+            return GameManager.loadGame(locationParams.get(1));
+        }
+
         throw new NotImplementedException();
     }
 
@@ -108,7 +113,7 @@ public class GameManager extends Controller
         newCharacter.position = startPosition;
         newCharacter.save();
 
-        result.add("loc_beachMid_AccessGranted");
+        result.add("loc" + startPosition + "_AccessGranted");
 
         List<String> objects = LocationParser.getObjects(startPosition);
 
@@ -125,6 +130,52 @@ public class GameManager extends Controller
         }
 
         session().put("game_id", Long.toString(newGame.id));
+
+        return result;
+    }
+
+    public static List<String> loadGame(String gameId)
+    {
+        List<String> result = new ArrayList<>();
+        long parsedId = 0;
+
+        try
+        {
+            parsedId = Long.parseLong(gameId);
+        }
+        catch (Exception exc)
+        {
+            result.add("ErrorParseGameId");
+
+            return result;
+        }
+
+        Character loadedCharacter = Character.findByGameId(parsedId);
+
+        if (loadedCharacter == null)
+        {
+            result.add("ErrorGameNotFound");
+
+            return result;
+        }
+
+        result.add("loc_" + loadedCharacter.position + "_AccessGranted");
+
+        List<String> objects = LocationParser.getObjects(loadedCharacter.position);
+
+        for(String object: objects)
+        {
+            result.add("obj_" + object);
+        }
+
+        List<String> npcs = LocationParser.getNpcs(loadedCharacter.position);
+
+        for(String npc: npcs)
+        {
+            result.add("npc_" + npc);
+        }
+
+        session().put("game_id", Long.toString(parsedId));
 
         return result;
     }
