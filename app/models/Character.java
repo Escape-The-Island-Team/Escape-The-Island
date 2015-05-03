@@ -28,7 +28,7 @@ public class Character extends Model
     public int action_points;
 
     @Constraints.Required
-    String position;
+    public String position;
 
     // -- Queries
     public static Model.Finder<String, Character> find = new Model.Finder<>(String.class, Character.class);
