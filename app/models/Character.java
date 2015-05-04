@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Character extends Model
 {
     @Id
-    long id;
+    public long id;
 
     @Constraints.Required
     @Column(unique = true)

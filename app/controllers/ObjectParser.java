@@ -29,4 +29,46 @@ public class ObjectParser
 
         return "noSuchObject" + id;
     }
+
+    public static boolean isItem(String objectName, boolean old)
+    {
+        if (old)
+        {
+            switch (objectName)
+            {
+                case "bottle":
+                case "torch" : return true;
+            }
+
+            return false;
+        }
+
+        switch (objectName)
+        {
+            case "bottle":
+            case "torch" : return true;
+        }
+
+        return false;
+    }
+
+    public static String needsItem(String objectName, boolean old)
+    {
+        if (old)
+        {
+            switch (objectName)
+            {
+                case "beehive": return "torch";
+            }
+
+            return null;
+        }
+
+        switch (objectName)
+        {
+            case "beehive": return "torch";
+        }
+
+        return null;
+    }
 }

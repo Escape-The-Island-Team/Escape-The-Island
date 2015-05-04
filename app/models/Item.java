@@ -12,16 +12,16 @@ import javax.persistence.*;
 public class Item extends Model
 {
     @Id
-    long id;
+    public long id;
 
     @Constraints.Required
-    long character_id;
+    public long character_id;
 
     @Constraints.Required
-    String name;
+    public String name;
 
     @Constraints.Required
-    boolean old;
+    public boolean old;
 
     // -- Queries
     public static Model.Finder<String, Item> find = new Model.Finder<>(String.class, Item.class);

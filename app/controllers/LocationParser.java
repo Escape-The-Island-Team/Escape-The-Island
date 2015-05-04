@@ -1,5 +1,7 @@
 package controllers;
 
+import controllers.Locationcontent.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,34 +47,54 @@ public class LocationParser
         return "noSuchLocation" + id;
     }
 
-    public static List<String> getObjects(String location)
+    public static List<String> getObjects(String location, boolean old)
     {
         List<String> result = new ArrayList<>();
 
+        if (old)
+        {
+            switch (location)
+            {
+            case "beachMid":   result.add("oldStone");
+                               break;
+            case "beachRight": result.add("oldBanana");
+                               break;
+            case "beachLeft":  result.add("oldBottle");
+                               break;
+            }
+
+            return result;
+        }
+
         switch (location)
         {
-        case "beachMid":   result.add("Stone");
-                            break;
-        case "beachRight": result.add("Banana");
-                            break;
-        case "beachLeft":  result.add("Bottle");
-                            break;
+            case "beachMid":   result.add("Stone");
+                               break;
+            case "beachRight": result.add("Banana");
+                               break;
+            case "beachLeft":  result.add("Bottle");
+                               break;
         }
 
         return result;
     }
 
-    public static List<String> getNpcs(String location)
+    /**
+     *
+     * @param location: the location where the npcs are requested for
+     * @param old: if the npcs are in the old or new era
+     * @return: a list of strings containing all npcs located on a location
+     */
+    public static List<String> getNpcs(String location, boolean old)
     {
-        List<String> result = new ArrayList<>();
+        INpcLister npcLister = new NewNpcLister();
 
-        switch (location)
+        if (old)
         {
-        case "beachLeft":  result.add("Alisa");
-                            break;
+            npcLister = new OldNpcLister();
         }
 
-        return result;
+        return npcLister.getNpcs(location);
     }
 
     public static boolean pathExists(String currentLocation, String targetLocation)
