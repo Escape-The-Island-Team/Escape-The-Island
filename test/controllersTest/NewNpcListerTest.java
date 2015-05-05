@@ -9,7 +9,7 @@ public class NewNpcListerTest extends TestCase {
 
     public void testGetNpcs() throws Exception {
 
-        List<String> list = LocationParser.getObjects("beachMid", false);
+        List<String> list = LocationParser.getObjects("beachMid", true);
 
         String actual = list.get(0);
 
