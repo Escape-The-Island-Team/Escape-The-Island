@@ -1,8 +1,10 @@
 package controllers;
 
 import com.avaje.ebean.ExpressionList;
+import javafx.beans.binding.ObjectExpression;
 import models.*;
 import models.Character;
+import models.Object;
 import play.mvc.Controller;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -30,10 +32,9 @@ public class GameManager extends Controller
      */
     static List<String> getLocation(List<String> locationParams)
     {
-
         if (locationParams != null || locationParams.size() < 2)
         {
-            List<String> result = new ArrayList<>();
+            List<String> result = new ArrayList<String>();
 
             result.add("ErrorNotEnoughParams");
 
@@ -56,15 +57,34 @@ public class GameManager extends Controller
             return result;
         }
 
-        if (locationParams.get(0).equals("loadNewGame"))
+        if (locationParams.get(0).equals("loadGame"))
         {
             return GameManager.loadGame(locationParams.get(1));
         }
 
-        if (LocationParser.pathExists(locationParams.get(0), locationParams.get(1)))
-        {
-            String targetLocation = locationParams.get(1);
+        String currentLocation = locationParams.get(0);
+        String targetLocation = locationParams.get(1);
 
+        if (!LocationParser.isLocation(currentLocation))
+        {
+            List<String> result = new ArrayList<>();
+
+            result.add("ErrorCurrentLocationInvalid");
+
+            return result;
+        }
+
+        if (!LocationParser.isLocation(targetLocation))
+        {
+            List<String> result = new ArrayList<>();
+
+            result.add("ErrorTargetLocationInvalid");
+
+            return result;
+        }
+
+        if (LocationParser.pathExists(currentLocation, targetLocation))
+        {
             List<String> result = new ArrayList<>();
 
             result.add(targetLocation + "Available");   // location
@@ -76,6 +96,12 @@ public class GameManager extends Controller
             try
             {
                 parsedId = Long.parseLong(game_id);
+            }
+            catch (NullPointerException exc)
+            {
+                result.clear();
+                result.add("ErrorNoGameLoaded");
+                return result;
             }
             catch (Exception exc)
             {
@@ -103,7 +129,7 @@ public class GameManager extends Controller
 
             for(String object: objects)
             {
-                objectsString += object;                         // objects
+                objectsString += " " +object;                         // objects
             }
 
             result.add(objectsString);
@@ -116,14 +142,12 @@ public class GameManager extends Controller
             {
                 result.add("npc_" + npc);
             }
-
-            if (!session().containsKey("game_id"))
-            {
-                result.clear();
-                result.add("ErrorNoGameLoaded");
-                return result;
-            }
             */
+
+            List<String> items = GameManager.getItems(currentCharacter.id);
+
+            result.add(items.get(0));
+            result.add(items.get(1));
 
             currentCharacter.position = targetLocation;
             currentCharacter.save();
@@ -200,11 +224,16 @@ public class GameManager extends Controller
 
         for(String object: objects)
         {
-            objectsString += object;
+            objectsString += " " + object;
         }
 
         result.add(objectsString);
         result.add(newCharacter.name);
+
+        List<String> items = GameManager.getItems(newCharacter.id);
+
+        result.add(items.get(0));
+        result.add(items.get(1));
 
         /*
         List<String> npcs = LocationParser.getNpcs(startPosition);
@@ -256,7 +285,7 @@ public class GameManager extends Controller
 
         for(String object: objects)
         {
-            objectsString += object;
+            objectsString += " " + object;
         }
 
         result.add(objectsString);
@@ -272,6 +301,11 @@ public class GameManager extends Controller
             result.add(npc);
         }
         */
+
+        List<String> items = GameManager.getItems(loadedCharacter.id);
+
+        result.add(items.get(0));
+        result.add(items.get(1));
 
         session().put("game_id", Long.toString(parsedId));
         session().put("character_id", Long.toString(loadedCharacter.id));
@@ -327,12 +361,94 @@ public class GameManager extends Controller
 
         if (ObjectParser.isItem(object, old))
         {
-            GameManager.pickItem(object, old);
+            return GameManager.pickItem(object, old);
         }
 
-        //TODO finish him fatalaty
+        if (ObjectParser.isObject(object, old))
+        {
+            Object gameObject = Object.findGameObjectByName(gameId, object);
 
-        throw new NotImplementedException();
+            String receivedItemName = ObjectParser.givesItem(object, old);
+
+            // when the object is not yet used and will return an item
+            if (receivedItemName != null && (gameObject == null || !gameObject.used || gameObject.usages_left != 0))
+            {
+                String character_id = session().get("character_id");
+
+                if (character_id == null)
+                {
+                    result.clear();
+                    result.add("ErrorSessionCharacterId");
+                    return result;
+                }
+
+                long parsedId;
+
+                try
+                {
+                    parsedId = Long.parseLong(character_id);
+                }
+                catch (Exception exc)
+                {
+                    result.clear();
+                    result.add("ErrorParseCharacterId");
+                    return result;
+                }
+
+                Item receivedItem = new Item();
+                receivedItem.character_id = parsedId;
+                receivedItem.name = receivedItemName;
+                receivedItem.old = old;
+
+                if (gameObject == null)
+                {
+                    gameObject = new Object();
+
+                    gameObject.game_id = gameId;
+                    gameObject.name = object;
+                    gameObject.old = old;
+                    gameObject.used = true;
+
+                    gameObject.save();
+                }
+
+                receivedItem.save();
+
+                String message = ItemParser.message(object, old);
+
+                if (message == null)
+                {
+                    result.clear();
+                    result.add("ErrorUnknownItem");
+                    return result;
+                }
+
+                result.add(message);
+
+                List<String> itemStrings = getItems(parsedId);
+
+                result.add(itemStrings.get(0));
+                result.add(itemStrings.get(1));
+
+                return result;
+            }
+
+            String message = ObjectParser.message(object, old);
+
+            if (message == null)
+            {
+                result.clear();
+                result.add("ErrorUnknownObject");
+                return result;
+            }
+
+            result.add(message);
+
+            return result;
+        }
+
+        result.add("ErrorUnknownObject");
+        return result;
     }
 
     public static List<String> pickItem(String item, boolean old)
@@ -357,24 +473,20 @@ public class GameManager extends Controller
 
         pickedItem.save();
 
-        ExpressionList<Item> backpack = Item.findByCharId(pickedItem.character_id);
-
-        if (backpack == null || backpack.findList().size() == 0)
+        try
         {
-            result.add("ErrorPickItem");
+            List<String> items = GameManager.getItems(pickedItem.character_id);
 
-            return result;
+            result.add("successful");
+            result.add(items.get(0));
+            result.add(items.get(1));
+        }
+        catch (NullPointerException exc)
+        {
+            result.add(exc.getMessage());
         }
 
-        result.add(Integer.toString(backpack.findList().size()));
-
-
-
-        //TODO finish it so returning all dem items and stuffsch + change return lists to concatenate all items into one string and so on
-
-        result.add("successful");
-
-        throw new NotImplementedException();
+        return result;
     }
 
     /**
@@ -434,6 +546,34 @@ public class GameManager extends Controller
             result.add(Long.toString(game.id));
             result.add(character.name);
         }
+
+        return result;
+    }
+
+    public static List<String> getItems(long character_id)
+    {
+        List<String> result = new ArrayList<>();
+        List<Item> backpack;
+
+        try
+        {
+            backpack = Item.findByCharId(character_id).findList();
+        }
+        catch (NullPointerException exc)
+        {
+            throw new NullPointerException("There was an error in your backpack!");
+        }
+
+        result.add(Integer.toString(backpack.size()));
+
+        String itemString = "";
+
+        for (Item item: backpack)
+        {
+            itemString += " " + item.name;
+        }
+
+        result.add(itemString);
 
         return result;
     }

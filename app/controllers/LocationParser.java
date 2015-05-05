@@ -16,7 +16,9 @@ public class LocationParser
                 "beachMid",
                 "beachRight",
                 "beachLeft",
-                "jungle"
+                "jungle",
+                "temple",
+                "cliff"
         };
     static ArrayList<String> locations = new ArrayList<String>(Arrays.asList(nameArray));
 
@@ -45,6 +47,32 @@ public class LocationParser
         }
 
         return "noSuchLocation" + id;
+    }
+
+    public static boolean isLocation(String possibleLocation)
+    {
+        for(String actualLocation: locations)
+        {
+            if (actualLocation.equals(possibleLocation))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean pathExists(String currentLocation, String targetLocation)
+    {
+        for (String path: paths)
+        {
+            if (path.startsWith(currentLocation) && path.endsWith(targetLocation))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static List<String> getObjects(String location, boolean old)
@@ -95,18 +123,5 @@ public class LocationParser
         }
 
         return npcLister.getNpcs(location);
-    }
-
-    public static boolean pathExists(String currentLocation, String targetLocation)
-    {
-        for (String path: paths)
-        {
-            if (path.startsWith(currentLocation) && path.endsWith(targetLocation))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
