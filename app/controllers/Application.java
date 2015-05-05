@@ -70,6 +70,12 @@ public class Application extends Controller {
     public static Result loadBeachLeft() { return ok(locBeachLeft.render("")); }
     public static Result loadBeachRight() { return ok(locBeachRight.render("")); }
     public static Result loadJungle() { return ok(locJungle.render("")); }
+    public static Result loadTemple() { return ok(locTemple.render("")); }
+    public static Result loadRiver() { return ok(locRiver.render("")); }
+    public static Result loadOpening() { return ok(locOpening.render("")); }
+    public static Result loadLake() { return ok(locLake.render("")); }
+    public static Result loadCave() { return ok(locCave.render("")); }
+    public static Result loadCliff() { return ok(locCliff.render("")); }
 
     //public static Result loadingGame() { return ok(loadingScreen.render("")); }
 
