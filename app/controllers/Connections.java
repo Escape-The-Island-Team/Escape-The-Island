@@ -30,9 +30,9 @@ public class Connections extends Controller
 
         // following line obsolet
         String toReturn = "";
-        if(locations.get(0)=="getStartLocation")
+        if(locations.get(0).equals("getStartLocation"))
         {
-            toReturn="beach-midAvailable-platziereRumfass-platziereSeil-";
+            toReturn="beachMidAvailable-platziereRumfass-platziereSeil-";
         }
         else
         {
@@ -52,11 +52,93 @@ public class Connections extends Controller
                             break;
                     }
                     break;
+                case "beachLeft":
+                    switch(locations.get(1))
+                    {
+                        case "beachMid":
+                            toReturn="beachMidAvailable-";
+                            break;
+                    }
+                    break;
+                case "beachRight":
+                    switch(locations.get(1))
+                    {
+                        case "beachMid":
+                            toReturn="beachMidAvailable-";
+                            break;
+                    }
+                    break;
                 case "jungle":
                     switch(locations.get(1))
                     {
                         case "beachMid":
                             toReturn="beachMidAvailable-";
+                            break;
+                        case "temple":
+                            toReturn="templeAvailable-";
+                            break;
+                        case "river":
+                            toReturn="riverAvailable-";
+                            break;
+                    }
+                    break;
+                case "temple":
+                    switch(locations.get(1))
+                    {
+                        case "jungle":
+                            toReturn="jungleAvailable-";
+                            break;
+                    }
+                    break;
+                case "river":
+                    switch(locations.get(1))
+                    {
+                        case "jungle":
+                            toReturn="jungleAvailable-";
+                            break;
+                        case "opening":
+                            toReturn="openingAvailable-";
+                            break;
+                    }
+                    break;
+                case "opening":
+                    switch(locations.get(1))
+                    {
+                        case "river":
+                            toReturn="riverAvailable-";
+                            break;
+                        case "lake":
+                            toReturn="lakeAvailable-";
+                            break;
+                    }
+                    break;
+                case "lake":
+                    switch(locations.get(1))
+                    {
+                        case "opening":
+                            toReturn="openingAvailable-";
+                            break;
+                        case "cave":
+                            toReturn="caveAvailable-";
+                            break;
+                        case "cliff":
+                            toReturn="cliffAvailable-";
+                            break;
+                    }
+                    break;
+                case "cave":
+                    switch(locations.get(1))
+                    {
+                        case "lake":
+                            toReturn="lakeAvailable-";
+                            break;
+                    }
+                    break;
+                case "cliff":
+                    switch(locations.get(1))
+                    {
+                        case "lake":
+                            toReturn="lakeAvailable-";
                             break;
                     }
                     break;
@@ -89,7 +171,6 @@ public class Connections extends Controller
         {
             if(infoGiven.substring(i, i+1).equals("-"))
             {
-                System.out.println("in if");
                 locations.add(infoGiven.substring(0,i));
                 infoGiven=infoGiven.substring(i+1);
                 i=0;

@@ -77,6 +77,18 @@ function getNewLocation(info) {
                             break;
                         case "jungleAvailable": window.location ="loadJungle";
                             break;
+                        case "templeAvailable": window.location ="loadTemple";
+                            break;
+                        case "riverAvailable": window.location ="loadRiver";
+                            break;
+                        case "openingAvailable": window.location ="loadOpening";
+                            break;
+                        case "lakeAvailable": window.location ="loadLake";
+                            break;
+                        case "caveAvailable": window.location ="loadCave";
+                            break;
+                        case "cliffAvailable": window.location ="loadCliff";
+                            break;
                         default: break;
                     }
                     result=result.substring(i+1);
@@ -87,7 +99,7 @@ function getNewLocation(info) {
         },
         error: function (data, request) {
             alert("FAIL " + data+result);
-        },
+        }
     });
 }
 
@@ -115,4 +127,34 @@ function makeArrowInvisible(id)
     $("#"+id).css({"visibility": "hidden"});
 }
 
+function selectItem(id)
+{
+    if(document.getElementById(id).getAttribute('class')=='table_td')
+    {
+        document.getElementById(id).setAttribute('class','table_td_selected');
+    }
+    else
+    {
+        document.getElementById(id).setAttribute('class','table_td');
+    }
+}
+function selectTool(id)
+{
+    if(document.getElementById(id).getAttribute('class')=='table_td_tool')
+    {
+        document.getElementById(id).setAttribute('class','table_td_tool_selected');
+    }
+    else
+    {
+        document.getElementById(id).setAttribute('class','table_td_tool');
+    }
+}
+function expandInventory()
+{
 
+}
+
+function blubb()
+{
+    alert("Damn! That's a piranha!");
+}
