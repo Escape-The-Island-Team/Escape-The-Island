@@ -27,5 +27,5 @@ public class Statistics extends Model
     int created;        //items created
 
     // -- Queries
-    public static Model.Finder<String, User> find = new Model.Finder<>(String.class, User.class);
+    public static Model.Finder<String, Statistics> find = new Model.Finder<>(String.class, Statistics.class);
 }

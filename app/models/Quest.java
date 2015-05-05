@@ -23,5 +23,5 @@ public class Quest extends Model
     boolean active; //to be determined if necessary
 
     // -- Queries
-    public static Model.Finder<String, User> find = new Model.Finder<>(String.class, User.class);
+    public static Model.Finder<String, Quest> find = new Model.Finder<>(String.class, Quest.class);
 }
