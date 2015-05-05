@@ -21,6 +21,12 @@ GET         /loadBeachMid              controllers.Application.loadBeachMid()
 GET         /loadBeachLeft             controllers.Application.loadBeachLeft()
 GET         /loadBeachRight            controllers.Application.loadBeachRight()
 GET         /loadJungle                controllers.Application.loadJungle()
+GET         /loadTemple                controllers.Application.loadTemple()
+GET         /loadRiver                 controllers.Application.loadRiver()
+GET         /loadOpening               controllers.Application.loadOpening()
+GET         /loadLake                  controllers.Application.loadLake()
+GET         /loadCave                  controllers.Application.loadCave()
+GET         /loadCliff                 controllers.Application.loadCliff()
 
 
 POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
