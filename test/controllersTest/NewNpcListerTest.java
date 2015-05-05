@@ -11,7 +11,7 @@ public class NewNpcListerTest extends TestCase {
 
     public void testGetNpcs() throws Exception {
 
-        List<String> result = new NewNpcLister().getNpcs("tempel");
+        List<String> result = new NewNpcLister().getNpcs("temple");
 
 
         String actual = result.get(0);
