@@ -12,23 +12,23 @@ import javax.persistence.*;
 public class Character extends Model
 {
     @Id
-    long id;
+    public long id;
 
     @Constraints.Required
     @Column(unique = true)
-    long game_id;
+    public long game_id;
 
     @Constraints.Required
-    String name;
+    public String name;
 
     @Constraints.Required
-    boolean old;
+    public boolean old;
 
     @Constraints.Required
-    int action_points;
+    public int action_points;
 
     @Constraints.Required
-    String position;
+    public String position;
 
     // -- Queries
     public static Model.Finder<String, Character> find = new Model.Finder<>(String.class, Character.class);
