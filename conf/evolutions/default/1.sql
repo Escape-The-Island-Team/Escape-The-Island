@@ -52,11 +52,9 @@ create table object (
   id                        bigint not null,
   game_id                   bigint,
   name                      varchar(255),
-  description               varchar(255),
   old                       boolean,
   used                      boolean,
   usages_left               integer,
-  item_required             boolean,
   constraint pk_object primary key (id))
 ;
 

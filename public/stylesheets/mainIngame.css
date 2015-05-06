@@ -740,6 +740,184 @@ body
     margin-left: 44%;
 }
 
+/**************************
+		rocks
+**************************/
+
+#rocks_arrowRight
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#rocks_arrowRight_container
+{
+    width: 5%;
+    height: 12%;
+    position: absolute;
+    margin-top: 34%;
+    margin-left: 94%;
+}
+
+#rocks_arrowLeft
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#rocks_arrowLeft_container
+{
+    width: 5%;
+    height: 12%;
+    position: absolute;
+    margin-top: 34%;
+}
+
+#rocks_arrowTop
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#rocks_arrowTop_container
+{
+    width: 7%;
+    height: 10%;
+    position: absolute;
+    margin-top: 18%;
+    margin-left: 55%;
+}
+
+/**************************
+		vulcano
+**************************/
+
+#vulcano_arrowRight
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#vulcano_arrowRight_container
+{
+    width: 5%;
+    height: 12%;
+    position: absolute;
+    margin-top: 32%;
+    margin-left: 94%;
+}
+
+/**************************
+		waterfall
+**************************/
+
+#waterfall_arrowRight
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#waterfall_arrowRight_container
+{
+    width: 5%;
+    height: 12%;
+    position: absolute;
+    margin-top: 37%;
+    margin-left: 94%;
+}
+
+#waterfall_arrowLeft
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#waterfall_arrowLeft_container
+{
+    width: 5%;
+    height: 12%;
+    position: absolute;
+    margin-top: 28%;
+}
+
+/**************************
+		treehouse
+**************************/
+
+#treehouse_arrowLeft
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#treehouse_arrowLeft_container
+{
+    width: 5%;
+    height: 12%;
+    position: absolute;
+    margin-top: 38%;
+}
+
+/**************************
+		laboratory
+**************************/
+
+#laboratory_arrowLeft
+{
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    visibility: hidden;
+}
+#laboratory_arrowLeft_container
+{
+    width: 5%;
+    height: 12%;
+    position: absolute;
+    margin-top: 25%;
+}
+
+
+
 
 
 

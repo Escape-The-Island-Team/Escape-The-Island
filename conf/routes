@@ -29,6 +29,11 @@ GET         /loadOpening               controllers.Application.loadOpening()
 GET         /loadLake                  controllers.Application.loadLake()
 GET         /loadCave                  controllers.Application.loadCave()
 GET         /loadCliff                 controllers.Application.loadCliff()
+GET         /loadRocks                 controllers.Application.loadRocks()
+GET         /loadVulcano               controllers.Application.loadVulcano()
+GET         /loadWaterfall             controllers.Application.loadWaterfall()
+GET         /loadTreehouse             controllers.Application.loadTreehouse()
+GET         /loadLaboratory            controllers.Application.loadLaboratory()
 
 
 POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
