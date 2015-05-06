@@ -8,12 +8,29 @@ import java.util.Arrays;
  */
 public class ObjectParser
 {
-    static String[] nameArray =
+    // TODO go on putting in dem objects on locations
+    final static String[] nameArray =
             {
-                    "chest",
-                    "brush"
+                    "stick",
+                    "rope",
+                    "oilLamp",
+                    "rags",
+                    "bottle",
+                    "forest",
+                    "flower",
+                    "hook",
+                    "treasureChest",
+                    "fish",
+                    "beehive",
+                    "bear",
+                    "fruit",
+                    "sail",
+                    "powderKeg",
+                    "flintstone",
+                    "colcanicStone",
+                    "clearWater"
             };
-    static ArrayList<String> objects = new ArrayList<String>(Arrays.asList(nameArray));
+    final static ArrayList<String> objects = new ArrayList<String>(Arrays.asList(nameArray));
 
     public int getId(String objectName)
     {
