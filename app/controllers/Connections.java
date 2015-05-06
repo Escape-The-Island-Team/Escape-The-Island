@@ -110,6 +110,9 @@ public class Connections extends Controller
                         case "lake":
                             toReturn="lakeAvailable-";
                             break;
+                        case "rocks":
+                            toReturn="rocksAvailable-";
+                            break;
                     }
                     break;
                 case "lake":
@@ -139,6 +142,58 @@ public class Connections extends Controller
                     {
                         case "lake":
                             toReturn="lakeAvailable-";
+                            break;
+                    }
+                    break;
+                case "rocks":
+                    switch(locations.get(1))
+                    {
+                        case "opening":
+                        toReturn="openingAvailable-";
+                        break;
+                        case "vulcano":
+                            toReturn="vulcanoAvailable-";
+                            break;
+                        case "waterfall":
+                            toReturn="waterfallAvailable-";
+                            break;
+                    }
+                    break;
+                case "vulcano":
+                    switch(locations.get(1))
+                    {
+                        case "rocks":
+                            toReturn="rocksAvailable-";
+                            break;
+                    }
+                    break;
+                case "waterfall":
+                    switch(locations.get(1))
+                    {
+                        case "rocks":
+                            toReturn="rocksAvailable-";
+                            break;
+                        case "treehouse":
+                            toReturn="treehouseAvailable-";
+                            break;
+                        case "laboratory":
+                            toReturn="laboratoryAvailable-";
+                            break;
+                    }
+                    break;
+                case "treehouse":
+                    switch(locations.get(1))
+                    {
+                        case "waterfall":
+                            toReturn="waterfallAvailable-";
+                            break;
+                    }
+                    break;
+                case "laboratory":
+                    switch(locations.get(1))
+                    {
+                        case "waterfall":
+                            toReturn="waterfallAvailable-";
                             break;
                     }
                     break;
