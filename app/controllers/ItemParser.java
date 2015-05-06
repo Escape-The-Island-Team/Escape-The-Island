@@ -8,39 +8,39 @@ import java.util.Arrays;
  */
 public class ItemParser
 {
-    static String[] oldArray =
+    final static String[] oldArray =
             {
                     "rope",
                     "hook",
                     "honeycomb",
                     "torch"
             };
-    static String[] messageOldArray =
+    final static String[] messageOldArray =
             {
                     "It's a rope!",
                     "It's a hook!",
-                    "Torch! So hot right now!",
-                    "It's beepuke!"
+                    "It's beepuke!",
+                    "Torch! So hot right now!"
             };
-    static String[] newArray =
+    final static String[] newArray =
             {
                     "rope",
                     "hook",
                     "honeycomb",
                     "flashlight"
             };
-    static String[] messageNewArray =
+    final static String[] messageNewArray =
             {
                     "It's a rope!",
                     "It's a hook!",
-                    "Let there be light!",
-                    "It's beepuke!"
+                    "It's beepuke!",
+                    "Let there be light!"
             };
 
-    static ArrayList<String> oldEra = new ArrayList<String>(Arrays.asList(oldArray));
-    static ArrayList<String> oldMessages = new ArrayList<String>(Arrays.asList(messageOldArray));
-    static ArrayList<String> newEra = new ArrayList<String>(Arrays.asList(newArray));
-    static ArrayList<String> newMessages = new ArrayList<String>(Arrays.asList(messageNewArray));
+    final static ArrayList<String> oldEra = new ArrayList<String>(Arrays.asList(oldArray));
+    final static ArrayList<String> oldMessages = new ArrayList<String>(Arrays.asList(messageOldArray));
+    final static ArrayList<String> newEra = new ArrayList<String>(Arrays.asList(newArray));
+    final static ArrayList<String> newMessages = new ArrayList<String>(Arrays.asList(messageNewArray));
 
     public int getId(String itemName, boolean old)
     {
