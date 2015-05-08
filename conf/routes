@@ -17,8 +17,6 @@ GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
 
-
-
 GET         /loadBeachMid              controllers.Application.loadBeachMid()
 GET         /loadBeachLeft             controllers.Application.loadBeachLeft()
 GET         /loadBeachRight            controllers.Application.loadBeachRight()
@@ -35,6 +33,8 @@ POST        /getValue/:variable        controllers.Connections.zweipluszwei(vari
 POST        /getLocation/:location     controllers.Connections.giveLocation(location: String)
 POST        /getLocationTest/:location controllers.Connections.giveLocationTest(location: String)
 
+GET         /deleteAccount             controllers.Application.deleteAccount
+POST        /deleteAccount             controllers.Accountmanagement.deleteAccount()
 
 
 # Map static resources from the /public folder to the /assets URL path
