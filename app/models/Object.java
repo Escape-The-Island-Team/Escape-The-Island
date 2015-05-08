@@ -48,4 +48,18 @@ public class Object extends Model
 
         return object;
     }
+
+    public static ExpressionList<Object> findUsedGameObjects(long game_id)
+    {
+        ExpressionList<Object> gameObjects = find.where().eq("game_id", game_id);
+
+        if (gameObjects == null)
+        {
+            return null;
+        }
+
+        gameObjects = gameObjects.where().eq("used", true);
+
+        return gameObjects;
+    }
 }
