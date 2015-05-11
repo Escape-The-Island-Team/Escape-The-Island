@@ -16,8 +16,7 @@ GET         /characterSelection        controllers.Application.characterSelectio
 GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
-
-
+GET         /home                      controllers.Application.home()
 
 GET         /loadBeachMid              controllers.Application.loadBeachMid()
 GET         /loadBeachLeft             controllers.Application.loadBeachLeft()
@@ -34,6 +33,9 @@ GET         /loadVulcano               controllers.Application.loadVulcano()
 GET         /loadWaterfall             controllers.Application.loadWaterfall()
 GET         /loadTreehouse             controllers.Application.loadTreehouse()
 GET         /loadLaboratory            controllers.Application.loadLaboratory()
+
+
+GET         /loadImage            controllers.Application.loadImg()
 
 
 POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)

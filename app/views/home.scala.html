@@ -1,0 +1,28 @@
+@(message: String)
+
+@main(title = "Home") {
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="btn-group-vertical">
+                    <a class="btn btn-primary" href="home" title="Home">Home</a>
+                    <a class="btn btn-primary" href="characterSelection" title="Start a new game and try to escape from the island!">New Game</a>
+                    <a class="btn btn-primary" href="#" title="Continue an existing game">Load Game</a>
+                    <a class="btn btn-primary" href="editProfile" title="Make changes on your profile">Edit Profile</a>
+                    <a class="btn btn-primary" href="#" title="View your statistics">View Your Statistics</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="col-sm-8">
+                    <p id="error-message">@message</p>
+                    <p id="p-center">Escape The Island - Home</p>
+                    <div id="home_img_container">
+                        <img id="home_img" src="@routes.Assets.at("images/logo.png")">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

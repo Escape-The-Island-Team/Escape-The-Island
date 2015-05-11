@@ -8,6 +8,9 @@ import play.mvc.Result;
 import views.html.editProfile;
 import views.html.login;
 import views.html.register;
+import views.html.home;
+import play.mvc.*;
+import views.html.*;
 
 /**
  * Created by Maik Wandrei on 04.12.2014.
@@ -139,7 +142,7 @@ public class Accountmanagement extends Controller
             if(PasswordHash.validatePassword(password, "5000:" + user.password_hash + ":" + user.password_salt))
             {
                 session("nickname", nickname);
-                return ok(editProfile.render("Welcome, " + nickname + "!"));
+                return ok(home.render("Welcome, " + nickname + "!"));
             }
             else
             {
@@ -293,3 +296,13 @@ public class Accountmanagement extends Controller
         return null;
     }
 }
+
+
+
+
+
+
+
+
+
+
