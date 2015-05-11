@@ -89,6 +89,16 @@ function getNewLocation(info) {
                             break;
                         case "cliffAvailable": window.location ="loadCliff";
                             break;
+                        case "rocksAvailable": window.location ="loadRocks";
+                            break;
+                        case "vulcanoAvailable": window.location ="loadVulcano";
+                            break;
+                        case "waterfallAvailable": window.location ="loadWaterfall";
+                            break;
+                        case "treehouseAvailable": window.location ="loadTreehouse";
+                            break;
+                        case "laboratoryAvailable": window.location ="loadLaboratory";
+                            break;
                         default: break;
                     }
                     result=result.substring(i+1);
