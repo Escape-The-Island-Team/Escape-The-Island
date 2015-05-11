@@ -168,7 +168,7 @@ public class GameManager extends Controller
             }
         }
 
-        User currentUser = User.findByUsername(session().get("username"));
+        User currentUser = User.findByUsername(session("nickname"));
 
         if (currentUser == null)
         {
@@ -472,7 +472,7 @@ public class GameManager extends Controller
     public static List<String> getGames()
     {
         List<String> result = new ArrayList<>();
-        long userId = User.findByUsername(session("username")).id;
+        long userId = User.findByUsername(session("nickname")).id;
         ExpressionList<Game> query = Game.findByUserId(userId);
 
         if (query == null)
