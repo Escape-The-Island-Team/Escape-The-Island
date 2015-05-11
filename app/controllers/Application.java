@@ -57,6 +57,19 @@ public class Application extends Controller {
         }
     }
 
+    public static Result home() {
+        if(session("nickname") == null || session("nickname").equals(""))
+        {
+            return redirect(routes.Application.login());
+        }
+        else
+        {
+            return ok(home.render(""));
+        }
+    }
+
+
+
     public static Result about() { return ok(about.render("")); }
 
     public static Result contact() { return ok(contact.render("")); }
@@ -81,6 +94,9 @@ public class Application extends Controller {
     public static Result loadWaterfall() { return ok(locWaterfall.render("")); }
     public static Result loadTreehouse() { return ok(locTreehouse.render("")); }
     public static Result loadLaboratory() { return ok(locLaboratory.render("")); }
+
+
+    public static Result loadImg() { return ok(); }
 
     //public static Result loadingGame() { return ok(loadingScreen.render("")); }
 

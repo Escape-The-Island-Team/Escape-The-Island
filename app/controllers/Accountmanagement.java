@@ -8,7 +8,9 @@ import play.mvc.Result;
 import views.html.editProfile;
 import views.html.login;
 import views.html.register;
-import views.html.deleteAccount;
+import views.html.home;
+import play.mvc.*;
+import views.html.*;
 
 /**
  * Created by Maik Wandrei on 04.12.2014.
@@ -292,33 +294,5 @@ public class Accountmanagement extends Controller
         }
 
         return null;
-    }
-
-    public static Result deleteAccount()
-    {
-        Form form = Form.form().bindFromRequest();
-
-        Form.Field usernameField = form.field("username");
-
-        String username = usernameField.value();
-
-        User user = User.findByUsername(username);
-
-        if (user == null)
-        {
-            flash().put("message", "The specified username has not been found!");
-
-            return ok(deleteAccount.render());
-        }
-
-        user.delete();
-        if (session().containsKey("username") && session("username") == username)
-        {
-            session().clear();
-        }
-
-        flash().put("message", "The specified username has been found and deleted!");
-
-        return ok(deleteAccount.render());
     }
 }

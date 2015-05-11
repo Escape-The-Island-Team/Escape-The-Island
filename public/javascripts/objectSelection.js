@@ -168,3 +168,58 @@ function blubb()
 {
     alert("Damn! That's a piranha!");
 }
+
+function test(str)
+{
+/*
+    imagePrefix ='objects/rope';
+    var urlString = 'url(images/' + imagePrefix + '.png)';
+    document.getElementById(str).style.backgroundImage= urlString;
+    $("#"+str).attr.("src", '/images/objects/rope.png');
+    //$("#"+str).css({"visibility": "hidden"});
+    //alert(str);
+    $("#"+str).css({"src": "hidden"});
+
+    'url(/assets/images/objects/rope.png)';
+    */
+}
+function testing(id, id2)
+{
+    vv=document.getElementById(id).src;
+alert("ss");
+    document.getElementById(id2).setAttribute('src',vv);
+
+    /*
+    document.getElementById(id).setAttribute('src','url(/assets/images/objects/test)');
+    test7="test.png";
+    $.ajax({
+        url : '/assets/' + test7,
+        type : 'GET',
+        contentType : 'application/json',
+        data : model_data,
+        dataType : 'json html',
+        converters : {
+            'text json' : true
+        },
+        success : function(response) {
+            response = JSON.parse(response);
+            result = response;
+            alert("gh");
+        },
+        error : function(data, request) {
+            alert("FAIL " + data);
+        },
+    });
+
+
+
+
+
+
+
+    //document.getElementById(id).style.backgroundImage='url(/assets/images/objects/rope.png)';
+    document.getElementById(id).setAttribute('src','url(/assets/images/objects/rope.png)');
+    //$("#"+id).css({"src": zzz});
+    alert("sd");
+*/
+}
