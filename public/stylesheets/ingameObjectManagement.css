@@ -1,0 +1,114 @@
+
+/**************************
+	Objects general
+**************************/
+
+
+.objectImgGeneralSize
+{
+    width: 100%;
+    height: 100%;
+}
+
+.infoArea
+{
+    width: 40%;
+    height: 20%;
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 35%;
+    background-color: papayawhip;
+    border-color: darkred;
+    border-style: solid;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-down-width: 10px;
+    visibility: hidden;
+}
+.infoTextMsgClass
+{
+    font-family: sans-serif;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+
+/**************************
+	location beach mid
+**************************/
+
+#objStick
+{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 30%;
+}
+
+/**************************
+	location beach left
+**************************/
+
+/**************************
+	location beach right
+**************************/
+
+
+
+
+/**************************
+	location temple
+**************************/
+
+#npcMaya
+{
+    width: 70px;
+    height: 160px;
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 30%;
+}
+
+/**************************
+	location laboratory
+**************************/
+
+#npcScientist
+{
+    width: 100px;
+    height: 170px;
+    position: absolute;
+    margin-left: 23%;
+    margin-top: 22%;
+}
+
+
+/**************************
+	location treehouse
+**************************/
+
+#npcVersutus
+{
+    width: 70px;
+    height: 160px;
+    position: absolute;
+    margin-left: 66%;
+    margin-top: 18%;
+}
+
+
+
+
+
+
+
+
+
+
+
