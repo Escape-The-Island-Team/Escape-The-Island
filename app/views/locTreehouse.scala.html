@@ -5,6 +5,7 @@
     <head>
         <title>Treehouse</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/mainIngame.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ingameObjectManagement.css")">
         <script src=@routes.Assets.at("javascripts/selection.js") type="text/javascript"></script>
         <script src=@routes.Assets.at("javascripts/jquery-1.9.0.min.js") type="text/javascript"></script>
         <script src=@routes.Assets.at("javascripts/objectSelection.js") type="text/javascript"></script>
@@ -21,7 +22,7 @@
                     <img class="ingameMenuLogo" src="@routes.Assets.at("images/logo.png")">
                     <table class="ingameMenuTable">
                         <tr>
-                            <td><button type="text" class="buttonsSave" name="save" onclick="window.location='loadingGame'">Back to menu</button></td>
+                            <td><button type="text" class="buttonsSave" name="save" onclick="window.location='home'">Back to menu</button></td>
                             <td><button type="text" class="buttonsSave" name="save and exit" onclick="window.location='loadingGame'">Exit</button></td>
                         </tr>
                     </table>
@@ -32,6 +33,26 @@
                     <label hidden="false">beach left</label>
                     <div id="treehouse_arrowLeft_container" onmouseover="makeArrowVisible('treehouse_arrowLeft')" onmouseout="makeArrowInvisible('treehouse_arrowLeft')"><img id="treehouse_arrowLeft" src="@routes.Assets.at("images/systemObjects/arrowLeft.png")" onclick="getNewLocation('treehouse-waterfall-')"></div>
                 </div>
+
+
+
+                    <!-- Objects + NPC -->
+
+
+                <div id="npcVersutus" onclick="talkToNPC('versutus','infoTextMsg','infoArea')">
+                    <img id="npcVersutusImg" class="objectImgGeneralSize" src="@routes.Assets.at("images/npcs/versutus.png")" onclick="testing('testContainer','testImg','slot1Img')">
+                </div>
+
+
+                    <!-- info message bar -->
+                <div class="infoArea" onclick="makeInvisibleClass('infoArea')">
+                    <p id="infoTextMsg" class="infoTextMsgClass">
+
+                    </p>
+                </div>
+
+
+
 
                     <!-- itembar -->
 

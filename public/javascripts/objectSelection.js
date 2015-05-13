@@ -183,12 +183,17 @@ function test(str)
     'url(/assets/images/objects/rope.png)';
     */
 }
-function testing(id, id2)
-{
-    vv=document.getElementById(id).src;
-alert("ss");
-    document.getElementById(id2).setAttribute('src',vv);
-
+function collectItem(idInfoMsg,classInfoBar,id_div, id, id2) {
+    // hide item on location
+    $("#" + id_div).css({"visibility": "hidden"});
+    // get the source for the new img for the item(s) in the itembar and set the itembar-icon to this img
+    vv = document.getElementById(id).src;
+    document.getElementById(id2).setAttribute('src', vv);
+    // make infoBar visible
+    makeVisibleClass(classInfoBar);
+    document.getElementById(idInfoMsg).textContent = "Rumbarrel collected.";
+    // alert("Rumbarrel collected.");
+}
     /*
     document.getElementById(id).setAttribute('src','url(/assets/images/objects/test)');
     test7="test.png";
@@ -222,4 +227,36 @@ alert("ss");
     //$("#"+id).css({"src": zzz});
     alert("sd");
 */
+
+function interactWithObject(idInfoMsg,classInfoBar,id_div, id, id2) {
+    $("#" + id_div).css({"visibility": "hidden"});
+    vv = document.getElementById(id).src;
+    document.getElementById(id2).setAttribute('src', vv);
+    makeVisibleClass(classInfoBar);
+    document.getElementById(idInfoMsg).textContent = "Rumbarrel collected.";
+    // alert("Rumbarrel collected.");
+}
+
+
+function makeVisibleClass(cls)
+{
+    $("."+cls).css({"visibility": "visible"});
+}
+function makeInvisibleClass(cls)
+{
+    $("."+cls).css({"visibility": "hidden"});
+}
+
+function talkToNPC(npc,idInfoMsg, classInfoBar)
+{
+    if(npc == 'maya')
+    {
+        makeVisibleClass(classInfoBar);
+        document.getElementById(idInfoMsg).textContent = "Hello my friend! Welcome to the huge temple of my people.";
+    }
+    else if(npc == 'versutus')
+    {
+        makeVisibleClass(classInfoBar);
+        document.getElementById(idInfoMsg).textContent = "I am Versutus, the famous inventor. But you've already heard of me, didn't you?";
+    }
 }
