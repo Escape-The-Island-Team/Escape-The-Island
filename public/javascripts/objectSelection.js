@@ -183,7 +183,7 @@ function test(str)
     'url(/assets/images/objects/rope.png)';
     */
 }
-function collectItem(idInfoMsg,classInfoBar,id_div, id, id2) {
+function collectItem2(idInfoMsg,classInfoBar,id_div, id, id2) {
     // hide item on location
     $("#" + id_div).css({"visibility": "hidden"});
     // get the source for the new img for the item(s) in the itembar and set the itembar-icon to this img
@@ -193,7 +193,141 @@ function collectItem(idInfoMsg,classInfoBar,id_div, id, id2) {
     makeVisibleClass(classInfoBar);
     document.getElementById(idInfoMsg).textContent = "Rumbarrel collected.";
     // alert("Rumbarrel collected.");
+    rebuiltItembar(vv);
 }
+
+
+function collectItem(nameItemToCollect, idItemToCollect)
+{
+    // var infoToReturn = "successful-itembar-1-stick-messageInfo-You have found a stick!-";
+    var item = nameItemToCollect;
+
+    var result;
+    var splitResult="";
+
+    var successful = true;
+    var itembarGetSizeNext = false;
+    var itembarSetItems = false;
+    var messageNext = false;
+    var itembarSize = 0;
+    var itembarCounter = 1;
+
+    var idBase = "imgSlot";
+    var idComplete ="";
+
+    var imgItemID ='';
+    var imgItemPath = '';
+
+    var imgItemIDDefault = 'imgItembarDefault';
+
+    model_data = JSON.stringify(item);
+
+    // call of java method
+    $.ajax({
+        url: '/collectItem/' + item,
+        type: 'POST',
+        contentType: 'application/json',
+        data: model_data,
+        dataType: 'json html',
+        converters: {
+            'text json': true
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            result = response;
+
+            for(var i=0; i<result.length && successful; i++)
+            {
+                if(result[i]=="-")
+                {
+                    splitResult+=result.substring(i,result.size-i)+" ";
+
+                    // sets the items for the itembar
+                    if(itembarSetItems)
+                    {
+                        // create proper id of the item bar slot
+                        idComplete=idBase+itembarCounter;
+                        switch(result.substring(i,result.size-i))
+                        {
+                            case "stick": imgItemID = 'itemStick';
+                                break;
+                        }
+                        // select the item slot and insert the fitting item image
+                        document.getElementById(idComplete).setAttribute('src',document.getElementById(imgItemID).src);
+
+                        itembarCounter++;
+
+                        // if all items are set, the rest of the itembar slots are filled with the default img
+                        if(itembarCounter > itembarSize)
+                        {
+                            for(itembarCounter; itembarCounter<=20; itembarCounter++)
+                            {
+                                idComplete=idBase+itembarCounter;
+
+                                document.getElementById(idComplete).setAttribute('src',document.getElementById(imgItemIDDefault).src);
+                            }
+
+                            itembarSetItems = false;
+                        }
+                    }
+                    // gets the size of the itembar
+                    else if(itembarGetSizeNext)
+                    {
+                        itembarSize = parseInt(result.substring(i,result.size-i));
+                        itembarGetSizeNext = false;
+                        itembarSetItems = true;
+                    }
+                    else if(messageNext)
+                    {
+                        showInfoMessage(result.substring(i,result.size-i));
+                        messageNext = false;
+                    }
+
+                    // to set successful in beginning, initiate itembar or give out an info message
+                    else
+                    {
+                        switch(result.substring(i,result.size-i))
+                        {
+                            // set successful in beginning
+                            case "successful":
+                                successful = true;
+                                $("#" + idItemToCollect).css({"visibility": "hidden"});
+                                break;
+                            // if not successful, working with the result will end
+                            case "notSuccessful":
+                                successful = false;
+                                break;
+                            case "itembar":
+                                itembarGetSizeNext = true;
+                                break;
+                            case "messageInfo":
+                                messageNext = true;
+                                break;
+                        }
+                    }
+                    // prepare for the next splitresult to read
+                    result=result.substring(i+1);
+                    i=0;
+                }
+            }
+        },
+        error: function (data, request) {
+            alert("FAIL " + data+result);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
     /*
     document.getElementById(id).setAttribute('src','url(/assets/images/objects/test)');
     test7="test.png";
@@ -259,4 +393,22 @@ function talkToNPC(npc,idInfoMsg, classInfoBar)
         makeVisibleClass(classInfoBar);
         document.getElementById(idInfoMsg).textContent = "I am Versutus, the famous inventor. But you've already heard of me, didn't you?";
     }
+}
+
+function rebuiltItembar(vv)
+{
+    var idBase = "imgSlot";
+    var idComplete;
+    for(var i=1; i<=20; i++)
+    {
+        idComplete=idBase+i;
+
+        document.getElementById(idComplete).setAttribute('src',vv);
+    }
+}
+
+function showInfoMessage(message)
+{
+    makeVisibleClass('infoArea');
+    document.getElementById('infoTextMsg').textContent = message;
 }

@@ -40,6 +40,7 @@ GET         /loadImage            controllers.Application.loadImg()
 
 POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
 POST        /getLocation/:location     controllers.Connections.giveLocation(location: String)
+POST        /collectItem/:info         controllers.Connections.collectItem(info: String)
 POST        /getLocationTest/:location controllers.Connections.giveLocationTest(location: String)
 
 

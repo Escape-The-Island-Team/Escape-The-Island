@@ -25,7 +25,7 @@ public class Connections extends Controller
     public static Result giveLocation(String location)
     {
 
-        List<String> locations = parseLocationFromJS(location);
+        List<String> locations = parseFromJS(location);
 
 
         // following line obsolet
@@ -217,21 +217,47 @@ public class Connections extends Controller
         //return ok(Json.toJson(toReturn));
     }
 
-    // takes the String from JS and returns an array of strings with 2 parameters (arr[0]=actualLocation, arr[1]=location to switch to)
-    public static List<String> parseLocationFromJS(String infoGiven)
+
+
+
+
+    public static Result collectItem(String infoGiven)
     {
-        List<String> locations;
-        locations=new ArrayList<String>();
+        List<String> infoList = parseFromJS(infoGiven);
+        String toReturn = "";
+
+        // call collecting items method with the info list given and another info list returned
+        toReturn = "successful-itembar-1-stick-messageInfo-You have found a stick!-";
+
+        return ok(Json.toJson(toReturn));
+    }
+
+
+
+
+
+
+
+    /*
+    Helping methods
+     */
+
+
+    // takes the String from JS and returns an array of strings with 2 parameters (arr[0]=actualLocation, arr[1]=location to switch to)
+    public static List<String> parseFromJS(String infoGiven)
+    {
+        List<String> stringList;
+        stringList=new ArrayList<String>();
         for(int i=0; i<infoGiven.length(); i++)
         {
             if(infoGiven.substring(i, i+1).equals("-"))
             {
-                locations.add(infoGiven.substring(0,i));
+                stringList.add(infoGiven.substring(0,i));
                 infoGiven=infoGiven.substring(i+1);
                 i=0;
             }
         }
-        return(locations);
+        return(stringList);
     }
 
     // returns one large string with hashes to JS
