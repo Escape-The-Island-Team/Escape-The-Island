@@ -10,7 +10,7 @@ public class Application extends Controller {
     }
 
     public static Result login() {
-        if(session("nickname") == null || session("nickname").equals(""))
+        if(session("username") == null || session("username").equals(""))
         {
             return ok(login.render(""));
         }
@@ -36,7 +36,7 @@ public class Application extends Controller {
     }
 
     public static Result editProfile() {
-        if(session("nickname") == null || session("nickname").equals(""))
+        if(session("username") == null || session("username").equals(""))
         {
             return redirect(routes.Application.login());
         }
@@ -47,7 +47,7 @@ public class Application extends Controller {
     }
 
     public static Result characterSelection() {
-        if(session("nickname") == null || session("nickname").equals(""))
+        if(session("username") == null || session("username").equals(""))
         {
             return redirect(routes.Application.login());
         }
@@ -58,7 +58,7 @@ public class Application extends Controller {
     }
 
     public static Result home() {
-        if(session("nickname") == null || session("nickname").equals(""))
+        if(session("username") == null || session("username").equals(""))
         {
             return redirect(routes.Application.login());
         }
@@ -80,7 +80,6 @@ public class Application extends Controller {
     //public static Result loadingGame() { return ok(loadingScreen.render("")); }
     //public static Result loadingScreen() { return ok(gameSurface.render(""));}
 
-
     public static Result loadBeachMid() { return ok(locBeachMid.render("")); }
     public static Result loadBeachLeft() { return ok(locBeachLeft.render("")); }
     public static Result loadBeachRight() { return ok(locBeachRight.render("")); }
@@ -97,9 +96,8 @@ public class Application extends Controller {
     public static Result loadTreehouse() { return ok(locTreehouse.render("")); }
     public static Result loadLaboratory() { return ok(locLaboratory.render("")); }
 
-    public static Result loadImg() { return ok(); }
-
-    //public static Result loadingGame() { return ok(loadingScreen.render("")); }
-
-    //public static Result loadingScreen() { return ok(gameSurface.render(""));}
+    public static Result deleteAccount()
+    {
+        return ok(deleteAccount.render());
+    }
 }

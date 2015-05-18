@@ -1,12 +1,10 @@
 package controllers;
 
 import com.avaje.ebean.ExpressionList;
-import javafx.beans.binding.ObjectExpression;
 import models.*;
 import models.Character;
 import models.Object;
 import play.mvc.Controller;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.security.InvalidParameterException;
 import java.util.*;
@@ -171,26 +169,19 @@ public class GameManager extends Controller
 
     public static List<String> newGame(String selectedChar)
     {
-        List<String> currentGames = GameManager.getGames();
         List<String> result = new ArrayList<>();
 
-        // check if character already used
-        for (int i = 2; i < currentGames.size(); i += 2)
-        {
-            if (currentGames.get(i).equals(selectedChar))
-            {
-                result.add("ErrorCharacterAlreadyUsed");
-
-                return result;
-            }
-        }
-
-        User currentUser = User.findByUsername(session("nickname"));
+        User currentUser = User.findByUsername(session().get("username"));
 
         if (currentUser == null)
         {
             result.add("ErrorUserUnknown");
+            return result;
+        }
 
+        if (Game.findIncomplete(selectedChar, currentUser.id))
+        {
+            result.add("ErrorCharacterAlreadyUsed");
             return result;
         }
 
@@ -243,7 +234,6 @@ public class GameManager extends Controller
         */
 
         session().put("game_id", Long.toString(newGame.id));
-        session().put("character_id", Long.toString(newCharacter.id));
 
         return result;
     }
@@ -489,32 +479,24 @@ public class GameManager extends Controller
     public static List<String> getGames()
     {
         List<String> result = new ArrayList<>();
-        long userId = User.findByUsername(session("nickname")).id;
-        ExpressionList<Game> query = Game.findByUserId(userId);
+        long userId = User.findByUsername(session("username")).id;
+        List<Game> userGames = Game.findByUserId(userId);
 
-        if (query == null)
+        if (userGames == null)
         {
             result.add(Integer.toString(0));
             return result;
         }
 
-        result.add(Long.toString(query.findRowCount()));
+        result.add(Integer.toString(userGames.size()));
 
-        List<Game> listOfGames = query.findList();
-
-        for(Game game: listOfGames)
+        for(Game game: userGames)
         {
-            if (game.completed)
-            {
-                continue;
-            }
-
-            models.Character character = models.Character.findByGameId(game.id);
+            Character character = Character.findByGameId(game.id);
 
             if(character == null)
             {
-                result.add(Long.toString(game.id));
-                result.add("Corrupt");
+                game.delete();
                 continue;
             }
 
