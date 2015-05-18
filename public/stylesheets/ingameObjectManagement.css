@@ -48,14 +48,7 @@
 	location beach mid
 **************************/
 
-#objStick
-{
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    margin-left: 50%;
-    margin-top: 30%;
-}
+
 
 
 
@@ -63,11 +56,27 @@
 	location beach left
 **************************/
 
+#objStick
+{
+    width: 80px;
+    height: 20px;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 30%;
+}
+
 /**************************
 	location beach right
 **************************/
 
-
+#objFlintstones
+{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 30%;
+}
 
 
 /**************************
