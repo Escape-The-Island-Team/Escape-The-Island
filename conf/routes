@@ -40,9 +40,16 @@ GET         /loadImage            controllers.Application.loadImg()
 
 POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
 POST        /getLocation/:location     controllers.Connections.giveLocation(location: String)
-POST        /collectItem/:info         controllers.Connections.collectItem(info: String)
+POST        /collectItem/:item         controllers.Connections.collectItem(item: String)
+POST        /getItems                  controllers.Connections.getItems()
+POST        /getObjects/:location      controllers.Connections.getObjects(location: String)
+POST        /getLocationMessage/:location controllers.Connections.getLocationMessage(location: String)
+POST        /getCharIngame             controllers.Connections.getCharIngame()
+POST        /getCharInteraction        controllers.Connections.getCharInteraction()
+POST        /getCombination/:itemsSelected  controllers.Connections.getCombination(itemsSelected: String)
+POST        /getAction/:itemsSelected  controllers.Connections.getAction(itemsSelected: String)
+POST        /interactWithNPC/:npc      controllers.Connections.interactWithNPC(npc: String)
 POST        /getLocationTest/:location controllers.Connections.giveLocationTest(location: String)
-
 
 
 # Map static resources from the /public folder to the /assets URL path

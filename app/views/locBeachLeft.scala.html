@@ -5,12 +5,13 @@
     <head>
         <title>Beach-Left</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/mainIngame.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ingameObjectManagement.css")">
         <script src=@routes.Assets.at("javascripts/selection.js") type="text/javascript"></script>
         <script src=@routes.Assets.at("javascripts/jquery-1.9.0.min.js") type="text/javascript"></script>
         <script src=@routes.Assets.at("javascripts/objectSelection.js") type="text/javascript"></script>
     </head>
 
-    <body class="body_location">
+    <body class="body_location" onload="loadContent('beachLeft')">
 
         <div class="overallContainer">
             <div class="innerOverallContainer">
@@ -32,6 +33,25 @@
                     <label hidden="false">beach left</label>
                     <div id="beach-left_arrowRight_container" onmouseover="makeArrowVisible('beach-left_arrowRight')" onmouseout="makeArrowInvisible('beach-left_arrowRight')"><img id="beach-left_arrowRight" src="@routes.Assets.at("images/systemObjects/arrowRight.png")" onclick="getNewLocation('beachLeft-beachMid-')"></div>
                 </div>
+
+
+
+                    <!-- Objects -->
+                <div id="objStick">
+                    <img class="objectImgGeneralSize" src="@routes.Assets.at("images/objects/stick.png")" onclick="showInfoMessage('testtest')">
+                </div>
+
+
+
+                    <!-- info message bar -->
+                <div class="infoArea" onclick="makeInvisibleClass('infoArea')">
+                    <p id="infoTextMsg" class="infoTextMsgClass">
+
+                    </p>
+                </div>
+
+
+
 
                     <!-- itembar -->
 
