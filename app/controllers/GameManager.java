@@ -151,7 +151,7 @@ public class GameManager extends Controller
         return result;
     }
 
-    static List<String> getCharacter()
+    public static List<String> getCharacter()
     {
         List<String> character = new ArrayList<String>();
 
