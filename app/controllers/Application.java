@@ -77,6 +77,8 @@ public class Application extends Controller {
     public static Result termsofuse() { return ok(termsofuse.render(""));}
 
     //public static Result loadingGame() { return ok(gameSurface.render("")); }
+    //public static Result loadingGame() { return ok(loadingScreen.render("")); }
+    //public static Result loadingScreen() { return ok(gameSurface.render(""));}
 
 
     public static Result loadBeachMid() { return ok(locBeachMid.render("")); }
@@ -94,7 +96,6 @@ public class Application extends Controller {
     public static Result loadWaterfall() { return ok(locWaterfall.render("")); }
     public static Result loadTreehouse() { return ok(locTreehouse.render("")); }
     public static Result loadLaboratory() { return ok(locLaboratory.render("")); }
-
 
     public static Result loadImg() { return ok(); }
 

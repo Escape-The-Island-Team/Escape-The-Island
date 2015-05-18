@@ -9,8 +9,7 @@ import play.mvc.Controller;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.sql.Date;
 
 /**
@@ -32,12 +31,10 @@ public class GameManager extends Controller
      */
     static List<String> getLocation(List<String> locationParams)
     {
-        if (locationParams != null || locationParams.size() < 2)
+        if (locationParams == null || locationParams.size() < 2)
         {
-            List<String> result = new ArrayList<String>();
-
+            List<String> result = new ArrayList<>();
             result.add("ErrorNotEnoughParams");
-
             return result;
         }
 
@@ -123,16 +120,8 @@ public class GameManager extends Controller
 
             result.add(currentCharacter.name);
 
-            List<String> objects = LocationParser.getObjects(currentCharacter.position, currentCharacter.old);
+            result.add(getObjects(currentCharacter));
 
-            String objectsString = "";
-
-            for(String object: objects)
-            {
-                objectsString += " " +object;                         // objects
-            }
-
-            result.add(objectsString);
             result.add(currentCharacter.name);
 
             /*
@@ -162,6 +151,15 @@ public class GameManager extends Controller
         return result;
     }
 
+    static List<String> getCharacter()
+    {
+        List<String> character = new ArrayList<String>();
+
+        character.add("CaptainSpeckJarrow");
+
+        return character;
+    }
+
     public static List<String> newGame(String selectedChar)
     {
         List<String> currentGames = GameManager.getGames();
@@ -178,7 +176,7 @@ public class GameManager extends Controller
             }
         }
 
-        User currentUser = User.findByUsername(session().get("username"));
+        User currentUser = User.findByUsername(session("nickname"));
 
         if (currentUser == null)
         {
@@ -216,22 +214,11 @@ public class GameManager extends Controller
         newCharacter.position = startPosition;
         newCharacter.save();
 
-        result.add(startPosition + "Available");
-
-        List<String> objects = LocationParser.getObjects(startPosition, newCharacter.old);
-
-        String objectsString = "";
-
-        for(String object: objects)
-        {
-            objectsString += " " + object;
-        }
-
-        result.add(objectsString);
-        result.add(newCharacter.name);
-
         List<String> items = GameManager.getItems(newCharacter.id);
 
+        result.add(startPosition + "Available");
+        result.add(getObjects(newCharacter));
+        result.add(newCharacter.name);
         result.add(items.get(0));
         result.add(items.get(1));
 
@@ -255,7 +242,7 @@ public class GameManager extends Controller
     public static List<String> loadGame(String gameId)
     {
         List<String> result = new ArrayList<>();
-        long parsedId = 0;
+        long parsedId;
 
         try
         {
@@ -278,17 +265,7 @@ public class GameManager extends Controller
         }
 
         result.add(loadedCharacter.position + "Available");
-
-        List<String> objects = LocationParser.getObjects(loadedCharacter.position, loadedCharacter.old);
-
-        String objectsString = "";
-
-        for(String object: objects)
-        {
-            objectsString += " " + object;
-        }
-
-        result.add(objectsString);
+        result.add(getObjects(loadedCharacter));
         result.add(loadedCharacter.name);
 
         /*
@@ -324,18 +301,7 @@ public class GameManager extends Controller
             return result;
         }
 
-        String username = "";
-
-        if (!session().containsKey("username"))
-        {
-            result.add("ErrorUnknownUser");
-
-            return result;
-        }
-
-        username = session().get("username");
-
-        long gameId = 0;
+        long gameId;
 
         try
         {
@@ -513,8 +479,8 @@ public class GameManager extends Controller
      */
     public static List<String> getGames()
     {
-        List<String> result = new ArrayList<String>();
-        long userId = User.findByUsername(session("username")).id;
+        List<String> result = new ArrayList<>();
+        long userId = User.findByUsername(session("nickname")).id;
         ExpressionList<Game> query = Game.findByUserId(userId);
 
         if (query == null)
@@ -536,7 +502,7 @@ public class GameManager extends Controller
 
             models.Character character = models.Character.findByGameId(game.id);
 
-            if(character != null)
+            if(character == null)
             {
                 result.add(Long.toString(game.id));
                 result.add("Corrupt");
@@ -548,6 +514,31 @@ public class GameManager extends Controller
         }
 
         return result;
+    }
+
+    public static String getObjects(Character character)
+    {
+        List<String> objects = LocationParser.getObjects(character.position, character.old);
+        ExpressionList<Object> usedObjects = Object.findUsedGameObjects(character.game_id);
+
+        String objectsString = "";
+
+        for(String object: objects)
+        {
+            if (ObjectParser.isItem(object, character.old) && usedObjects.contains("name", object) != null)
+            {
+                continue;
+            }
+
+            objectsString += object + " ";                         // objects
+        }
+
+        if (objectsString.endsWith(" "))
+        {
+            objectsString = objectsString.substring(0, objectsString.length() - 1);
+        }
+
+        return objectsString;
     }
 
     public static List<String> getItems(long character_id)
