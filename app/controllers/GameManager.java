@@ -153,7 +153,14 @@ public class GameManager extends Controller
     {
         List<String> character = new ArrayList<String>();
 
-        Character loadedCharacter = Character.findByGameId(Long.parseLong(session().get("game_id")));
+        String gameId = session().get("game_id");
+
+        if (gameId == null || gameId.equals(""))
+        {
+            character.add("CaptainSpeckJarrow");
+        }
+
+        Character loadedCharacter = Character.findByGameId(Long.parseLong(gameId));
 
         character.add(loadedCharacter.name);
 
