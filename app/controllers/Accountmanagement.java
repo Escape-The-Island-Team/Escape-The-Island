@@ -8,7 +8,6 @@ import play.mvc.Result;
 import views.html.editProfile;
 import views.html.login;
 import views.html.register;
-import views.html.deleteAccount;
 
 /**
  * Created by Maik Wandrei on 04.12.2014.
@@ -139,7 +138,7 @@ public class Accountmanagement extends Controller
 
             if(PasswordHash.validatePassword(password, "5000:" + user.password_hash + ":" + user.password_salt))
             {
-                session("nickname", nickname);
+                session("username", nickname);
                 return ok(editProfile.render("Welcome, " + nickname + "!"));
             }
             else
@@ -175,7 +174,7 @@ public class Accountmanagement extends Controller
         String message = "";
 
         //find user and check old pw
-        User user = User.findByUsername(session("nickname"));
+        User user = User.findByUsername(session("username"));
 
         if(user == null)
         {
@@ -292,33 +291,5 @@ public class Accountmanagement extends Controller
         }
 
         return null;
-    }
-
-    public static Result deleteAccount()
-    {
-        Form form = Form.form().bindFromRequest();
-
-        Form.Field usernameField = form.field("username");
-
-        String username = usernameField.value();
-
-        User user = User.findByUsername(username);
-
-        if (user == null)
-        {
-            flash().put("message", "The specified username has not been found!");
-
-            return ok(deleteAccount.render());
-        }
-
-        user.delete();
-        if (session().containsKey("username") && session("username") == username)
-        {
-            session().clear();
-        }
-
-        flash().put("message", "The specified username has been found and deleted!");
-
-        return ok(deleteAccount.render());
     }
 }
