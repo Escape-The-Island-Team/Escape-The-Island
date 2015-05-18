@@ -235,7 +235,7 @@ public class GameManager extends Controller
 
         session().put("game_id", Long.toString(newGame.id));
 
-        return result;
+        return loadGame(Long.toString(newGame.id));
     }
 
     public static List<String> loadGame(String gameId)
