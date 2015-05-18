@@ -297,8 +297,8 @@ public class Connections extends Controller
         List<String> infoList = GameManager.getCharacter();
         // call collecting items method with the info list given and another info list returned
         // toReturn = "Bob-";
-        toReturn = parseForJS(infoList);
-
+        // toReturn = parseForJS(infoList);
+        toReturn = "Bob-";
         return ok(Json.toJson(toReturn));
     }
 
