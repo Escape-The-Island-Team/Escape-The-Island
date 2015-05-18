@@ -294,7 +294,7 @@ public class Connections extends Controller
         String toReturn = "";
 
         // call collecting items method with the info list given and another info list returned
-        toReturn = "Alice-";
+        toReturn = "Bob-";
 
         return ok(Json.toJson(toReturn));
     }
@@ -346,6 +346,25 @@ public class Connections extends Controller
 
         return ok(Json.toJson(toReturn));
     }
+
+
+    /*
+    user / game management
+     */
+    public static Result createGame(String character)
+    {
+        String toReturn = "";
+
+        // call collecting items method with the info list given and another info list returned
+        toReturn = "successful-";
+
+        return ok(Json.toJson(toReturn));
+    }
+
+
+
+
+
 
 
 
