@@ -34,7 +34,7 @@ GET         /loadWaterfall             controllers.Application.loadWaterfall()
 GET         /loadTreehouse             controllers.Application.loadTreehouse()
 GET         /loadLaboratory            controllers.Application.loadLaboratory()
 
-GET         /loadImage                 controllers.Application.loadImg()
+GET         /loadImage            controllers.Application.loadImg()
 
 POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
 POST        /getLocation/:location     controllers.Connections.giveLocation(location: String)
