@@ -359,10 +359,9 @@ public class Connections extends Controller
      */
     public static Result createGame(String character)
     {
-        String toReturn = "";
+        String toReturn = "successful-";
 
         // call collecting items method with the info list given and another info list returned
-        toReturn = "successful-";
 
         return ok(Json.toJson(toReturn));
     }
