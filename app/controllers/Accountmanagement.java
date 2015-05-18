@@ -11,7 +11,6 @@ import views.html.register;
 import views.html.home;
 import play.mvc.*;
 import views.html.*;
-import views.html.deleteAccount;
 
 /**
  * Created by Maik Wandrei on 04.12.2014.

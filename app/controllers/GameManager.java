@@ -6,11 +6,9 @@ import models.*;
 import models.Character;
 import models.Object;
 import play.mvc.Controller;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.sql.Date;
 
 /**
@@ -150,6 +148,24 @@ public class GameManager extends Controller
         result.add("ErrorInvalidLocationChange");
 
         return result;
+    }
+
+    public static List<String> getCharacter()
+    {
+        List<String> character = new ArrayList<String>();
+
+        character.add("CaptainSpeckJarrow");
+
+        return character;
+    }
+
+    public static List<String> getCharacterMessage()
+    {
+        List<String> message = new ArrayList<>();
+
+        message.add(CharacterMessages.getMessage("Nova"));
+
+        return message;
     }
 
     public static List<String> newGame(String selectedChar)
