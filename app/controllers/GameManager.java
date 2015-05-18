@@ -276,28 +276,10 @@ public class GameManager extends Controller
             return result;
         }
 
-        result.add(loadedCharacter.position + "Available");
-        result.add(getObjects(loadedCharacter));
-        result.add(loadedCharacter.name);
-
-        /*
-        List<String> npcs = LocationParser.getNpcs(loadedCharacter.position);
-
-        result.add(Integer.toString(npcs.size()));
-
-        for(String npc: npcs)
-        {
-            result.add(npc);
-        }
-        */
-
-        List<String> items = GameManager.getItems(loadedCharacter.id);
-
-        result.add(items.get(0));
-        result.add(items.get(1));
-
         session().put("game_id", Long.toString(parsedId));
         session().put("character_id", Long.toString(loadedCharacter.id));
+
+        result.add("successful");
 
         return result;
     }
