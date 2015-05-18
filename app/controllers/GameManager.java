@@ -160,6 +160,15 @@ public class GameManager extends Controller
         return character;
     }
 
+    public static List<String> getCharacterMessage()
+    {
+        List<String> message = new ArrayList<>();
+
+        message.add(CharacterMessages.getMessage("Nova"));
+
+        return message;
+    }
+
     public static List<String> newGame(String selectedChar)
     {
         List<String> currentGames = GameManager.getGames();
