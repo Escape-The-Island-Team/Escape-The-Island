@@ -153,7 +153,9 @@ public class GameManager extends Controller
     {
         List<String> character = new ArrayList<String>();
 
-        character.add("CaptainSpeckJarrow");
+        Character loadedCharacter = Character.findByGameId(Long.parseLong(session().get("game_id")));
+
+        character.add(loadedCharacter.name);
 
         return character;
     }
@@ -162,7 +164,9 @@ public class GameManager extends Controller
     {
         List<String> message = new ArrayList<>();
 
-        message.add(CharacterMessages.getMessage("Nova"));
+        Character loadedCharacter = Character.findByGameId(Long.parseLong(session().get("game_id")));
+
+        message.add(CharacterMessages.getMessage(loadedCharacter.name));
 
         return message;
     }
