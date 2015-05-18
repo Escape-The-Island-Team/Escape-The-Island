@@ -13,16 +13,16 @@ import java.sql.Date;
 public class Game extends Model
 {
     @Id
-    long id;
+    public long id;
 
     @Constraints.Required
-    long user_id;
+    public long user_id;
 
     @Constraints.Required
-    Date start_time;
+    public Date start_time;
 
     @Constraints.Required
-    boolean completed;
+    public boolean completed;
 
     // -- Queries
     public static Model.Finder<String, Game> find = new Model.Finder<>(String.class, Game.class);

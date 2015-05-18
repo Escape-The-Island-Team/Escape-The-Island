@@ -16,7 +16,40 @@ GET         /characterSelection        controllers.Application.characterSelectio
 GET         /about                     controllers.Application.about()
 GET         /contact                   controllers.Application.contact()
 GET         /termsofuse                controllers.Application.termsofuse()
-GET         /loadingGame               controllers.Application.loadingGame()
+GET         /home                      controllers.Application.home()
+
+GET         /loadBeachMid              controllers.Application.loadBeachMid()
+GET         /loadBeachLeft             controllers.Application.loadBeachLeft()
+GET         /loadBeachRight            controllers.Application.loadBeachRight()
+GET         /loadJungle                controllers.Application.loadJungle()
+GET         /loadTemple                controllers.Application.loadTemple()
+GET         /loadRiver                 controllers.Application.loadRiver()
+GET         /loadOpening               controllers.Application.loadOpening()
+GET         /loadLake                  controllers.Application.loadLake()
+GET         /loadCave                  controllers.Application.loadCave()
+GET         /loadCliff                 controllers.Application.loadCliff()
+GET         /loadRocks                 controllers.Application.loadRocks()
+GET         /loadVulcano               controllers.Application.loadVulcano()
+GET         /loadWaterfall             controllers.Application.loadWaterfall()
+GET         /loadTreehouse             controllers.Application.loadTreehouse()
+GET         /loadLaboratory            controllers.Application.loadLaboratory()
+
+
+GET         /loadImage            controllers.Application.loadImg()
+
+
+POST        /getValue/:variable        controllers.Connections.zweipluszwei(variable: Long)
+POST        /getLocation/:location     controllers.Connections.giveLocation(location: String)
+POST        /collectItem/:item         controllers.Connections.collectItem(item: String)
+POST        /getItems                  controllers.Connections.getItems()
+POST        /getObjects/:location      controllers.Connections.getObjects(location: String)
+POST        /getLocationMessage/:location controllers.Connections.getLocationMessage(location: String)
+POST        /getCharIngame             controllers.Connections.getCharIngame()
+POST        /getCharInteraction        controllers.Connections.getCharInteraction()
+POST        /getCombination/:itemsSelected  controllers.Connections.getCombination(itemsSelected: String)
+POST        /getAction/:itemsSelected  controllers.Connections.getAction(itemsSelected: String)
+POST        /interactWithNPC/:npc      controllers.Connections.interactWithNPC(npc: String)
+POST        /getLocationTest/:location controllers.Connections.giveLocationTest(location: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
