@@ -594,6 +594,7 @@ function getCharIngame()
                 {
                     splitResult=result.substring(i,result.size-i);
 
+
                     switch(splitResult)
                     {
                         case "Bob":
