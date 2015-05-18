@@ -34,6 +34,26 @@ public class CharacterParser
             return false;
         }
 
+        if (character.equals("CaptainSpeckJarrow"))
+        {
+            return true;
+        }
+
+        if (character.equals("BerryStraw"))
+        {
+            return false;
+        }
+
+        if (character.equals("Nova"))
+        {
+            return false;
+        }
+
+        if (character.equals("HomTanks"))
+        {
+            return false;
+        }
+
         throw new InvalidParameterException("UnknownCharacter");
     }
 }
