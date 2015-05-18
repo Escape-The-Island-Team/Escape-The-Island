@@ -297,8 +297,8 @@ public class Connections extends Controller
         List<String> infoList = GameManager.getCharacter();
         // call collecting items method with the info list given and another info list returned
         // toReturn = "Bob-";
-        // toReturn = parseForJS(infoList);
-        toReturn = "Bob-";
+        toReturn = parseForJS(infoList);
+
         return ok(Json.toJson(toReturn));
     }
 
@@ -360,6 +360,8 @@ public class Connections extends Controller
     public static Result createGame(String character)
     {
         String toReturn = "successful-";
+        List<String> infoList = parseFromJS(character);
+        GameManager.newGame(infoList.get(0));
 
         // call collecting items method with the info list given and another info list returned
 

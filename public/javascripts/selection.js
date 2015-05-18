@@ -71,7 +71,7 @@ function createNewGame()
         charSelected="CaptainSpeckJarrow";
     }
 
-
+    charSelected += "-";
 
     model_data = JSON.stringify(charSelected);
 

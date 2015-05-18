@@ -1,7 +1,6 @@
 package controllers;
 
 import com.avaje.ebean.ExpressionList;
-import javafx.beans.binding.ObjectExpression;
 import models.*;
 import models.Character;
 import models.Object;
@@ -143,7 +142,7 @@ public class GameManager extends Controller
             return result;
         }
 
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
 
         result.add("ErrorInvalidLocationChange");
 
@@ -154,12 +153,12 @@ public class GameManager extends Controller
     {
         List<String> character = new ArrayList<String>();
 
-        String gameId = session().get("game_id");
+        String gameId = session().get("game");
 
-        if (gameId == null || gameId.equals(""))
+        if (gameId == null)
         {
-            character.add("CaptainSpeckJarrow");
-            return character
+            character.add("BerryStraw");
+            return character;
         }
 
         Character loadedCharacter = Character.findByGameId(Long.parseLong(gameId));
@@ -182,28 +181,23 @@ public class GameManager extends Controller
 
     public static List<String> newGame(String selectedChar)
     {
-        List<String> currentGames = GameManager.getGames();
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
 
-        // check if character already used
-        for (int i = 2; i < currentGames.size(); i += 2)
-        {
-            if (currentGames.get(i).equals(selectedChar))
-            {
-                result.add("ErrorCharacterAlreadyUsed");
+        String username = session().get("username");
 
-                return result;
-            }
-        }
-
-        User currentUser = User.findByUsername(session("nickname"));
+        User currentUser = User.findByUsername(username);
 
         if (currentUser == null)
         {
             result.add("ErrorUserUnknown");
-
             return result;
         }
+
+        /*if (Game.findIncomplete(selectedChar, currentUser.id))
+        {
+            result.add("ErrorCharacterAlreadyUsed");
+            return result;
+        }*/
 
         Game newGame = new Game();
 
@@ -234,28 +228,6 @@ public class GameManager extends Controller
         newCharacter.position = startPosition;
         newCharacter.save();
 
-        List<String> items = GameManager.getItems(newCharacter.id);
-
-        result.add(startPosition + "Available");
-        result.add(getObjects(newCharacter));
-        result.add(newCharacter.name);
-        result.add(items.get(0));
-        result.add(items.get(1));
-
-        /*
-        List<String> npcs = LocationParser.getNpcs(startPosition);
-
-        result.add(Integer.toString(npcs.size()));
-
-        for(String npc: npcs)
-        {
-            result.add("npc_" + npc);
-        }
-        */
-
-        session().put("game_id", Long.toString(newGame.id));
-        session().put("character_id", Long.toString(newCharacter.id));
-
         return loadGame(Long.toString(newGame.id));
     }
 
@@ -284,8 +256,7 @@ public class GameManager extends Controller
             return result;
         }
 
-        session().put("game_id", Long.toString(parsedId));
-        session().put("character_id", Long.toString(loadedCharacter.id));
+        session("game", gameId);
 
         result.add("successful");
 
@@ -307,7 +278,8 @@ public class GameManager extends Controller
 
         try
         {
-            gameId = Long.parseLong(session().get("game_id"));
+            String gameString = session().get("game_id");
+            gameId = Long.parseLong(gameString);
         }
         catch (Exception exc)
         {
@@ -325,7 +297,8 @@ public class GameManager extends Controller
             return result;
         }
 
-        boolean old = CharacterParser.isOld(session().get("character"));
+        String character = session().get("character");
+        boolean old = CharacterParser.isOld(character);
 
         if (ObjectParser.isItem(object, old))
         {
@@ -430,7 +403,8 @@ public class GameManager extends Controller
 
         try
         {
-            pickedItem.character_id = Long.parseLong(session().get("character_id"));
+            String characterId = session().get("character_id");
+            pickedItem.character_id = Long.parseLong(characterId);
         }
         catch (Exception exc)
         {
@@ -482,32 +456,24 @@ public class GameManager extends Controller
     public static List<String> getGames()
     {
         List<String> result = new ArrayList<>();
-        long userId = User.findByUsername(session("nickname")).id;
-        ExpressionList<Game> query = Game.findByUserId(userId);
+        long userId = User.findByUsername(session("username")).id;
+        List<Game> userGames = Game.findByUserId(userId);
 
-        if (query == null)
+        if (userGames == null)
         {
             result.add(Integer.toString(0));
             return result;
         }
 
-        result.add(Long.toString(query.findRowCount()));
+        result.add(Integer.toString(userGames.size()));
 
-        List<Game> listOfGames = query.findList();
-
-        for(Game game: listOfGames)
+        for(Game game: userGames)
         {
-            if (game.completed)
-            {
-                continue;
-            }
-
-            models.Character character = models.Character.findByGameId(game.id);
+            Character character = Character.findByGameId(game.id);
 
             if(character == null)
             {
-                result.add(Long.toString(game.id));
-                result.add("Corrupt");
+                game.delete();
                 continue;
             }
 
