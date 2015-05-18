@@ -158,6 +158,7 @@ public class GameManager extends Controller
         if (gameId == null || gameId.equals(""))
         {
             character.add("CaptainSpeckJarrow");
+            return character
         }
 
         Character loadedCharacter = Character.findByGameId(Long.parseLong(gameId));
