@@ -47,4 +47,16 @@ public class Location extends Model
         location.visited = 1;
         location.save();
     }
+
+    public static boolean visited(long game_id, String locationName)
+    {
+        Location location = find.where().eq("game_id", game_id).eq("name", locationName).eq("visited", 1).findUnique();
+
+        if (location == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -157,6 +157,34 @@ public class GameManager extends Controller
         return result;
     }
 
+    public static List<String> changeLocation(List<String> location)
+    {
+        List<String> result = new ArrayList<>();
+
+        if (location.size() < 2)
+        {
+            result.add("ErrorChangeLocationParameter");
+            return result;
+        }
+
+        // TODO anticheat ... check if character is at position
+        String position = location.get(0);
+        String target = location.get(1);
+        String username = session().get("username");
+
+        String pathResult = LocationContent.pathChangeResult(position, target, username);
+
+        if (pathResult.endsWith("Available"))
+        {
+            result.add(pathResult);
+            return result;
+        }
+
+        result.add("messageInfo");
+        result.add(pathResult);
+        return result;
+    }
+
     /**
      * removes the game_id and character_id representing a quit of the game
      */
