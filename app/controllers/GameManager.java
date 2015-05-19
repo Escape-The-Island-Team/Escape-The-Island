@@ -195,6 +195,43 @@ public class GameManager extends Controller
         return Item.backpackContent(characterId);
     }
 
+    public static List<String> collectItem(List<String> itemParameters)
+    {
+        List<String> result = new ArrayList<>();
+
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        if (itemParameters.size() < 1)
+        {
+            result.add("ErrorToLittleParameters");
+            return result;
+        }
+
+        String itemName = itemParameters.get(0);
+
+        if (!ItemParser.isItem(itemName))
+        {
+            result.add("ErrorUnknownItem");
+            return result;
+        }
+
+        if (Item.itemCollected(itemName))
+        {
+            result.add("ErrorJavaScriptManipulation");
+            return result;
+        }
+
+        Item.collectItem(itemName, characterId);
+
+        result.add("successful");
+        result.add("messageInfo");
+        result.add(ItemParser.message(itemName, false));
+        return result;
+    }
+
     /**
      * removes the game_id and character_id representing a quit of the game
      */

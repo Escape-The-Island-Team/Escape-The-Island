@@ -24,7 +24,7 @@ public class Item extends Model
     public String name;
 
     @Constraints.Required
-    public boolean old;
+    public int old;
 
     @Constraints.Required
     public int used;
@@ -79,5 +79,29 @@ public class Item extends Model
         }
 
         return backpackStrings;
+    }
+
+    public static boolean itemCollected(String itemName)
+    {
+        ExpressionList<Item> collectedItems = find.where().eq("name", itemName);
+
+        if (collectedItems == null || collectedItems.findRowCount() == 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static void collectItem(String itemName, long character_id)
+    {
+        Item collectedItem = new Item();
+
+        collectedItem.character_id = character_id;
+        collectedItem.name = itemName;
+        collectedItem.old = 0;
+        collectedItem.used = 0;
+
+        collectedItem.save();
     }
 }
