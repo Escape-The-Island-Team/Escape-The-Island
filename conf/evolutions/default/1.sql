@@ -10,6 +10,7 @@ create table character (
   old                       integer,
   action_points             integer,
   position                  varchar(255),
+  message                   integer,
   constraint uq_character_game_id unique (game_id),
   constraint pk_character primary key (id))
 ;
