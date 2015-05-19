@@ -37,7 +37,8 @@ create table item (
   id                        bigint not null,
   character_id              bigint,
   name                      varchar(255),
-  old                       boolean,
+  old                       integer,
+  used                      integer,
   constraint pk_item primary key (id))
 ;
 

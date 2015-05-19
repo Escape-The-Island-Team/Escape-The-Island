@@ -81,9 +81,9 @@ public class Item extends Model
         return backpackStrings;
     }
 
-    public static boolean itemCollected(String itemName)
+    public static boolean itemCollected(String itemName, long character_id)
     {
-        ExpressionList<Item> collectedItems = find.where().eq("name", itemName);
+        ExpressionList<Item> collectedItems = find.where().eq("name", itemName).eq("character_id", character_id);
 
         if (collectedItems == null || collectedItems.findRowCount() == 0)
         {
