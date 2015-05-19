@@ -151,15 +151,15 @@ public class Connections extends Controller
                         case "opening":
                         toReturn="openingAvailable-";
                         break;
-                        case "vulcano":
-                            toReturn="vulcanoAvailable-";
+                        case "volcano":
+                            toReturn="volcanoAvailable-";
                             break;
                         case "waterfall":
                             toReturn="waterfallAvailable-";
                             break;
                     }
                     break;
-                case "vulcano":
+                case "volcano":
                     switch(locations.get(1))
                     {
                         case "rocks":

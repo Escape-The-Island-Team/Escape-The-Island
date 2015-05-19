@@ -804,10 +804,10 @@ body
 }
 
 /**************************
-		vulcano
+		volcano
 **************************/
 
-#vulcano_arrowRight
+#volcano_arrowRight
 {
     width: 90%;
     height: 90%;
@@ -818,7 +818,7 @@ body
     position: absolute;
     visibility: hidden;
 }
-#vulcano_arrowRight_container
+#volcano_arrowRight_container
 {
     width: 5%;
     height: 12%;
