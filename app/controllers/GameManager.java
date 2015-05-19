@@ -103,8 +103,6 @@ public class GameManager extends Controller
             return result;
         }
 
-        System.out.println(parsedId);
-
         Character loadedCharacter = Character.findByGameId(parsedId);
 
         if (loadedCharacter == null)
@@ -123,8 +121,6 @@ public class GameManager extends Controller
 
     public static List<String> locationMessage(List<String> location)
     {
-        System.out.println(location.get(0));
-
         List<String> result = new ArrayList<String>();
 
         if (location.size() < 1)

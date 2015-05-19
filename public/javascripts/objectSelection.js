@@ -500,6 +500,8 @@ function collectItem(nameItemToCollect, idItemToCollect)
     var successful = true;
     var messageNext = false;
 
+    item += "-";
+
     model_data = JSON.stringify(item);
 
     // call of java method
@@ -745,6 +747,8 @@ function buildItembar()
                         switch(splitResult)
                         {
                             case "stick": imgItemID = 'itemStick';
+                                break;
+                            case "flintstones": imgItemID = 'itemFlintstones';
                                 break;
                         }
                         // select the item slot and insert the fitting item image
