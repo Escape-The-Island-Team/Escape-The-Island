@@ -120,180 +120,35 @@ public class GameManager extends Controller
 
         return result;
     }
-/*
-    public static List<String> useObject(List<String> objectParams)
+
+    public static List<String> locationMessage(List<String> location)
     {
         List<String> result = new ArrayList<>();
 
-        if (objectParams == null || objectParams.size() < 1)
+        if (location.size() < 1)
         {
-            result.add("ErrorNotEnoughParams");
-
+            result.add("ErrorNoLocationRetrieved");
             return result;
         }
 
-        long gameId;
+        String message = LocationContent.getMessage(location.get(0));
 
-        try
+        if (message == null)
         {
-            String gameString = session().get("game_id");
-            gameId = Long.parseLong(gameString);
-        }
-        catch (Exception exc)
-        {
-            result.add("ErrorUnknownGame");
-
+            result.add("ErrorInvalidLocation");
             return result;
         }
 
-        String object = objectParams.get(0);
-
-        if (!session().containsKey("character_id"))
-        {
-            result.add("ErrorCharacterUnknown");
-
-            return result;
-        }
-
-        String character = session().get("character");
-        boolean old = CharacterParser.isOld(character) == 1;
-
-        if (ObjectParser.isItem(object, old))
-        {
-            return GameManager.pickItem(object, old);
-        }
-
-        if (ObjectParser.isObject(object, old))
-        {
-            Object gameObject = Object.findGameObjectByName(gameId, object);
-
-            String receivedItemName = ObjectParser.givesItem(object, old);
-
-            // when the object is not yet used and will return an item
-            if (receivedItemName != null && (gameObject == null || !gameObject.used || gameObject.usages_left != 0))
-            {
-                String character_id = session().get("character_id");
-
-                if (character_id == null)
-                {
-                    result.clear();
-                    result.add("ErrorSessionCharacterId");
-                    return result;
-                }
-
-                long parsedId;
-
-                try
-                {
-                    parsedId = Long.parseLong(character_id);
-                }
-                catch (Exception exc)
-                {
-                    result.clear();
-                    result.add("ErrorParseCharacterId");
-                    return result;
-                }
-
-                Item receivedItem = new Item();
-                receivedItem.character_id = parsedId;
-                receivedItem.name = receivedItemName;
-                receivedItem.old = old;
-
-                if (gameObject == null)
-                {
-                    gameObject = new Object();
-
-                    gameObject.game_id = gameId;
-                    gameObject.name = object;
-                    gameObject.old = old;
-                    gameObject.used = true;
-
-                    gameObject.save();
-                }
-
-                receivedItem.save();
-
-                String message = ItemParser.message(object, old);
-
-                if (message == null)
-                {
-                    result.clear();
-                    result.add("ErrorUnknownItem");
-                    return result;
-                }
-
-                result.add(message);
-
-                List<String> itemStrings = getItems(parsedId);
-
-                result.add(itemStrings.get(0));
-                result.add(itemStrings.get(1));
-
-                return result;
-            }
-
-            String message = ObjectParser.message(object, old);
-
-            if (message == null)
-            {
-                result.clear();
-                result.add("ErrorUnknownObject");
-                return result;
-            }
-
-            result.add(message);
-
-            return result;
-        }
-
-        result.add("ErrorUnknownObject");
+        result.add(message);
         return result;
     }
-/*
-    public static List<String> pickItem(String item, boolean old)
-    {
-        List<String> result = new ArrayList<>();
-
-        Item pickedItem = new Item();
-
-        pickedItem.old = old;
-        pickedItem.name = item;
-
-        try
-        {
-            String characterId = session().get("character_id");
-            pickedItem.character_id = Long.parseLong(characterId);
-        }
-        catch (Exception exc)
-        {
-            result.add("ErrorParsedCharacterId");
-
-            return result;
-        }
-
-        pickedItem.save();
-
-        try
-        {
-            List<String> items = GameManager.getItems(pickedItem.character_id);
-
-            result.add("successful");
-            result.add(items.get(0));
-            result.add(items.get(1));
-        }
-        catch (NullPointerException exc)
-        {
-            result.add(exc.getMessage());
-        }
-
-        return result;
-    }*/
 
     /**
      * removes the game_id and character_id representing a quit of the game
      */
     public static void quitGame()
     {
+        // TODO umschreiben
         if (session().containsKey("game_id"))
         {
             session().remove("game_id");
@@ -341,57 +196,4 @@ public class GameManager extends Controller
 
         return result;
     }
-    /*
-    public static String getObjects(Character character)
-    {
-        List<String> objects = LocationParser.getObjects(character.position, character.old);
-        ExpressionList<Object> usedObjects = Object.findUsedGameObjects(character.game_id);
-
-        String objectsString = "";
-
-        for(String object: objects)
-        {
-            if (ObjectParser.isItem(object, character.old) && usedObjects.contains("name", object) != null)
-            {
-                continue;
-            }
-
-            objectsString += object + " ";                         // objects
-        }
-
-        if (objectsString.endsWith(" "))
-        {
-            objectsString = objectsString.substring(0, objectsString.length() - 1);
-        }
-
-        return objectsString;
-    }
-
-    public static List<String> getItems(long character_id)
-    {
-        List<String> result = new ArrayList<>();
-        List<Item> backpack;
-
-        try
-        {
-            backpack = Item.findByCharId(character_id).findList();
-        }
-        catch (NullPointerException exc)
-        {
-            throw new NullPointerException("There was an error in your backpack!");
-        }
-
-        result.add(Integer.toString(backpack.size()));
-
-        String itemString = "";
-
-        for (Item item: backpack)
-        {
-            itemString += " " + item.name;
-        }
-
-        result.add(itemString);
-
-        return result;
-    }*/
 }

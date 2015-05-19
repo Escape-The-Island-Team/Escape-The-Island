@@ -1,10 +1,8 @@
 package controllersTest;
 
-import controllers.LocationParser;
 import controllers.Locationcontent.NewNpcLister;
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewNpcListerTest extends TestCase {
