@@ -185,6 +185,16 @@ public class GameManager extends Controller
         return result;
     }
 
+    public static List<String> getBackpack()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        return Item.backpackContent(characterId);
+    }
+
     /**
      * removes the game_id and character_id representing a quit of the game
      */
