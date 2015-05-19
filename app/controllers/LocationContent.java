@@ -9,18 +9,47 @@ import java.util.List;
 /**
  * Created by Maik Wandrei on 27.04.2015.
  */
-public class LocationParser
+public class LocationContent
 {
     static String[] nameArray =
         {
                 "beachMid",
-                "beachRight",
                 "beachLeft",
+                "beachRight",
                 "jungle",
                 "temple",
-                "cliff"
+                "river",
+                "opening",
+                "lake",
+                "cave",
+                "cliff",
+                "rocks",
+                "vulcano",
+                "waterfall",
+                "treehouse",
+                "laboratory"
         };
     static ArrayList<String> locations = new ArrayList<String>(Arrays.asList(nameArray));
+
+    static String[] displayNameArray =
+            {
+                    "Beach Mid",
+                    "Beach Left",
+                    "Beach Right",
+                    "Jungle",
+                    "Temple",
+                    "River",
+                    "Opening",
+                    "Lake",
+                    "Cave",
+                    "Cliff",
+                    "Rocks",
+                    "Vulcano",
+                    "Waterfall",
+                    "Treehouse",
+                    "Laboratory"
+            };
+    static ArrayList<String> displayName = new ArrayList<String>(Arrays.asList(displayNameArray));
 
     // array containing all possible location changed: currentLocation_targetLocation
     static String[] pathArray =
@@ -123,5 +152,24 @@ public class LocationParser
         }
 
         return npcLister.getNpcs(location);
+    }
+
+    public static String getMessage(String location)
+    {
+        int locationIndex = locations.indexOf(location);
+
+        if (locationIndex < 0)
+        {
+            return null;
+        }
+
+        String locationName = displayName.get(locationIndex);
+
+        if (locationName == null)
+        {
+            return null;
+        }
+
+        return "You discovered a new region: " + locationName + ".";
     }
 }
