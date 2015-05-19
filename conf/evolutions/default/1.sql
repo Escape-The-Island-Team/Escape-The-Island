@@ -41,6 +41,12 @@ create table item (
   constraint pk_item primary key (id))
 ;
 
+create table location (
+  id                        bigint not null,
+  visited                   integer,
+  constraint pk_location primary key (id))
+;
+
 create table npc (
   id                        bigint not null,
   game_id                   bigint,
@@ -99,6 +105,8 @@ create sequence game_seq;
 
 create sequence item_seq;
 
+create sequence location_seq;
+
 create sequence npc_seq;
 
 create sequence object_seq;
@@ -124,6 +132,8 @@ drop table if exists game;
 
 drop table if exists item;
 
+drop table if exists location;
+
 drop table if exists npc;
 
 drop table if exists object;
@@ -143,6 +153,8 @@ drop sequence if exists dialogue_seq;
 drop sequence if exists game_seq;
 
 drop sequence if exists item_seq;
+
+drop sequence if exists location_seq;
 
 drop sequence if exists npc_seq;
 
