@@ -50,13 +50,10 @@ public class Connections extends Controller
 
         // call collecting items method with the info list given and another info list returned
         // toReturn = "successful-itembar-1-stick-messageInfo-You have found a stick!-";
-        switch(item)
-        {
-            case "stick": toReturn = "successful-messageInfo-You found a stick. This could be useful.-";
-                break;
-            case "flintstones": toReturn = "successful-messageInfo-These are some flintstones. Maybe you can use them to make fire.-";
-                break;
-        }
+
+        toReturn = parseForJS(GameManager.collectItem(infoList));
+
+        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
@@ -72,8 +69,10 @@ public class Connections extends Controller
         String toReturn = "";
 
         // call collecting items method with the info list given and another info list returned
-        toReturn = "itembar-1-stick-";
+        // toReturn = "itembar-1-stick-";
+        toReturn = parseForJS(GameManager.getBackpack());
 
+        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
@@ -98,8 +97,6 @@ public class Connections extends Controller
     public static Result getLocationMessage(String location)
     {
         List<String> infoList = parseFromJS(location);
-
-        System.out.println("LOCATION: "+location);
 
         String toReturn = "";
 
