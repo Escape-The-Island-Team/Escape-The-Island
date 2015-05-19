@@ -864,6 +864,10 @@ function getLocationMessage(location)
     var result;
     var splitResult="";
 
+    var messageNext = false;
+
+    location += "-";
+
     model_data = JSON.stringify(location);
 
     // call of java method without parameter
@@ -886,7 +890,19 @@ function getLocationMessage(location)
                 {
                     splitResult=result.substring(i,result.size-i);
 
-                    showInfoMessage(splitResult);
+                    if(messageNext)
+                    {
+                        showInfoMessage(splitResult);
+                        messageNext = false;
+                    }
+                    else
+                    {
+                        switch(splitResult)
+                        {
+                            case "MessageInfo": messageNext = true;
+                                break;
+                        }
+                    }
 
                     // prepare for the next splitresult to read; in the basic version of this method there should be none
                     result=result.substring(i+1);
