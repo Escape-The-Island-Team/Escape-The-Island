@@ -1247,7 +1247,7 @@ function interactWithNPC(npc)
 function actionEditProfile()
 {
     createNewGame();
-    getNewLocation('getStartLocation-beachMid');
+    getNewLocation('getStartLocation-beachMid-');
 }
 
 
