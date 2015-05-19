@@ -142,7 +142,7 @@ public class GameManager extends Controller
             return result;
         }
 
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
 
         result.add("ErrorInvalidLocationChange");
 
@@ -153,11 +153,11 @@ public class GameManager extends Controller
     {
         List<String> character = new ArrayList<String>();
 
-        String gameId = session().get("game");
+        String gameId = session().get("game_id");
 
-        if (gameId == null)
+        if (gameId == null || gameId.equals(""))
         {
-            character.add("BerryStraw");
+            character.add("CaptainSpeckJarrow");
             return character;
         }
 
@@ -181,11 +181,9 @@ public class GameManager extends Controller
 
     public static List<String> newGame(String selectedChar)
     {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
 
-        String username = session().get("username");
-
-        User currentUser = User.findByUsername(username);
+        User currentUser = User.findByUsername(session().get("username"));
 
         if (currentUser == null)
         {
@@ -193,11 +191,11 @@ public class GameManager extends Controller
             return result;
         }
 
-        /*if (Game.findIncomplete(selectedChar, currentUser.id))
+        if (Game.findIncomplete(selectedChar, currentUser.id))
         {
             result.add("ErrorCharacterAlreadyUsed");
             return result;
-        }*/
+        }
 
         Game newGame = new Game();
 
@@ -228,6 +226,27 @@ public class GameManager extends Controller
         newCharacter.position = startPosition;
         newCharacter.save();
 
+        List<String> items = GameManager.getItems(newCharacter.id);
+
+        result.add(startPosition + "Available");
+        result.add(getObjects(newCharacter));
+        result.add(newCharacter.name);
+        result.add(items.get(0));
+        result.add(items.get(1));
+
+        /*
+        List<String> npcs = LocationParser.getNpcs(startPosition);
+
+        result.add(Integer.toString(npcs.size()));
+
+        for(String npc: npcs)
+        {
+            result.add("npc_" + npc);
+        }
+        */
+
+        session().put("game_id", Long.toString(newGame.id));
+
         return loadGame(Long.toString(newGame.id));
     }
 
@@ -256,7 +275,8 @@ public class GameManager extends Controller
             return result;
         }
 
-        session("game", gameId);
+        session().put("game_id", Long.toString(parsedId));
+        session().put("character_id", Long.toString(loadedCharacter.id));
 
         result.add("successful");
 
@@ -278,8 +298,7 @@ public class GameManager extends Controller
 
         try
         {
-            String gameString = session().get("game_id");
-            gameId = Long.parseLong(gameString);
+            gameId = Long.parseLong(session().get("game_id"));
         }
         catch (Exception exc)
         {
@@ -297,8 +316,7 @@ public class GameManager extends Controller
             return result;
         }
 
-        String character = session().get("character");
-        boolean old = CharacterParser.isOld(character);
+        boolean old = CharacterParser.isOld(session().get("character"));
 
         if (ObjectParser.isItem(object, old))
         {
@@ -403,8 +421,7 @@ public class GameManager extends Controller
 
         try
         {
-            String characterId = session().get("character_id");
-            pickedItem.character_id = Long.parseLong(characterId);
+            pickedItem.character_id = Long.parseLong(session().get("character_id"));
         }
         catch (Exception exc)
         {
