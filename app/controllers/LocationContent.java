@@ -180,6 +180,10 @@ public class LocationContent
 
     public static String pathChangeResult(String position, String target, String username)
     {
+        if (position.equals("getStartLocation"))
+        {
+            return "beachMidAvailable";
+        }
         switch(position)
         {
         case "beachMid":
