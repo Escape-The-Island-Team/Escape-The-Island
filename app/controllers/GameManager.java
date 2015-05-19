@@ -218,7 +218,7 @@ public class GameManager extends Controller
             return result;
         }
 
-        if (Item.itemCollected(itemName))
+        if (Item.itemCollected(itemName, characterId))
         {
             result.add("ErrorJavaScriptManipulation");
             return result;
