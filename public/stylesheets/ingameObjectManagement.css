@@ -92,6 +92,30 @@
     margin-top: 30%;
 }
 
+
+/**************************
+	location cave
+**************************/
+
+#objBear
+{
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 14%;
+}
+
+#objBeehive
+{
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    margin-left: 84%;
+    margin-top: 21%;
+}
+
+
 /**************************
 	location laboratory
 **************************/
