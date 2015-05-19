@@ -22,7 +22,7 @@ public class Character extends Model
     public String name;
 
     @Constraints.Required
-    public boolean old;
+    public int old;
 
     @Constraints.Required
     public int action_points;

@@ -74,16 +74,16 @@ public class CharacterMessages
             };
     final static ArrayList<String> derDicke = new ArrayList<String>(Arrays.asList(CaptainSpeckJarrowArray));
 
-    public static String getMessage(String character)
+    public static String getMessage(String character, int messageNumber)
     {
         switch(character)
         {
-        case "Bob":                 return bob.get(3);
-        case "Alice":               return alice.get(3);
-        case "Nova":                return nova.get(3);
-        case "HomTanks":            return homTanks.get(3);
-        case "BerryStraw":          return berryStraw.get(3);
-        case "CaptainSpeckJarrow":  return derDicke.get(3);
+        case "Bob":                 return bob.get(messageNumber);
+        case "Alice":               return alice.get(messageNumber);
+        case "Nova":                return nova.get(messageNumber);
+        case "HomTanks":            return homTanks.get(messageNumber);
+        case "BerryStraw":          return berryStraw.get(messageNumber);
+        case "CaptainSpeckJarrow":  return derDicke.get(messageNumber);
         }
 
         return "Spacko!";

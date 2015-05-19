@@ -25,7 +25,7 @@ public class Application extends Controller {
     }
 
     public static Result register() {
-        if(session("nickname") == null || session("nickname").equals(""))
+        if(session().get("username") == null || session().get("username").equals(""))
         {
             return ok(register.render(""));
         }
