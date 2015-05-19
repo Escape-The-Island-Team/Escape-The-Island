@@ -10,31 +10,24 @@ public class ItemParser
 {
     final static String[] oldArray =
             {
-                    "rope",
-                    "hook",
-                    "honeycomb",
-                    "torch"
+                    "stick",
+                    "flintstones"
             };
     final static String[] messageOldArray =
             {
-                    "It's a rope!",
-                    "It's a hook!",
-                    "It's beepuke!",
-                    "Torch! So hot right now!"
+                    "You found a stick. This could be useful.",
+                    "There are some flintstones. Maybe you can use them to make fire."
             };
+
     final static String[] newArray =
             {
-                    "rope",
-                    "hook",
-                    "honeycomb",
-                    "flashlight"
+                    "stick",
+                    "flintstones"
             };
     final static String[] messageNewArray =
             {
-                    "It's a rope!",
-                    "It's a hook!",
-                    "It's beepuke!",
-                    "Let there be light!"
+                    "You found a stick. This could be useful.",
+                    "There are some flintstones. Maybe you can use them to make fire."
             };
 
     final static ArrayList<String> oldEra = new ArrayList<String>(Arrays.asList(oldArray));
@@ -94,5 +87,15 @@ public class ItemParser
         }
 
         return newMessages.get(itemIndex);
+    }
+
+    public static boolean isItem(String item)
+    {
+        if (oldEra.contains(item) || newEra.contains(item))
+        {
+            return true;
+        }
+
+        return false;
     }
 }
