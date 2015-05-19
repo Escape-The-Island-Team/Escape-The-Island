@@ -29,7 +29,7 @@ public class LocationContent
                 "cave",
                 "cliff",
                 "rocks",
-                "vulcano",
+                "volcano",
                 "waterfall",
                 "treehouse",
                 "laboratory"
@@ -49,7 +49,7 @@ public class LocationContent
                     "Cave",
                     "Cliff",
                     "Rocks",
-                    "Vulcano",
+                    "Volcano",
                     "Waterfall",
                     "Treehouse",
                     "Laboratory"
@@ -278,12 +278,12 @@ public class LocationContent
             {
             case "opening":
                 return "openingAvailable";
-            case "vulcano":
-                return "vulcanoAvailable";
+            case "volcano":
+                return "volcanoAvailable";
             case "waterfall":
                 return "waterfallAvailable";
             }
-        case "vulcano":
+        case "volcano":
             switch(target)
             {
             case "rocks":
