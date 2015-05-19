@@ -159,6 +159,11 @@ public class GameManager extends Controller
 
     public static List<String> changeLocation(List<String> location)
     {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
         List<String> result = new ArrayList<>();
 
         if (location.size() < 2)
@@ -170,12 +175,13 @@ public class GameManager extends Controller
         // TODO anticheat ... check if character is at position
         String position = location.get(0);
         String target = location.get(1);
-        String username = session().get("username");
 
         String pathResult = LocationContent.pathChangeResult(position, target, username);
 
         if (pathResult.endsWith("Available"))
         {
+            Character.changeLocation(characterId, target);
+
             result.add(pathResult);
             return result;
         }
@@ -230,6 +236,37 @@ public class GameManager extends Controller
         result.add("messageInfo");
         result.add(ItemParser.message(itemName, false));
         return result;
+    }
+
+    public static List<String> objectsOnLocation(List<String> locationParameters)
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        List<String> result = new ArrayList<>();
+
+        if (locationParameters.size() < 1)
+        {
+            result.add("EyDuArschGibMirMehr");
+            return result;
+        }
+
+        String location = locationParameters.get(0);
+
+        List<String> objects = ObjectParser.getObjects(location);
+        List<Item> collectedItems = Item.getUsedItems(characterId);
+
+        for(Item item: collectedItems)
+        {
+            if (objects.contains(item.name))
+            {
+                objects.remove(item.name);
+            }
+        }
+
+        return objects;
     }
 
     /**

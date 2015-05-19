@@ -104,4 +104,9 @@ public class Item extends Model
 
         collectedItem.save();
     }
+
+    public static List<Item> getUsedItems(long character_id)
+    {
+        return find.where().eq("character_id", character_id).findList();
+    }
 }
