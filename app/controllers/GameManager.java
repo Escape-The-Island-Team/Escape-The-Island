@@ -131,15 +131,27 @@ public class GameManager extends Controller
             return result;
         }
 
-        String message = LocationContent.getMessage(location.get(0));
+        String locationName = location.get(0);
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
 
-        if (message == null)
+        if (Location.newlyDiscovered(gameId, locationName) && locationName != "beachMid")
         {
-            result.add("ErrorInvalidLocation");
-            return result;
+            String message = LocationContent.getMessage(locationName);
+
+            if (message == null)
+            {
+                result.add("ErrorInvalidLocation");
+                return result;
+            }
+
+            result.add("MessageInfo");
+            result.add(message);
+
+            Location.visit(gameId, locationName);
         }
 
-        result.add(message);
         return result;
     }
 
