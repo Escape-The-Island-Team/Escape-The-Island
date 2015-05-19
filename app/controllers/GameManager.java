@@ -123,7 +123,9 @@ public class GameManager extends Controller
 
     public static List<String> locationMessage(List<String> location)
     {
-        List<String> result = new ArrayList<>();
+        System.out.println(location.get(0));
+
+        List<String> result = new ArrayList<String>();
 
         if (location.size() < 1)
         {
@@ -136,7 +138,7 @@ public class GameManager extends Controller
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
 
-        if (Location.newlyDiscovered(gameId, locationName) && locationName != "beachMid")
+        if (Location.newlyDiscovered(gameId, locationName) && !locationName.equals("beachMid"))
         {
             String message = LocationContent.getMessage(locationName);
 
