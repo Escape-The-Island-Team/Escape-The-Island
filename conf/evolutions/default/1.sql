@@ -7,9 +7,10 @@ create table character (
   id                        bigint not null,
   game_id                   bigint,
   name                      varchar(255),
-  old                       boolean,
+  old                       integer,
   action_points             integer,
   position                  varchar(255),
+  message                   integer,
   constraint uq_character_game_id unique (game_id),
   constraint pk_character primary key (id))
 ;
@@ -27,7 +28,8 @@ create table game (
   id                        bigint not null,
   user_id                   bigint,
   start_time                date,
-  completed                 boolean,
+  completed                 bigint,
+  active                    bigint,
   constraint pk_game primary key (id))
 ;
 

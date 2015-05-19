@@ -111,7 +111,6 @@ public class User extends Model
 
     }
 
-
     /**
      * Takes the hash and salt and writes it into the database
      *

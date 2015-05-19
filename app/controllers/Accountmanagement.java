@@ -141,7 +141,7 @@ public class Accountmanagement extends Controller
 
             if(PasswordHash.validatePassword(password, "5000:" + user.password_hash + ":" + user.password_salt))
             {
-                session("nickname", nickname);
+                session("username", nickname);
                 return ok(editProfile.render("Welcome, " + nickname + "!"));
             }
             else
@@ -177,7 +177,8 @@ public class Accountmanagement extends Controller
         String message = "";
 
         //find user and check old pw
-        User user = User.findByUsername(session("nickname"));
+        String username = session().get("username");
+        User user = User.findByUsername(username);
 
         if(user == null)
         {

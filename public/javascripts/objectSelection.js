@@ -594,6 +594,7 @@ function getCharIngame()
                 {
                     splitResult=result.substring(i,result.size-i);
 
+
                     switch(splitResult)
                     {
                         case "Bob":
@@ -1227,48 +1228,12 @@ function interactWithNPC(npc)
     });
 }
 
-
-
-function createGame(character)
+function actionEditProfile()
 {
-    var result;
-    var splitResult="";
-
-    model_data = JSON.stringify(character);
-
-    // call of java method without parameter
-    $.ajax({
-        url: '/createGame/'+character,
-        type: 'POST',
-        contentType: 'application/json',
-        data: model_data,
-        dataType: 'json html',
-        converters: {
-            'text json': true
-        },
-        success: function (response) {
-            response = JSON.parse(response);
-            result = response;
-
-            for(var i=0; i<result.length; i++)
-            {
-                if(result[i]=="-")
-                {
-                    splitResult=result.substring(i,result.size-i);
-
-                    // result would be "successful" as string, but will not be used here
-
-                    // prepare for the next splitresult to read; in the basic version of this method there should be none
-                    result=result.substring(i+1);
-                    i=0;
-                }
-            }
-        },
-        error: function (data, request) {
-            alert("FAIL " + data+result);
-        }
-    });
+    createNewGame();
+    getNewLocation('getStartLocation-beachMid');
 }
+
 
 
 

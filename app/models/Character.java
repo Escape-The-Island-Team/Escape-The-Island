@@ -22,7 +22,7 @@ public class Character extends Model
     public String name;
 
     @Constraints.Required
-    public boolean old;
+    public int old;
 
     @Constraints.Required
     public int action_points;
@@ -30,8 +30,12 @@ public class Character extends Model
     @Constraints.Required
     public String position;
 
+    @Constraints.Required
+    public int message;
+
+
     // -- Queries
-    public static Model.Finder<String, Character> find = new Model.Finder<>(String.class, Character.class);
+    public static Model.Finder<Long, Character> find = new Model.Finder<>(Long.class, Character.class);
 
     public static Character findById(long id)
     {
@@ -59,5 +63,17 @@ public class Character extends Model
         {
             return null;
         }
+    }
+
+    public static int getNextMessage(long char_id)
+    {
+        Character character = find.byId(char_id);
+
+        int message = character.message;
+
+        character.message = (character.message + 1) % 6;
+        character.update();
+
+        return message;
     }
 }

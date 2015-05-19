@@ -24,10 +24,13 @@ public class Game extends Model
     public Date start_time;
 
     @Constraints.Required
-    public boolean completed;
+    public long completed;
+
+    @Constraints.Required
+    public long active;
 
     // -- Queries
-    public static Model.Finder<String, Game> find = new Model.Finder<>(String.class, Game.class);
+    public static Model.Finder<Long, Game> find = new Model.Finder<>(Long.class, Game.class);
 
     public static Game findById(long id)
     {
@@ -55,12 +58,41 @@ public class Game extends Model
         return userGames.findList();
     }
 
-    public static boolean findIncomplete(String character, long user_id)
+    public static Game findActive(long user_id)
     {
         ExpressionList<Game> games = find.where().eq("user_id", user_id);
-        ExpressionList<Game> activeGames = games.where().eq("completed", true);
+        ExpressionList<Game> incompleteGames = games.where().eq("completed", 0);
+        ExpressionList<Game> activeGames = incompleteGames.where().eq("active", 1);
+        Game desiredGame = activeGames.findUnique();
 
-        for(Game game: activeGames.findList())
+        return desiredGame;
+    }
+
+    public static void setGameActive(long game_id)
+    {
+        long userId = find.byId(game_id).user_id;
+        List<Game> games = find.where().eq("user_id", userId).findList();
+
+        for(Game game: games)
+        {
+            game.active = 0;
+            game.update();
+        }
+
+        Game selectedGame = find.byId(game_id);
+
+        selectedGame.active = 1;
+        selectedGame.update();
+
+        Game loadedGame = find.byId(game_id);
+    }
+
+    public static boolean findIncompleteCharacter(String character, long user_id)
+    {
+        ExpressionList<Game> games = find.where().eq("user_id", user_id);
+        ExpressionList<Game> incompleteGames = games.where().eq("completed", true);
+
+        for(Game game: incompleteGames.findList())
         {
             Character gameCharacter = Character.findByGameId(game.id);
             if (gameCharacter.equals(character))

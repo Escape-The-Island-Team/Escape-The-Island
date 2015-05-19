@@ -13,7 +13,7 @@ public class CharacterMessages
                 "Hey, I'm Bob. Bob what? Just Bob.",
                 "Oh my god, I'm gonna miss my exams!",
                 "Don't worry about a thing. Cause every little thing is gonna be alright!",
-                "Tody, I would have maths lessons. Damn!",
+                "Today, I would have maths lessons. Damn!",
                 "No woman, no cry.",
                 "I would just swim back over the ocean, but I'm frightened because of these stupid shark movies!"
             };
@@ -36,7 +36,7 @@ public class CharacterMessages
                 "This mission is top secret.",
                 "*stretching* I want to be prepared to face everything.",
                 "Do you really have the time for clicking on me so often?",
-                "Missing accepted. Over and out.",
+                "Mission accepted. Over and out.",
                 "Yippee ki yay, ...!"
             };
     final static ArrayList<String> nova = new ArrayList<String>(Arrays.asList(novaArray));
@@ -46,9 +46,9 @@ public class CharacterMessages
                 "Hello, my name is Hom Tanks from Ted Ex. Now let's get this task started.",
                 "Come on, I have no time. I got to go off this island. Tick tack tick tack.",
                 "If I find Ted Ex packets, I will throw all other items away and only carry them with me. Just to inform you.",
-                "Aaaaanyybooodyy",
+                "Aaaaanyybooodyy?!",
                 "WILSON!",
-                "I'd like to play some volleyball now, but I donÄt know why..."
+                "I'd like to play some volleyball now, but I don't know why..."
             };
     final static ArrayList<String> homTanks = new ArrayList<String>(Arrays.asList(homTanksArray));
 
@@ -57,7 +57,7 @@ public class CharacterMessages
                 "Hey! I'm Berry! Do you want to play with me?",
                 "Mommy said I should not talk to strangers.",
                 "I want to go home! Mommy!!!",
-                "When I'm getting angry my head can become as read as a berry!",
+                "When I'm getting angry my head can become as red as a berry!",
                 "Do you think there is an iceman on this island? I would like three balls, strawberry, strawberry and strawberry!",
                 "I wanna be a raspberry! Not a strawberry aargh!"
             };
@@ -74,16 +74,16 @@ public class CharacterMessages
             };
     final static ArrayList<String> derDicke = new ArrayList<String>(Arrays.asList(CaptainSpeckJarrowArray));
 
-    public static String getMessage(String character)
+    public static String getMessage(String character, int messageNumber)
     {
         switch(character)
         {
-        case "Bob":                 return bob.get(3);
-        case "Alice":               return alice.get(3);
-        case "Nova":                return nova.get(3);
-        case "HomTanks":            return homTanks.get(3);
-        case "BerryStraw":          return berryStraw.get(3);
-        case "CaptainSpeckJarrow":  return derDicke.get(3);
+        case "Bob":                 return bob.get(messageNumber);
+        case "Alice":               return alice.get(messageNumber);
+        case "Nova":                return nova.get(messageNumber);
+        case "HomTanks":            return homTanks.get(messageNumber);
+        case "BerryStraw":          return berryStraw.get(messageNumber);
+        case "CaptainSpeckJarrow":  return derDicke.get(messageNumber);
         }
 
         return "Spacko!";

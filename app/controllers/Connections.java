@@ -12,6 +12,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Connections extends Controller
 {
     // obsolete but still used for testing purposes
@@ -293,8 +294,10 @@ public class Connections extends Controller
     {
         String toReturn = "";
 
+        List<String> infoList = GameManager.getCharacter();
         // call collecting items method with the info list given and another info list returned
-        toReturn = "Bob-";
+        // toReturn = "Bob-";
+        toReturn = parseForJS(infoList);
 
         return ok(Json.toJson(toReturn));
     }
@@ -303,8 +306,11 @@ public class Connections extends Controller
     {
         String toReturn = "";
 
+        List<String> infoList = GameManager.getCharacterMessage();
+
         // call collecting items method with the info list given and another info list returned
-        toReturn = "I am Alice, the dangerous pirate. Don't bother me or you will regret it!-";
+        // toReturn = "I am Alice, the dangerous pirate. Don't bother me or you will regret it!-";
+        toReturn = parseForJS(infoList);
 
         return ok(Json.toJson(toReturn));
     }
@@ -353,10 +359,11 @@ public class Connections extends Controller
      */
     public static Result createGame(String character)
     {
-        String toReturn = "";
+        String toReturn = "successful-";
+        List<String> infoList = parseFromJS(character);
+        GameManager.newGame(infoList.get(0));
 
         // call collecting items method with the info list given and another info list returned
-        toReturn = "successful-";
 
         return ok(Json.toJson(toReturn));
     }
