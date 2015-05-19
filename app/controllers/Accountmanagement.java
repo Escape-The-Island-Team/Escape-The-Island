@@ -177,7 +177,8 @@ public class Accountmanagement extends Controller
         String message = "";
 
         //find user and check old pw
-        User user = User.findByUsername(session("nickname"));
+        String username = session().get("username");
+        User user = User.findByUsername(username);
 
         if(user == null)
         {
