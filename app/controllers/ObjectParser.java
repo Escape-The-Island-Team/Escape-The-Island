@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Maik Wandrei on 27.04.2015.
@@ -9,28 +10,23 @@ import java.util.Arrays;
 public class ObjectParser
 {
     // TODO go on putting in dem objects on locations
-    final static String[] nameArray =
+    private final static String[] objectArray =
             {
-                    "stick",
-                    "rope",
-                    "oilLamp",
-                    "rags",
-                    "bottle",
-                    "forest",
-                    "flower",
-                    "hook",
-                    "treasureChest",
-                    "fish",
-                    "beehive",
-                    "bear",
-                    "fruit",
-                    "sail",
-                    "powderKeg",
-                    "flintstone",
-                    "colcanicStone",
-                    "clearWater"
+                "stick",
+                "flintstones",
+                "bear",
+                "beehive"
             };
-    final static ArrayList<String> objects = new ArrayList<String>(Arrays.asList(nameArray));
+    private final static ArrayList<String> objects = new ArrayList<String>(Arrays.asList(objectArray));
+
+    private final static String[] locationArray =
+            {
+                    "beachLeft",
+                    "beachRight",
+                    "cave",
+                    "cave"
+            };
+    private final static ArrayList<String> locations = new ArrayList<String>(Arrays.asList(locationArray));
 
     public int getId(String objectName)
     {
@@ -160,5 +156,21 @@ public class ObjectParser
         }
 
         return null;
+    }
+
+    public static List<String> getObjects(String currentLocation)
+    {
+        List<String> locationObjects = new ArrayList<>();
+
+        for(int index = 0; index < locations.size(); index++)
+        {
+            String location = locations.get(index);
+            if (locations.equals(currentLocation))
+            {
+                locationObjects.add(objects.get(index));
+            }
+        }
+
+        return locationObjects;
     }
 }

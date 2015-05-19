@@ -76,4 +76,12 @@ public class Character extends Model
 
         return message;
     }
+
+    public static void changeLocation(long char_id, String location)
+    {
+        Character character = find.byId(char_id);
+
+        character.position = location;
+        character.save();
+    }
 }
