@@ -4,6 +4,7 @@ import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ import java.util.List;
 public class Item extends Model
 {
     @Id
+    @OrderBy
     public long id;
 
     @Constraints.Required
@@ -23,6 +25,9 @@ public class Item extends Model
 
     @Constraints.Required
     public boolean old;
+
+    @Constraints.Required
+    public int used;
 
     // -- Queries
     public static Model.Finder<String, Item> find = new Model.Finder<>(String.class, Item.class);
@@ -59,5 +64,20 @@ public class Item extends Model
         }
 
         return false;
+    }
+
+    public static List<String> backpackContent(long character_id)
+    {
+        List<Item> backpack = find.where().eq("character_id", character_id).eq("used", 0).findList();
+        List<String> backpackStrings = new ArrayList<>();
+        backpackStrings.add("itembar");
+        backpackStrings.add(Integer.toString(backpack.size()));
+
+        for(Item item: backpack)
+        {
+            backpackStrings.add(item.name);
+        }
+
+        return backpackStrings;
     }
 }
