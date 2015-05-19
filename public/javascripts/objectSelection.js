@@ -101,7 +101,7 @@ function getNewLocation(info) {
                             break;
                         case "rocksAvailable": window.location ="loadRocks";
                             break;
-                        case "vulcanoAvailable": window.location ="loadVulcano";
+                        case "volcanoAvailable": window.location ="loadVolcano";
                             break;
                         case "waterfallAvailable": window.location ="loadWaterfall";
                             break;
@@ -239,7 +239,7 @@ function getNewLocation2(info)
                                 break;
                             case "rocksAvailable": window.location ="loadRocks";
                                 break;
-                            case "vulcanoAvailable": window.location ="loadVulcano";
+                            case "volcanoAvailable": window.location ="loadVolcano";
                                 break;
                             case "waterfallAvailable": window.location ="loadWaterfall";
                                 break;

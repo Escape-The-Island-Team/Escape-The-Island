@@ -91,7 +91,7 @@ public class Application extends Controller {
     public static Result loadCave() { return ok(locCave.render("")); }
     public static Result loadCliff() { return ok(locCliff.render("")); }
     public static Result loadRocks() { return ok(locRocks.render("")); }
-    public static Result loadVulcano() { return ok(locVulcano.render("")); }
+    public static Result loadVolcano() { return ok(locVolcano.render("")); }
     public static Result loadWaterfall() { return ok(locWaterfall.render("")); }
     public static Result loadTreehouse() { return ok(locTreehouse.render("")); }
     public static Result loadLaboratory() { return ok(locLaboratory.render("")); }
