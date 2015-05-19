@@ -43,6 +43,8 @@ create table item (
 
 create table location (
   id                        bigint not null,
+  name                      varchar(255),
+  game_id                   bigint,
   visited                   integer,
   constraint pk_location primary key (id))
 ;

@@ -9,10 +9,13 @@ import javax.persistence.*;
  * Created by Maik Wandrei on 19.05.2015.
  */
 @Entity
-public class Location
+public class Location extends Model
 {
     @Id
     public long id;
+
+    @Constraints.Required
+    public String name;
 
     @Constraints.Required
     public long game_id;
@@ -26,5 +29,22 @@ public class Location
     public static Location findById(long id)
     {
         return find.byId(id);
+    }
+
+    public static boolean newlyDiscovered(long game_id, String locationName)
+    {
+        Location location = Location.find.where().eq("game_id", game_id).eq("name", locationName).findUnique();
+
+        return (location == null || location.visited == 0);
+    }
+
+    public static void visit(long game_id, String locationName)
+    {
+        Location location = new Location();
+
+        location.game_id = game_id;
+        location.name = locationName;
+        location.visited = 1;
+        location.save();
     }
 }
