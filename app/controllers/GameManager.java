@@ -33,13 +33,14 @@ public class GameManager extends Controller
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId= Game.findActive(userId).id;
-        String characterName = Character.findByGameId(gameId).name;
+        Character loadedCharacter = Character.findByGameId(gameId);
+        int message = Character.getNextMessage(loadedCharacter.id);
 
-        List<String> message = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
-        message.add(CharacterMessages.getMessage(characterName, 3));
+        result.add(CharacterMessages.getMessage(loadedCharacter.name, message));
 
-        return message;
+        return result;
     }
 
     public static List<String> newGame(String selectedChar)
