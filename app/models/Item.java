@@ -4,6 +4,7 @@ import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Maik Wandrei on 06.12.2014.
@@ -40,8 +41,23 @@ public class Item extends Model
         }
     }
 
-    public static ExpressionList<Item> findByCharId(long character_id)
+    public static List<Item> findByCharId(long character_id)
     {
-        return find.where().eq("character_id", character_id);
+        return find.where().eq("character_id", character_id).findList();
+    }
+
+    public static boolean characterHoldsItem(String itemName, long characterId)
+    {
+        List<Item> items = Item.findByCharId(characterId);
+
+        for(Item item: items)
+        {
+            if (item.name.equals(itemName))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
