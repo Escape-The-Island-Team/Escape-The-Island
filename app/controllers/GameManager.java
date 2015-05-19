@@ -258,6 +258,11 @@ public class GameManager extends Controller
             return result;
         }
 
+        if (session().containsKey("game"))
+        {
+            session().remove("game");
+        }
+
         session("game", gameId);
 
         System.out.println("penis" + gameId);
