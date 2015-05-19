@@ -53,7 +53,6 @@ public class Connections extends Controller
 
         toReturn = parseForJS(GameManager.collectItem(infoList));
 
-        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
@@ -72,7 +71,6 @@ public class Connections extends Controller
         // toReturn = "itembar-1-stick-";
         toReturn = parseForJS(GameManager.getBackpack());
 
-        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
