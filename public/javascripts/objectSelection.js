@@ -317,6 +317,8 @@ function selectItem(id)
         document.getElementById(id).setAttribute('class','table_td');
     }
 }
+
+// not used anymore as the tool acts now as a button
 function selectTool(id)
 {
     if(document.getElementById(id).getAttribute('class')=='table_td_tool')
@@ -485,7 +487,6 @@ function collectItem2(nameItemToCollect, idItemToCollect)
         }
     });
 }
-
 
 
 
@@ -978,7 +979,7 @@ function getCharInteraction()
 }
 
 
-
+// use tool = createItem
 function useTool()
 {
     var idTd = "";
