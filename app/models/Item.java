@@ -109,4 +109,47 @@ public class Item extends Model
     {
         return find.where().eq("character_id", character_id).findList();
     }
+
+    public static boolean removeItems(List<String> items, long character_id)
+    {
+        List<Item> backpack = find.where().eq("character_id", character_id).eq("used", 0).findList();
+
+        for (String item: items)
+        {
+            boolean found = false;
+
+            for (Item backpackItem: backpack)
+            {
+                if (backpackItem.name.equals(item))
+                {
+                    backpackItem.used = 2;
+                    backpackItem.update();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                for (Item backpackItem: backpack)
+                {
+                    if (backpackItem.used == 2)
+                    {
+                        backpackItem.used = 0;
+                        backpackItem.update();
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        for (Item backpackItem: backpack)
+        {
+            backpackItem.used = 1;
+            backpackItem.update();
+        }
+
+        return true;
+    }
 }
