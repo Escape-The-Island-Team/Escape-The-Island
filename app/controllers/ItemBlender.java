@@ -28,12 +28,23 @@ public class ItemBlender
             };
     final static ArrayList<String> combinationNames = new ArrayList<String>(Arrays.asList(combinationNameArray));
 
-
     final static String[] messagesArray =
             {
                     "Congratulations! You have created a torch!"
             };
     final static ArrayList<String> messages = new ArrayList<String>(Arrays.asList(messagesArray));
+
+    final static String[] torchRemoveArray =
+            {
+                    "stick"
+            };
+    final static ArrayList<String> torchRemoveItems = new ArrayList<String>(Arrays.asList(torchRemoveArray));
+
+    final static ArrayList[] removeItemsArray =
+            {
+                    torchRemoveItems
+            };
+    final static ArrayList<ArrayList> itemsToRemove = new ArrayList<ArrayList>(Arrays.asList(removeItemsArray));
 
     public static String combineItems(List<String> items)
     {
@@ -110,5 +121,15 @@ public class ItemBlender
         }
 
         return "Gr8 b8 m8 I r8 8/8!";
+    }
+
+    public static List<String> removeItems(String combination)
+    {
+        if (combinationNames.contains(combination))
+        {
+            return itemsToRemove.get(combinationNames.indexOf(combination));
+        }
+
+        return new ArrayList<String>();
     }
 }
