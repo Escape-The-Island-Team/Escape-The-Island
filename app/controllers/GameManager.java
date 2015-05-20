@@ -248,10 +248,15 @@ public class GameManager extends Controller
             result.add("EyDuArschGibMirMehr");
             return result;
         }
-
         String location = locationParameters.get(0);
 
         List<String> objects = ObjectParser.getObjects(location);
+
+        for (String object:objects)
+        {
+            System.out.println("Object: " + object);
+        }
+
         List<Item> collectedItems = Item.getUsedItems(characterId);
 
         for(Item item: collectedItems)

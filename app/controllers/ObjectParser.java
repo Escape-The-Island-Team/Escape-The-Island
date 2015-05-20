@@ -165,7 +165,7 @@ public class ObjectParser
         for(int index = 0; index < locations.size(); index++)
         {
             String location = locations.get(index);
-            if (locations.equals(currentLocation))
+            if (location.equals(currentLocation))
             {
                 locationObjects.add(objects.get(index));
             }
