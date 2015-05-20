@@ -187,6 +187,39 @@ public class GameManager extends Controller
         return result;
     }
 
+    public static List<String> combineItems(List<String> items)
+    {
+        List<String> result = new ArrayList<String>();
+
+        if (items == null)
+        {
+            result.add("messageInfo");
+            result.add(ItemBlender.combineItems(new ArrayList<String>()));
+            return result;
+        }
+
+        String item = ItemBlender.combineItems(items);
+
+        if (item.contains("cannot"))
+        {
+            result.add("messageInfo");
+            result.add(item);
+            return result;
+        }
+
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        Item.collectItem(item, characterId);
+
+        result.add("successful");
+        result.add("messageInfo");
+        result.add(ItemBlender.messageOfCombination(item));
+        return result;
+    }
+
     public static List<String> getBackpack()
     {
         String username = session().get("username");
