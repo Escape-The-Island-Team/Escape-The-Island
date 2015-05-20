@@ -76,19 +76,14 @@ public class Connections extends Controller
 
     public static Result getObjects(String location)
     {
+        System.out.println(location);
         List<String> infoList = parseFromJS(location);
         String toReturn = "";
 
         // call collecting items method with the info list given and another info list returned
-        switch(location)
-        {
-            case "beachMid": toReturn = "stick-";
-                break;
-            case "beachLeft": toReturn = "rope-";
-                break;
-        }
-        toReturn = "stick-";
 
+        toReturn = parseForJS(GameManager.objectsOnLocation(infoList));
+        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 

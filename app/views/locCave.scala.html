@@ -36,10 +36,10 @@
 
 
                     <!-- Objects -->
-                <div id="objBear" hidden="hidden">
+                <div id="objBear">
                     <img class="objectImgGeneralSize" src="@routes.Assets.at("images/objects/bear.png")" onclick="getAction('bear')">
                 </div>
-                <div id="objBeehive" hidden="hidden">
+                <div id="objBeehive">
                     <img class="objectImgGeneralSize" src="@routes.Assets.at("images/objects/beehive.png")" onclick="getAction('beehive')">
                 </div>
 
@@ -88,7 +88,7 @@
                         <div class="itembar">
                             <table class="itemTable" border="I">
                                 <tr>
-                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" onclick="selectTool('slotTool')"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
+                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
                                     <td id="slot1" class="table_td"><div class="itembarItem" onclick="selectItem('slot1')"><img id="imgSlot1" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot2" class="table_td"><div class="itembarItem" onclick="selectItem('slot2')"><img id="imgSlot2" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot3" class="table_td"><div class="itembarItem" onclick="selectItem('slot3')"><img id="imgSlot3" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>

@@ -812,6 +812,8 @@ function placeObjects(location)
     var result;
     var splitResult="";
 
+    location += "-";
+
     model_data = JSON.stringify(location);
 
     // call of java method without parameter
@@ -1136,6 +1138,9 @@ function getAction(object)
                     break;
                 case document.getElementById('itemRumbarrel').src:
                     itemsSelectedToReturn += "rumbarrel-";
+                    break;
+                case document.getElementById('itemHoneycomb').src:
+                    itemsSelectedToReturn += "honeycomb-";
                     break;
             }
         }
