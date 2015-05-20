@@ -214,6 +214,13 @@ public class GameManager extends Controller
 
         Item.collectItem(item, characterId);
 
+        if (!Item.removeItems(ItemBlender.removeItems(item), characterId))
+        {
+            result.add("messageInfo");
+            result.add("You filthy little java script manipulator!");
+            return result;
+        }
+
         result.add("successful");
         result.add("messageInfo");
         result.add(ItemBlender.messageOfCombination(item));
