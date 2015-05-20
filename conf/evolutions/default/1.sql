@@ -63,8 +63,8 @@ create table object (
   id                        bigint not null,
   game_id                   bigint,
   name                      varchar(255),
-  old                       boolean,
-  used                      boolean,
+  old                       integer,
+  used                      integer,
   usages_left               integer,
   constraint pk_object primary key (id))
 ;
