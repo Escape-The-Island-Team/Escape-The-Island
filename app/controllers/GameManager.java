@@ -36,7 +36,7 @@ public class GameManager extends Controller
         Character loadedCharacter = Character.findByGameId(gameId);
         int message = Character.getNextMessage(loadedCharacter.id);
 
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
 
         result.add(CharacterMessages.getMessage(loadedCharacter.name, message));
 
@@ -214,6 +214,9 @@ public class GameManager extends Controller
 
         Item.collectItem(item, characterId);
 
+        //TODO remove
+        System.out.println("Created item: " + item);
+
         if (!Item.removeItems(ItemBlender.removeItems(item), characterId))
         {
             result.add("messageInfo");
@@ -234,7 +237,9 @@ public class GameManager extends Controller
         long gameId = Game.findActive(userId).id;
         long characterId = Character.findByGameId(gameId).id;
 
-        return Item.backpackContent(characterId);
+        List<String> items = Item.backpackContent(characterId);
+
+        return items;
     }
 
     public static List<String> collectItem(List<String> itemParameters)

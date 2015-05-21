@@ -751,6 +751,8 @@ function buildItembar()
                                 break;
                             case "flintstones": imgItemID = 'itemFlintstones';
                                 break;
+                            case "torch": imgItemID = 'itemTorch';
+                                break;
                         }
                         // select the item slot and insert the fitting item image
                         document.getElementById(idComplete).setAttribute('src',document.getElementById(imgItemID).src);
@@ -996,7 +998,7 @@ function useTool()
     var result;
     var splitResult="";
 
-    var successful = true;
+    var successful = false;
     var messageNext = false;
 
 
@@ -1018,6 +1020,9 @@ function useTool()
                 case document.getElementById('itemFlintstones').src:
                     itemsSelectedToReturn += "flintstones-";
                     break;
+                case document.getElementById('itemTorch').src:
+                    itemsSelectedToReturn += "torch-";
+                    break;
                 case document.getElementById('itemRope').src:
                     itemsSelectedToReturn += "rope-";
                     break;
@@ -1036,6 +1041,7 @@ function useTool()
         contentType: 'application/json',
         data: model_data,
         dataType: 'json html',
+
         converters: {
             'text json': true
         },
@@ -1062,7 +1068,6 @@ function useTool()
                                 // set successful in beginning. if successful, rebuild itembar
                                 case "successful":
                                     successful = true;
-                                    buildItembar();
                                     break;
                                 // if not successful, working with the result will end
                                 case "notSuccessful":
@@ -1078,18 +1083,24 @@ function useTool()
                     i=0;
                 }
             }
+            // unselect all items
+            for(var i=1; i<=20; i++)
+            {
+                idTd = idTdBase + i;
+                document.getElementById(idTd).setAttribute('class','table_td');
+            }
+
+            // if successful, rebuild itembar
+            if(successful)
+            {
+                //alert("builditembar");
+                buildItembar();
+            }
         },
         error: function (data, request) {
             alert("FAIL " + data+result);
         }
     });
-
-    // unselect all items
-    for(var i=1; i<=20; i++)
-    {
-        idTd = idTdBase + i;
-        document.getElementById(idTd).setAttribute('class','table_td');
-    }
 }
 
 
@@ -1111,7 +1122,7 @@ function getAction(object)
     var result;
     var splitResult="";
 
-    var successful = true;
+    var successful = false;
     var messageNext = false;
 
 
@@ -1133,14 +1144,17 @@ function getAction(object)
                 case document.getElementById('itemFlintstones').src:
                     itemsSelectedToReturn += "flintstones-";
                     break;
+                case document.getElementById('itemTorch').src:
+                    itemsSelectedToReturn += "torch-";
+                    break;
+                case document.getElementById('itemHoneycomb').src:
+                    itemsSelectedToReturn += "honeycomb-";
+                    break;
                 case document.getElementById('itemRope').src:
                     itemsSelectedToReturn += "rope-";
                     break;
                 case document.getElementById('itemRumbarrel').src:
                     itemsSelectedToReturn += "rumbarrel-";
-                    break;
-                case document.getElementById('itemHoneycomb').src:
-                    itemsSelectedToReturn += "honeycomb-";
                     break;
             }
         }
@@ -1151,7 +1165,7 @@ function getAction(object)
     model_data = JSON.stringify(infoToReturn);
 
     $.ajax({
-        url: '/getCombination/'+infoToReturn,
+        url: '/getAction/'+infoToReturn,
         type: 'POST',
         contentType: 'application/json',
         data: model_data,
@@ -1198,18 +1212,23 @@ function getAction(object)
                     i=0;
                 }
             }
+            // unselect all items
+            for(var i=1; i<=20; i++)
+            {
+                idTd = idTdBase + i;
+                document.getElementById(idTd).setAttribute('class','table_td');
+            }
+            // if successful, rebuild itembar
+            if(successful)
+            {
+                //alert("builditembar");
+                buildItembar();
+            }
         },
         error: function (data, request) {
             alert("FAIL " + data+result);
         }
     });
-
-    // unselect all items
-    for(var i=1; i<=20; i++)
-    {
-        idTd = idTdBase + i;
-        document.getElementById(idTd).setAttribute('class','table_td');
-    }
 }
 
 
