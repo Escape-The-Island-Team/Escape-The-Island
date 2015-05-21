@@ -315,6 +315,43 @@ public class GameManager extends Controller
         return objects;
     }
 
+    public static List<String> interactWithObjects(List<String> objectParameter)
+    {
+        List<String> result = new ArrayList<>();
+
+        if (objectParameter.size() < 1)
+        {
+            result.add("ErrorDuBistDoof");
+            return result;
+        }
+
+        String object = objectParameter.get(0);
+        List<String> items = new ArrayList<>();
+
+        for (int index = 1; index < objectParameter.size(); index++)
+        {
+            items.add(objectParameter.get(index));
+        }
+
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        String message = ObjectParser.useObject(object, items, characterId);
+
+        if (message.equals("Error"))
+        {
+            result.add("notSuccessful");
+            return result;
+        }
+
+        result.add("successful");
+        result.add("messageInfo");
+        result.add(message);
+        return result;
+    }
+
     /**
      * removes the game_id and character_id representing a quit of the game
      */
@@ -340,7 +377,7 @@ public class GameManager extends Controller
      */
     public static List<String> getGames()
     {
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
         long userId = User.findByUsername(session("username")).id;
         List<Game> userGames = Game.findByUserId(userId);
 
