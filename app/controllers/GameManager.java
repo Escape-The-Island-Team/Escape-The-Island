@@ -292,11 +292,6 @@ public class GameManager extends Controller
 
         List<String> objects = ObjectParser.getObjects(location);
 
-        for (String object:objects)
-        {
-            System.out.println("Object: " + object);
-        }
-
         List<Item> collectedItems = Item.getUsedItems(characterId);
 
         for(Item item: collectedItems)
@@ -304,6 +299,16 @@ public class GameManager extends Controller
             if (objects.contains(item.name))
             {
                 objects.remove(item.name);
+            }
+        }
+
+        List<Object> usedObjects = Object.findUsedGameObjects(gameId);
+
+        for (Object object: usedObjects)
+        {
+            if (objects.contains(object.name))
+            {
+                objects.remove(object.name);
             }
         }
 
