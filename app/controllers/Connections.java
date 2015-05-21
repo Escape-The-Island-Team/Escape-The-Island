@@ -71,6 +71,7 @@ public class Connections extends Controller
         // toReturn = "itembar-1-stick-";
         toReturn = parseForJS(GameManager.getBackpack());
 
+        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
@@ -132,7 +133,9 @@ public class Connections extends Controller
         String toReturn = "";
 
         // call collecting items method with the info list given and another info list returned
-        toReturn = "successful-messageInfo-Congratulations! You have created a torch!-";
+        toReturn = parseForJS(GameManager.combineItems(infoList));
+
+        System.out.println("GetCombination completed. Returns values to Javascript.");
 
         return ok(Json.toJson(toReturn));
     }
