@@ -753,6 +753,8 @@ function buildItembar()
                                 break;
                             case "torch": imgItemID = 'itemTorch';
                                 break;
+                            case "honeycomb": imgItemID = 'itemHoneycomb';
+                                break;
                         }
                         // select the item slot and insert the fitting item image
                         document.getElementById(idComplete).setAttribute('src',document.getElementById(imgItemID).src);
@@ -1107,7 +1109,7 @@ function useTool()
 
 
 // for Use Cases 'Interact With Objects' and 'Using Items On Objects'
-function getAction(object)
+function getAction(object, location)
 {
     var idTd = "";
     var idTdBase = "slot";
@@ -1223,6 +1225,7 @@ function getAction(object)
             {
                 //alert("builditembar");
                 buildItembar();
+                placeObjects(location);
             }
         },
         error: function (data, request) {
