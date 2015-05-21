@@ -1,5 +1,7 @@
 package controllers;
 
+import models.Item;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,21 +30,6 @@ public class ObjectParser
             };
     private final static ArrayList<String> locations = new ArrayList<String>(Arrays.asList(locationArray));
 
-    public int getId(String objectName)
-    {
-        return objects.indexOf(objectName);
-    }
-
-    public String getName(int id)
-    {
-        if (id <= objects.size())
-        {
-            return "obj_" + objects.get(id);
-        }
-
-        return "noSuchObject" + id;
-    }
-
     public static boolean isItem(String objectName, boolean old)
     {
         if (old)
@@ -65,97 +52,9 @@ public class ObjectParser
         return false;
     }
 
-    public static boolean isObject(String objectName, boolean old)
+    public static boolean isObject(String objectName)
     {
-        if (old)
-        {
-            switch (objectName)
-            {
-            case "beehive": return true;
-            }
-
-            return false;
-        }
-
-        switch (objectName)
-        {
-        case "beehive":
-        case "chest":   return true;
-        }
-
-        return false;
-    }
-
-    public static String needsItem(String objectName, boolean old)
-    {
-        if(old)
-        {
-            switch(objectName)
-            {
-            case "beehive":
-                return "torch";
-            }
-
-            return null;
-        }
-
-        switch(objectName)
-        {
-        case "beehive":
-            return "torch";
-        case "chest":
-            return "key";
-        }
-
-        return null;
-    }
-
-    public static String givesItem(String objectName, boolean old)
-    {
-        if(old)
-        {
-            switch(objectName)
-            {
-            case "beehive":
-                return "honeycomb";
-            }
-
-            return null;
-        }
-
-        switch(objectName)
-        {
-        case "beehive":
-            return "homeycomb";
-        case "chest":
-            return "2_golddoubloons";
-        }
-
-        return null;
-    }
-
-    public static String message(String objectName, boolean old)
-    {
-        if(old)
-        {
-            switch(objectName)
-            {
-            case "beehive":
-                return "Honeycomb received!";
-            }
-
-            return null;
-        }
-
-        switch(objectName)
-        {
-        case "beehive":
-            return "Honeycomb received!";
-        case "chest":
-            return "2 golddoubloons received!";
-        }
-
-        return null;
+        return objects.contains(objectName);
     }
 
     public static List<String> getObjects(String currentLocation)
@@ -172,5 +71,82 @@ public class ObjectParser
         }
 
         return locationObjects;
+    }
+
+    public static String useObject(String objectName, List<String> items, long charId)
+    {
+        if (items.size() > 1)
+        {
+            return "These items cannot be used on this object.";
+        }
+
+        String item = "";
+
+        if (items.size() == 1)
+        {
+            item = items.get(0);
+        }
+
+        switch (objectName)
+        {
+        case "honeycomb":
+            return useHoneycomb(item, charId);
+        case "bear":
+            return useBear(item, charId);
+        default:
+            return "Error";
+        }
+    }
+
+    public static String useHoneycomb(String item, long charId)
+    {
+        if (item.equals(""))
+        {
+            return "The bees in this beehive are buzzing happily in the sun and produce delicious honey.";
+        }
+
+        if (item.equals("torch"))
+        {
+            if (!Item.characterHoldsItem("torch", charId))
+            {
+                return "You filthy little javascript manipulator";
+            }
+
+            if (Item.itemCollected("honeycomb", charId))
+            {
+                return "You cannot get more honeycomb out of this beehive.";
+            }
+
+            Item.collectItem("honeycomb", charId);
+
+            return "The fire scared the bees away. You took a honeycomb out of the beehive.";
+        }
+
+        return "This item cannot be used on the beehive.";
+    }
+
+    public static String useBear(String item, long charId)
+    {
+        if (item.equals(""))
+        {
+            return "This huge bear looks really dangerous.";
+        }
+
+        if (item.equals("honeycomb"))
+        {
+            if (!Item.characterHoldsItem("honeycomb", charId))
+            {
+                return "You filthy little javascript manipulator";
+            }
+
+            List<String> remove = new ArrayList<>();
+            remove.add("honeycomb");
+
+            Item.removeItems(remove, charId);
+
+            return "The bear likes honey a lot. You have enticed the bear away with the honeycomb.";
+        }
+
+        return "This item cannot be used on the beehive.";
     }
 }
