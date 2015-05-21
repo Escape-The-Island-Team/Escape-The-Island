@@ -92,8 +92,8 @@ public class ObjectParser
 
         switch (objectName)
         {
-        case "honeycomb":
-            return useHoneycomb(item, charId);
+        case "beehive":
+            return useBeehive(item, charId);
         case "bear":
             return useBear(item, charId);
         default:
@@ -101,7 +101,7 @@ public class ObjectParser
         }
     }
 
-    public static String useHoneycomb(String item, long charId)
+    public static String useBeehive(String item, long charId)
     {
         if (item.equals(""))
         {
@@ -152,6 +152,6 @@ public class ObjectParser
             return "The bear likes honey a lot. You have enticed the bear away with the honeycomb.[bear]";
         }
 
-        return "This item cannot be used on the beehive.";
+        return "This item cannot be used on the bear.";
     }
 }

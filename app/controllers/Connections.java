@@ -71,6 +71,7 @@ public class Connections extends Controller
         // toReturn = "itembar-1-stick-";
         toReturn = parseForJS(GameManager.getBackpack());
 
+        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
@@ -132,7 +133,9 @@ public class Connections extends Controller
         String toReturn = "";
 
         // call collecting items method with the info list given and another info list returned
-        toReturn = "successful-messageInfo-Congratulations! You have created a torch!-";
+        toReturn = parseForJS(GameManager.combineItems(infoList));
+
+        System.out.println("GetCombination completed. Returns values to Javascript.");
 
         return ok(Json.toJson(toReturn));
     }
@@ -147,7 +150,7 @@ public class Connections extends Controller
         // alternative0: if items = 0 (list = empty = no items selected in slot) and interaction with beehive -> receive honeycomb
         // alternative1: "notSuccessful-messageInfo-You cannot use more than one item on an object.-";
         // alternative2: "notSuccessful-messageInfo-This action would not have any effect.-";
-        toReturn = "successful-messageInfo-You have successfully used the axe to chop a piece of wood!-";
+        toReturn = parseForJS(GameManager.interactWithObjects(infoList));
 
         return ok(Json.toJson(toReturn));
     }

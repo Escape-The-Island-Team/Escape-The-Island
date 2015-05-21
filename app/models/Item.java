@@ -103,6 +103,14 @@ public class Item extends Model
         collectedItem.used = 0;
 
         collectedItem.save();
+
+        //TODO remove
+        System.out.println(itemName);
+
+        while (collectedItem.id == 0)
+        {
+            collectedItem.refresh();
+        }
     }
 
     public static List<Item> getUsedItems(long character_id)
