@@ -150,7 +150,7 @@ public class Connections extends Controller
         // alternative0: if items = 0 (list = empty = no items selected in slot) and interaction with beehive -> receive honeycomb
         // alternative1: "notSuccessful-messageInfo-You cannot use more than one item on an object.-";
         // alternative2: "notSuccessful-messageInfo-This action would not have any effect.-";
-        toReturn = "successful-messageInfo-You have successfully used the axe to chop a piece of wood!-";
+        toReturn = parseForJS(GameManager.interactWithObjects(infoList));
 
         return ok(Json.toJson(toReturn));
     }

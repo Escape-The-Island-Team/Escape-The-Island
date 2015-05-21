@@ -104,7 +104,8 @@ public class Item extends Model
 
         collectedItem.save();
 
-
+        //TODO remove
+        System.out.println(itemName);
 
         while (collectedItem.id == 0)
         {
