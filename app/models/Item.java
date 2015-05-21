@@ -30,7 +30,7 @@ public class Item extends Model
     public int used;
 
     // -- Queries
-    public static Model.Finder<String, Item> find = new Model.Finder<>(String.class, Item.class);
+    public static Model.Finder<Long, Item> find = new Model.Finder<>(Long.class, Item.class);
 
     public static Item findById(long id)
     {
@@ -124,6 +124,8 @@ public class Item extends Model
                 {
                     backpackItem.used = 2;
                     backpackItem.update();
+                    Item.waitUpdateCommited(backpackItem);
+
                     found = true;
                     break;
                 }
@@ -137,6 +139,7 @@ public class Item extends Model
                     {
                         backpackItem.used = 0;
                         backpackItem.update();
+                        Item.waitUpdateCommited(backpackItem);
                     }
                 }
 
@@ -146,10 +149,33 @@ public class Item extends Model
 
         for (Item backpackItem: backpack)
         {
-            backpackItem.used = 1;
-            backpackItem.update();
+            if (backpackItem.used == 2)
+            {
+                backpackItem.used = 1;
+                backpackItem.update();
+                Item.waitUpdateCommited(backpackItem);
+            }
         }
 
         return true;
+    }
+
+    public static void waitUpdateCommited(Item expected)
+    {
+        boolean identical = false;
+
+        while(!identical)
+        {
+            Item actual = find.byId(expected.id);
+
+            identical = true;
+
+            System.out.println("Wait for " + expected.name + " set used to " + expected.used);
+
+            if (expected.used != actual.used)
+            {
+                identical = false;
+            }
+        }
     }
 }
