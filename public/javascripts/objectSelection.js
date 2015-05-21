@@ -1127,6 +1127,8 @@ function getAction(object, location)
     var successful = false;
     var messageNext = false;
 
+    var removeObject = false;
+
 
     // for all item slots find out which of them are selected
     for(var i=1; i<=20; i++)
@@ -1191,6 +1193,15 @@ function getAction(object, location)
                         showInfoMessage(splitResult);
                         messageNext = false;
                     }
+                    if(removeObject)
+                    {
+                        switch(splitResult)
+                        {
+                            case "bear": $("#" + "objBear").css({"visibility": "hidden"});
+                                break;
+                        }
+                        removeObject = false;
+                    }
                     else
                     {
                         switch(splitResult)
@@ -1206,6 +1217,9 @@ function getAction(object, location)
                                 break;
                             case "messageInfo":
                                 messageNext = true;
+                                break;
+                            case "removeObject":
+                                removeObject = true;
                                 break;
                         }
                     }
