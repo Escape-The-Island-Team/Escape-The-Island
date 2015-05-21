@@ -347,6 +347,23 @@ public class GameManager extends Controller
         }
 
         result.add("successful");
+
+        if (message.contains("["))
+        {
+            int indexOpen = message.indexOf('[');
+            int indexClose = message.indexOf(']');
+
+            String remove = message.substring(indexOpen + 1, indexClose);
+            message = message.substring(0, indexOpen);
+
+            result.add("messageInfo");
+            result.add(message);
+            result.add("removeObject");
+            result.add(remove);
+
+            return result;
+        }
+
         result.add("messageInfo");
         result.add(message);
         return result;

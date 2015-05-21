@@ -149,7 +149,7 @@ public class ObjectParser
 
             Object.useObject("bear", Character.findById(charId).game_id);
 
-            return "The bear likes honey a lot. You have enticed the bear away with the honeycomb.";
+            return "The bear likes honey a lot. You have enticed the bear away with the honeycomb.[bear]";
         }
 
         return "This item cannot be used on the beehive.";
