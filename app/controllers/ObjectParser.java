@@ -1,6 +1,8 @@
 package controllers;
 
 import models.Item;
+import models.Object;
+import models.Character;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -144,6 +146,8 @@ public class ObjectParser
             remove.add("honeycomb");
 
             Item.removeItems(remove, charId);
+
+            Object.useObject("bear", Character.findById(charId).game_id);
 
             return "The bear likes honey a lot. You have enticed the bear away with the honeycomb.";
         }
