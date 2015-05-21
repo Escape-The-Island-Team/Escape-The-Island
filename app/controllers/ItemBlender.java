@@ -48,6 +48,11 @@ public class ItemBlender
 
     public static String combineItems(List<String> items)
     {
+        if (items.size() == 1)
+        {
+            return "You cannot combine an item with itself.";
+        }
+
         ArrayList<ArrayList> combinationList = new ArrayList<ArrayList>();
         for (ArrayList newList: itemCombinations)
         {
