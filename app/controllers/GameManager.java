@@ -84,6 +84,18 @@ public class GameManager extends Controller
         newCharacter.position = startPosition;
         newCharacter.save();
 
+        NPC.createNpc(newGame.id, "maya", newCharacter.old);
+        if (newCharacter.old == 1)
+        {
+            NPC.createNpc(newGame.id, "versutus", 1);
+        }
+
+        if (newCharacter.old == 0)
+        {
+            NPC.createNpc(newGame.id, "scientist", 0);
+        }
+
+
         return loadGame(Long.toString(newGame.id));
     }
 
