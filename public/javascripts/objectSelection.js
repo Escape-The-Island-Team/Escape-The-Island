@@ -1254,6 +1254,8 @@ function interactWithNPC(npc)
     var result;
     var splitResult="";
 
+    npc += "-";
+
     model_data = JSON.stringify(npc);
 
     // call of java method without parameter
@@ -1283,6 +1285,8 @@ function interactWithNPC(npc)
                     i=0;
                 }
             }
+            // rebuild itembar after talking to the NPC
+            buildItembar();
         },
         error: function (data, request) {
             alert("FAIL " + data+result);
