@@ -56,7 +56,6 @@ create table npc (
   name                      varchar(255),
   old                       integer,
   status                    integer,
-  position                  varchar(255),
   constraint pk_npc primary key (id))
 ;
 
