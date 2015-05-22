@@ -97,4 +97,9 @@ public class Application extends Controller {
     public static Result loadLaboratory() { return ok(locLaboratory.render("")); }
 
     public static Result loadImg() { return ok(); }
+
+    public static Result deleteAccount()
+    {
+        return ok(deleteAccount.render());
+    }
 }
