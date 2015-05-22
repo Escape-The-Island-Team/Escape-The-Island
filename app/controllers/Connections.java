@@ -161,7 +161,7 @@ public class Connections extends Controller
         List<String> infoList = parseFromJS(npc);
         String toReturn = "";
 
-        toReturn = "Ah, welcome back! I see you bring me the bottle with water that i asked you for. Please take this hook in turn. Thank you again!-";
+        toReturn = parseForJS(GameManager.talkToNpc(infoList));
 
         return ok(Json.toJson(toReturn));
     }
