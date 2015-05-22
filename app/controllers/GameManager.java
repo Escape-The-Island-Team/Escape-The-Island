@@ -393,9 +393,11 @@ public class GameManager extends Controller
             List<String> result = new ArrayList<>();
 
             result.add("ErrorNoParameters");
-
             return result;
         }
+
+        //TODO remove
+        System.out.println("Test before idstuff");
 
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
@@ -405,10 +407,18 @@ public class GameManager extends Controller
         String npc = npcParameter.get(0);
         int status = NPC.getStatus(gameId, npc);
 
+
+        //TODO remove
+        System.out.println("Test before dialog");
+
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
 
         if (!questList.get(1).equals(""))
         {
+
+            //TODO remove
+            System.out.println("Test remove items");
+
             List<String> remove = new ArrayList<>();
             remove.add(questList.get(0));
 
@@ -417,11 +427,17 @@ public class GameManager extends Controller
 
         if (!questList.get(2).equals(""))
         {
+            //TODO remove
+            System.out.println("Test before collect");
+
             Item.collectItem(questList.get(2), characterId);
         }
 
         if (!questList.get(1).equals("") || status == 0 || status % 2 == 1)
         {
+            //TODO remove
+            System.out.println("Test before status");
+
             NPC.increaseStatus(gameId, npc);
         }
 
@@ -429,6 +445,8 @@ public class GameManager extends Controller
 
         result.add(questList.get(0));
 
+        //TODO: remove
+        System.out.println("result "+result);
         return result;
     }
 

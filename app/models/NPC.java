@@ -33,16 +33,7 @@ public class NPC extends Model
 
     public static NPC findById(long id)
     {
-        ExpressionList<NPC> npcs = find.where().eq("id", id);
-
-        if(npcs != null)
-        {
-            return npcs.findUnique();
-        }
-        else
-        {
-            return null;
-        }
+        return find.byId(id);
     }
 
     public static void createNpc(long gameId, String name, int old)
@@ -65,7 +56,10 @@ public class NPC extends Model
     {
         NPC npc = find.where().eq("game_id", game_id).eq("name", name).findUnique();
 
-        if (npc.name == "versutus" && npc.status < 7)
+        System.out.println("Name: " + npc.name);
+        System.out.println("Name: " + name);
+
+        if (npc.name.equals("versutus") && npc.status < 7)
         {
             npc.status++;
             npc.update();
@@ -80,7 +74,7 @@ public class NPC extends Model
             return;
         }
 
-        if (npc.name == "scientist" && npc.status < 9)
+        if (npc.name.equals("scientist") && npc.status < 9)
         {
             npc.status++;
             npc.update();
@@ -95,16 +89,30 @@ public class NPC extends Model
             return;
         }
 
-        if (npc.name == "maya" && npc.status < 11)
+        if (npc.name.equals("maya") && npc.status < 11)
         {
-            npc.status++;
+            int npcStatus = npc.status;
+            npcStatus ++;
+            npc.status = npcStatus;
             npc.update();
 
             NPC actual = find.byId(npc.id);
 
-            while (npc.status != actual.status)
+            System.out.println(actual.name + " " + actual.id + " " + actual.status + " " + npc.status);
+
+            boolean equal = false;
+
+            while (!equal)
             {
-                actual.refresh();
+                equal = true;
+
+                if (actual.status != npc.status)
+                {
+                    equal = false;
+                }
+
+                actual = find.byId(npc.id);
+                System.out.println("loop");
             }
 
             return;
