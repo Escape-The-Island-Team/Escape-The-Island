@@ -28,9 +28,6 @@ public class NPC extends Model
     @Constraints.Required
     int status;
 
-    @Constraints.Required
-    String position;
-
     // -- Queries
     public static Model.Finder<Long, NPC> find = new Model.Finder<>(Long.class, NPC.class);
 
@@ -46,6 +43,17 @@ public class NPC extends Model
         {
             return null;
         }
+    }
+
+    public static void createNpc(long gameId, String name, int old)
+    {
+        NPC npc = new NPC();
+
+        npc.game_id = gameId;
+        npc.name = name;
+        npc.old = old;
+        npc.status = 0;
+        npc.save();
     }
 
     public static List<NPC> findByGameId(long game_id, int old)
