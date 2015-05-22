@@ -374,6 +374,52 @@ public class GameManager extends Controller
         return result;
     }
 
+    public static List<String> talkToNpc(List<String> npcParameter)
+    {
+        if (npcParameter.size() == 0)
+        {
+            List<String> result = new ArrayList<>();
+
+            result.add("ErrorNoParameters");
+
+            return result;
+        }
+
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        String npc = npcParameter.get(0);
+        int status = NPC.getStatus(gameId, npc);
+
+        List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
+
+        if (!questList.get(1).equals(""))
+        {
+            List<String> remove = new ArrayList<>();
+            remove.add(questList.get(0));
+
+            Item.removeItems(remove, characterId);
+        }
+
+        if (!questList.get(2).equals(""))
+        {
+            Item.collectItem(questList.get(2), characterId);
+        }
+
+        if (!questList.get(1).equals("") || status == 0 || status % 2 == 1)
+        {
+            NPC.increaseStatus(gameId, npc);
+        }
+
+        List<String> result = new ArrayList<>();
+
+        result.add(questList.get(0));
+
+        return result;
+    }
+
     /**
      * removes the game_id and character_id representing a quit of the game
      */
