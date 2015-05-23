@@ -396,9 +396,6 @@ public class GameManager extends Controller
             return result;
         }
 
-        //TODO remove
-        System.out.println("Test before idstuff");
-
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
@@ -413,9 +410,16 @@ public class GameManager extends Controller
 
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
 
-        if (!questList.get(1).equals(""))
+        if (!questList.get(3).equals("wait") && !questList.get(2).equals(""))
         {
+            //TODO remove
+            System.out.println("Test before collect");
 
+            Item.collectItem(questList.get(2), characterId);
+        }
+
+        if (questList.get(3).equals("complete"))
+        {
             //TODO remove
             System.out.println("Test remove items");
 
@@ -425,16 +429,16 @@ public class GameManager extends Controller
             Item.removeItems(remove, characterId);
         }
 
-        if (!questList.get(2).equals(""))
+        if (!questList.get(3).equals("wait"))
         {
-            //TODO remove
-            System.out.println("Test before collect");
+            if (!questList.get(2).equals(""))
+            {
+                //TODO remove
+                System.out.println("Test before collect");
 
-            Item.collectItem(questList.get(2), characterId);
-        }
+                Item.collectItem(questList.get(2), characterId);
+            }
 
-        if (!questList.get(1).equals("") || status == 0 || status % 2 == 1)
-        {
             //TODO remove
             System.out.println("Test before status");
 
