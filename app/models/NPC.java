@@ -91,28 +91,21 @@ public class NPC extends Model
 
         if (npc.name.equals("maya") && npc.status < 11)
         {
-            int npcStatus = npc.status;
-            npcStatus ++;
-            npc.status = npcStatus;
-            npc.update();
+            NPC maya = new NPC();
 
-            NPC actual = find.byId(npc.id);
+            maya.game_id = npc.game_id;
+            maya.name = npc.name;
+            maya.old = npc.old;
+            maya.status = npc.status + 1;
+            maya.save();
+            npc.delete();
 
-            System.out.println(actual.name + " " + actual.id + " " + actual.status + " " + npc.status);
+            ExpressionList<NPC> saved = find.where().eq("game_id", game_id).eq("name", name);
 
-            boolean equal = false;
-
-            while (!equal)
+            while (saved == null || saved.findRowCount() == 0)
             {
-                equal = true;
-
-                if (actual.status != npc.status)
-                {
-                    equal = false;
-                }
-
-                actual = find.byId(npc.id);
-                System.out.println("loop");
+                saved = find.where().eq("game_id", game_id).eq("name", name);
+                System.out.println("loopy");
             }
 
             return;
