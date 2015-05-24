@@ -170,7 +170,8 @@ public class GameManager extends Controller
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
-        long characterId = Character.findByGameId(gameId).id;
+        Character character = Character.findByGameId(gameId);
+        long characterId = character.id;
 
         List<String> result = new ArrayList<>();
 
@@ -229,7 +230,22 @@ public class GameManager extends Controller
         //TODO remove
         System.out.println("Created item: " + item);
 
-        if (!Item.removeItems(ItemBlender.removeItems(item), characterId))
+        List<String> removeItems = ItemBlender.removeItems(item);
+
+        if (removeItems.contains("fiberCords"))
+        {
+            for (int number = 1; number < 4; number++)
+            {
+                if (Item.characterHoldsItem("fiberCords" + number, characterId))
+                {
+                    removeItems.remove("fiberCords");
+                    removeItems.add("fiberCords" + number);
+                    break;
+                }
+            }
+        }
+
+        if (!Item.removeItems(removeItems, characterId))
         {
             result.add("messageInfo");
             result.add("You filthy little java script manipulator!");
@@ -271,11 +287,11 @@ public class GameManager extends Controller
 
         String itemName = itemParameters.get(0);
 
-        if (!ItemParser.isItem(itemName))
+        /*if (!ItemParser.isItem(itemName))
         {
             result.add("ErrorUnknownItem");
             return result;
-        }
+        }*/
 
         if (Item.itemCollected(itemName, characterId))
         {
@@ -296,7 +312,8 @@ public class GameManager extends Controller
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
-        long characterId = Character.findByGameId(gameId).id;
+        Character character = Character.findByGameId(gameId);
+        long characterId = character.id;
 
         List<String> result = new ArrayList<>();
 
@@ -307,7 +324,7 @@ public class GameManager extends Controller
         }
         String location = locationParameters.get(0);
 
-        List<String> objects = ObjectParser.getObjects(location);
+        List<String> objects = ObjectParser.getObjects(location, character.old);
 
         List<Item> collectedItems = Item.getUsedItems(characterId);
 

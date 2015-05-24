@@ -61,14 +61,20 @@ public class NPC extends Model
 
         if (npc.name.equals("versutus") && npc.status < 7)
         {
-            npc.status++;
-            npc.update();
+            NPC versututs = new NPC();
 
-            NPC actual = find.byId(npc.id);
+            versututs.game_id = npc.game_id;
+            versututs.name = npc.name;
+            versututs.old = npc.old;
+            versututs.status = npc.status + 1;
+            versututs.save();
+            npc.delete();
 
-            while (npc.status != actual.status)
+            ExpressionList<NPC> saved = find.where().eq("game_id", game_id).eq("name", name);
+
+            while (saved == null || saved.findRowCount() == 0)
             {
-                actual.refresh();
+                saved = find.where().eq("game_id", game_id).eq("name", name);
             }
 
             return;
@@ -76,14 +82,20 @@ public class NPC extends Model
 
         if (npc.name.equals("scientist") && npc.status < 9)
         {
-            npc.status++;
-            npc.update();
+            NPC scientist = new NPC();
 
-            NPC actual = find.byId(npc.id);
+            scientist.game_id = npc.game_id;
+            scientist.name = npc.name;
+            scientist.old = npc.old;
+            scientist.status = npc.status + 1;
+            scientist.save();
+            npc.delete();
 
-            while (npc.status != actual.status)
+            ExpressionList<NPC> saved = find.where().eq("game_id", game_id).eq("name", name);
+
+            while (saved == null || saved.findRowCount() == 0)
             {
-                actual.refresh();
+                saved = find.where().eq("game_id", game_id).eq("name", name);
             }
 
             return;
@@ -105,7 +117,6 @@ public class NPC extends Model
             while (saved == null || saved.findRowCount() == 0)
             {
                 saved = find.where().eq("game_id", game_id).eq("name", name);
-                System.out.println("loopy");
             }
 
             return;
