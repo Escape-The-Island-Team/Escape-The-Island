@@ -302,6 +302,17 @@ public class LocationContent
                 return "treehouseAvailable";
             case "laboratory":
                 return "laboratoryAvailable";
+            case "timeLocation":
+                long userId = User.findByUsername(username).id;
+                long gameId = Game.findActive(userId).id;
+                int old = Character.findByGameId(gameId).old;
+
+                if (old == 1)
+                {
+                    return "treehouseAvailable";
+                }
+
+                return "laboratoryAvailable";
             }
         case "treehouse":
             switch(target)

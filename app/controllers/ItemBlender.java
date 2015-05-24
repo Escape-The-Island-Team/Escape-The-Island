@@ -1,5 +1,7 @@
 package controllers;
 
+import models.Item;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,21 +18,53 @@ public class ItemBlender
             };
     final static ArrayList<String> torch = new ArrayList<String>(Arrays.asList(torchArray));
 
+    final static String[] grapplingHookArray =
+            {
+                    "rope",
+                    "hook"
+            };
+    final static ArrayList<String> grapplingHook = new ArrayList<String>(Arrays.asList(grapplingHookArray));
+
+    final static String[] hatchetArray =
+            {
+                    "stickHatchet",
+                    "fiberCords",
+                    "sharpStone"
+            };
+    final static ArrayList<String> hatchet = new ArrayList<String>(Arrays.asList(grapplingHookArray));
+
+    final static String[] fishingPoleArray =
+            {
+                    "stickFishingPole",
+                    "fiberCords",
+                    "fishHook"
+            };
+    final static ArrayList<String> fishingPole = new ArrayList<String>(Arrays.asList(fishingPoleArray));
+
     final static ArrayList[] itemCombinationArray =
             {
-                    torch
+                    torch,
+                    grapplingHook,
+                    hatchet,
+                    fishingPole
             };
     final static ArrayList<ArrayList> itemCombinations = new ArrayList<ArrayList>(Arrays.asList(itemCombinationArray));
 
     final static String[] combinationNameArray =
             {
-                    "torch"
+                    "torch",
+                    "grapplingHook",
+                    "hatchet",
+                    "fishingPole"
             };
     final static ArrayList<String> combinationNames = new ArrayList<String>(Arrays.asList(combinationNameArray));
 
     final static String[] messagesArray =
             {
-                    "Congratulations! You have created a torch!"
+                    "Congratulations! You have created a torch!",
+                    "Congratulations! You have created a grapplinghook!",
+                    "Congratulations! You have created a hatchet!",
+                    "Congratulations! You have created a fishing pole!"
             };
     final static ArrayList<String> messages = new ArrayList<String>(Arrays.asList(messagesArray));
 
@@ -40,14 +74,64 @@ public class ItemBlender
             };
     final static ArrayList<String> torchRemoveItems = new ArrayList<String>(Arrays.asList(torchRemoveArray));
 
+    final static String[] grapplingHookRemoveArray =
+            {
+                    "rope",
+                    "hook"
+            };
+    final static ArrayList<String> grapplingHookRemoveItems = new ArrayList<String>(Arrays.asList(grapplingHookRemoveArray));
+
+    final static String[] hatchetRemoveArray =
+            {
+                    "stickHatchet",
+                    "fiberCords",
+                    "sharkStone"
+            };
+    final static ArrayList<String> hatchetRemoveItems = new ArrayList<String>(Arrays.asList(hatchetRemoveArray));
+
+    final static String[] fishingPoleRemoveArray =
+            {
+                    "stickFishingPole",
+                    "fiberCords",
+                    "fishHook"
+            };
+    final static ArrayList<String> fishingPoleRemoveItems = new ArrayList<String>(Arrays.asList(fishingPoleRemoveArray));
+
+
     final static ArrayList[] removeItemsArray =
             {
-                    torchRemoveItems
+                    torchRemoveItems,
+                    grapplingHookRemoveItems,
+                    hatchetRemoveItems,
+                    fishingPoleRemoveItems
             };
     final static ArrayList<ArrayList> itemsToRemove = new ArrayList<ArrayList>(Arrays.asList(removeItemsArray));
 
     public static String combineItems(List<String> items)
     {
+        int fiberCordNumber = 0;
+
+        if (items.contains("fiberCords1"))
+        {
+            fiberCordNumber = 1;
+            items.remove("fiberCords1");
+            items.add("fiberCords");
+        }
+
+        if (items.contains("fiberCords2"))
+        {
+            fiberCordNumber = 2;
+            items.remove("fiberCords2");
+            items.add("fiberCords");
+        }
+
+        if (items.contains("fiberCords3"))
+        {
+            fiberCordNumber = 3;
+            items.remove("fiberCords3");
+            items.add("fiberCords");
+        }
+
         if (items.size() == 1)
         {
             return "You cannot combine an item with itself.";
