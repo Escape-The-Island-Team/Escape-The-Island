@@ -755,6 +755,62 @@ function buildItembar()
                                 break;
                             case "honeycomb": imgItemID = 'itemHoneycomb';
                                 break;
+                            case "rope": imgItemID = 'itemRope';
+                                break;
+                            case "hook": imgItemID = 'itemHook';
+                                break;
+                            case "grapplingHook": imgItemID = 'itemGrapplingHook';
+                                break;
+                            case "sharpStone": imgItemID = 'itemSharpStone';
+                                break;
+                            case "stickHatchet": imgItemID = 'itemStickHatchet';
+                                break;
+                            case "hatchet": imgItemID = 'itemHatchet';
+                                break;
+                            case "lumber": imgItemID = 'itemLumber';
+                                break;
+                            case "fishhook": imgItemID = 'itemFishhook';
+                                break;
+                            case "stickFishingPole": imgItemID = 'itemStickFishingPole';
+                                break;
+                            case "fishingPole": imgItemID = 'itemFishingPole';
+                                break;
+                            case "fish": imgItemID = 'itemFish';
+                                break;
+                            case "cords1": imgItemID = 'itemCords1';
+                                break;
+                            case "cords2": imgItemID = 'itemCords2';
+                                break;
+                            case "cords3": imgItemID = 'itemCords3';
+                                break;
+                            case "rumbarrel": imgItemID = 'itemRumbarrel';
+                                break;
+                            case "volcanicStones": imgItemID = 'itemVolcanicStones';
+                                break;
+                            case "sailcloth": imgItemID = 'itemSailcloth';
+                                break;
+                            case "treasureChest": imgItemID = 'itemTreasureChest';
+                                break;
+                            case "valve": imgItemID = 'itemValve';
+                                break;
+                            case "cloth": imgItemID = 'itemCloth';
+                                break;
+                            case "knife": imgItemID = 'itemKnife';
+                                break;
+                            case "fruit": imgItemID = 'itemFruit';
+                                break;
+                            case "flower": imgItemID = 'itemFlower';
+                                break;
+                            case "doorHinges": imgItemID = 'itemDoorHinges';
+                                break;
+                            case "gasCanister": imgItemID = 'itemGasCanister';
+                                break;
+                            case "bottle": imgItemID = 'itemBottle';
+                                break;
+                            case "bottleFull": imgItemID = 'itemBottleFull';
+                                break;
+                            case "paddle": imgItemID = 'itemPaddle';
+                                break;
                         }
                         // select the item slot and insert the fitting item image
                         document.getElementById(idComplete).setAttribute('src',document.getElementById(imgItemID).src);
@@ -847,15 +903,45 @@ function placeObjects(location)
                             break;
                         case "bear": $("#" + "objBear").css({"visibility": "visible"});
                             break;
+                        case "thicket": $("#" + "objThicket").css({"visibility": "visible"});
+                            break;
+                        case "clearWater": $("#" + "objClearWater").css({"visibility": "visible"});
+                            break;
+                        case "fish": $("#" + "objFish").css({"visibility": "visible"});
+                            break;
+                        case "fiberCrops1": $("#" + "objFiberCrops1").css({"visibility": "visible"});
+                            break;
+                        case "fiberCrops2": $("#" + "objFiberCrops2").css({"visibility": "visible"});
+                            break;
+                        case "fiberCrops3": $("#" + "objFiberCrops3").css({"visibility": "visible"});
+                            break;
 
                         // item objects
                         case "stick": $("#" + "objStick").css({"visibility": "visible"});
                             break;
                         case "flintstones": $("#" + "objFlintstones").css({"visibility": "visible"});
                             break;
-                        case "rope": $("#" + "objRope").css({"visibility": "visible"});
+                        case "bottle": $("#" + "objBottle").css({"visibility": "visible"});
                             break;
-                        case "rumbarrel": $("#" + "objRumbarrel").css({"visibility": "visible"});
+                        case "fruit": $("#" + "objFruit").css({"visibility": "visible"});
+                            break;
+                        case "stickHatchet": $("#" + "objStickHatchet").css({"visibility": "visible"});
+                            break;
+                        case "flower": $("#" + "objFlower").css({"visibility": "visible"});
+                            break;
+                        case "treasureChest": $("#" + "objTreasureChest").css({"visibility": "visible"});
+                            break;
+                        case "sailCloth": $("#" + "objSailCloth").css({"visibility": "visible"});
+                            break;
+                        case "doorHinges": $("#" + "objDoorHinges").css({"visibility": "visible"});
+                            break;
+                        case "cloth": $("#" + "objCloth").css({"visibility": "visible"});
+                            break;
+                        case "volcanicStones": $("#" + "objVolcanicStones").css({"visibility": "visible"});
+                            break;
+                        case "stickFishingPole": $("#" + "objStickFishingPole").css({"visibility": "visible"});
+                            break;
+                        case "valve": $("#" + "objValve").css({"visibility": "visible"});
                             break;
                     }
                     // prepare for the next splitresult to read
@@ -1025,11 +1111,92 @@ function useTool()
                 case document.getElementById('itemTorch').src:
                     itemsSelectedToReturn += "torch-";
                     break;
+                case document.getElementById('itemHoneycomb').src:
+                    itemsSelectedToReturn += "honeycomb-";
+                    break;
                 case document.getElementById('itemRope').src:
                     itemsSelectedToReturn += "rope-";
                     break;
+                case document.getElementById('itemHook').src:
+                    itemsSelectedToReturn += "hook-";
+                    break;
+                case document.getElementById('itemGrapplingHook').src:
+                    itemsSelectedToReturn += "grapplingHook-";
+                    break;
+                case document.getElementById('itemSharpStone').src:
+                    itemsSelectedToReturn += "sharpStone-";
+                    break;
+                case document.getElementById('itemStickHatchet').src:
+                    itemsSelectedToReturn += "stickHatchet-";
+                    break;
+                case document.getElementById('itemHatchet').src:
+                    itemsSelectedToReturn += "hatchet-";
+                    break;
+                case document.getElementById('itemLumber').src:
+                    itemsSelectedToReturn += "lumber-";
+                    break;
+                case document.getElementById('itemFishhook').src:
+                    itemsSelectedToReturn += "fishhook-";
+                    break;
+                case document.getElementById('itemStickFishingPole').src:
+                    itemsSelectedToReturn += "stickFishingPole-";
+                    break;
+                case document.getElementById('itemFishingPole').src:
+                    itemsSelectedToReturn += "fishingPole-";
+                    break;
+                case document.getElementById('itemFish').src:
+                    itemsSelectedToReturn += "fish-";
+                    break;
+                case document.getElementById('itemCords1').src:
+                    itemsSelectedToReturn += "cords1-";
+                    break;
+                case document.getElementById('itemCords2').src:
+                    itemsSelectedToReturn += "cords2-";
+                    break;
+                case document.getElementById('itemCords3').src:
+                    itemsSelectedToReturn += "cords3-";
+                    break;
                 case document.getElementById('itemRumbarrel').src:
                     itemsSelectedToReturn += "rumbarrel-";
+                    break;
+                case document.getElementById('itemVolcanicStones').src:
+                    itemsSelectedToReturn += "volcanicStones-";
+                    break;
+                case document.getElementById('itemSailCloth').src:
+                    itemsSelectedToReturn += "sailCloth-";
+                    break;
+                case document.getElementById('itemTreasureChest').src:
+                    itemsSelectedToReturn += "treasureChest-";
+                    break;
+                case document.getElementById('itemValve').src:
+                    itemsSelectedToReturn += "valve-";
+                    break;
+                case document.getElementById('itemCloth').src:
+                    itemsSelectedToReturn += "cloth-";
+                    break;
+                case document.getElementById('itemKnife').src:
+                    itemsSelectedToReturn += "knife-";
+                    break;
+                case document.getElementById('itemFruit').src:
+                    itemsSelectedToReturn += "fruit-";
+                    break;
+                case document.getElementById('itemFlower').src:
+                    itemsSelectedToReturn += "flower-";
+                    break;
+                case document.getElementById('itemDoorHinges').src:
+                    itemsSelectedToReturn += "doorHinges-";
+                    break;
+                case document.getElementById('itemGasCanister').src:
+                    itemsSelectedToReturn += "gasCanister-";
+                    break;
+                case document.getElementById('itemBottle').src:
+                    itemsSelectedToReturn += "bottle-";
+                    break;
+                case document.getElementById('itemBottleFull').src:
+                    itemsSelectedToReturn += "bottleFull-";
+                    break;
+                case document.getElementById('itemPaddle').src:
+                    itemsSelectedToReturn += "paddle-";
                     break;
             }
         }
@@ -1157,8 +1324,86 @@ function getAction(object, location)
                 case document.getElementById('itemRope').src:
                     itemsSelectedToReturn += "rope-";
                     break;
+                case document.getElementById('itemHook').src:
+                    itemsSelectedToReturn += "hook-";
+                    break;
+                case document.getElementById('itemGrapplingHook').src:
+                    itemsSelectedToReturn += "grapplingHook-";
+                    break;
+                case document.getElementById('itemSharpStone').src:
+                    itemsSelectedToReturn += "sharpStone-";
+                    break;
+                case document.getElementById('itemStickHatchet').src:
+                    itemsSelectedToReturn += "stickHatchet-";
+                    break;
+                case document.getElementById('itemHatchet').src:
+                    itemsSelectedToReturn += "hatchet-";
+                    break;
+                case document.getElementById('itemLumber').src:
+                    itemsSelectedToReturn += "lumber-";
+                    break;
+                case document.getElementById('itemFishhook').src:
+                    itemsSelectedToReturn += "fishhook-";
+                    break;
+                case document.getElementById('itemStickFishingPole').src:
+                    itemsSelectedToReturn += "stickFishingPole-";
+                    break;
+                case document.getElementById('itemFishingPole').src:
+                    itemsSelectedToReturn += "fishingPole-";
+                    break;
+                case document.getElementById('itemFish').src:
+                    itemsSelectedToReturn += "fish-";
+                    break;
+                case document.getElementById('itemCords1').src:
+                    itemsSelectedToReturn += "cords1-";
+                    break;
+                case document.getElementById('itemCords2').src:
+                    itemsSelectedToReturn += "cords2-";
+                    break;
+                case document.getElementById('itemCords3').src:
+                    itemsSelectedToReturn += "cords3-";
+                    break;
                 case document.getElementById('itemRumbarrel').src:
                     itemsSelectedToReturn += "rumbarrel-";
+                    break;
+                case document.getElementById('itemVolcanicStones').src:
+                    itemsSelectedToReturn += "volcanicStones-";
+                    break;
+                case document.getElementById('itemSailCloth').src:
+                    itemsSelectedToReturn += "sailCloth-";
+                    break;
+                case document.getElementById('itemTreasureChest').src:
+                    itemsSelectedToReturn += "treasureChest-";
+                    break;
+                case document.getElementById('itemValve').src:
+                    itemsSelectedToReturn += "valve-";
+                    break;
+                case document.getElementById('itemCloth').src:
+                    itemsSelectedToReturn += "cloth-";
+                    break;
+                case document.getElementById('itemKnife').src:
+                    itemsSelectedToReturn += "knife-";
+                    break;
+                case document.getElementById('itemFruit').src:
+                    itemsSelectedToReturn += "fruit-";
+                    break;
+                case document.getElementById('itemFlower').src:
+                    itemsSelectedToReturn += "flower-";
+                    break;
+                case document.getElementById('itemDoorHinges').src:
+                    itemsSelectedToReturn += "doorHinges-";
+                    break;
+                case document.getElementById('itemGasCanister').src:
+                    itemsSelectedToReturn += "gasCanister-";
+                    break;
+                case document.getElementById('itemBottle').src:
+                    itemsSelectedToReturn += "bottle-";
+                    break;
+                case document.getElementById('itemBottleFull').src:
+                    itemsSelectedToReturn += "bottleFull-";
+                    break;
+                case document.getElementById('itemPaddle').src:
+                    itemsSelectedToReturn += "paddle-";
                     break;
             }
         }
@@ -1198,6 +1443,16 @@ function getAction(object, location)
                         switch(splitResult)
                         {
                             case "bear": $("#" + "objBear").css({"visibility": "hidden"});
+                                break;
+                            case "thicket": $("#" + "objThicket").css({"visibility": "hidden"});
+                                break;
+                            case "fish": $("#" + "objFish").css({"visibility": "hidden"});
+                                break;
+                            case "fiberCrops1": $("#" + "objFiberCrops1").css({"visibility": "hidden"});
+                                break;
+                            case "fiberCrops2": $("#" + "objFiberCrops2").css({"visibility": "hidden"});
+                                break;
+                            case "fiberCrops3": $("#" + "objFiberCrops3").css({"visibility": "hidden"});
                                 break;
                         }
                         removeObject = false;
