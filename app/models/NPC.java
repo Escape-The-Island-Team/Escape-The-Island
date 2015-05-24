@@ -61,14 +61,20 @@ public class NPC extends Model
 
         if (npc.name.equals("versutus") && npc.status < 7)
         {
-            npc.status++;
-            npc.update();
+            NPC versututs = new NPC();
 
-            NPC actual = find.byId(npc.id);
+            versututs.game_id = npc.game_id;
+            versututs.name = npc.name;
+            versututs.old = npc.old;
+            versututs.status = npc.status + 1;
+            versututs.save();
+            npc.delete();
 
-            while (npc.status != actual.status)
+            ExpressionList<NPC> saved = find.where().eq("game_id", game_id).eq("name", name);
+
+            while (saved == null || saved.findRowCount() == 0)
             {
-                actual.refresh();
+                saved = find.where().eq("game_id", game_id).eq("name", name);
             }
 
             return;
@@ -76,14 +82,20 @@ public class NPC extends Model
 
         if (npc.name.equals("scientist") && npc.status < 9)
         {
-            npc.status++;
-            npc.update();
+            NPC scientist = new NPC();
 
-            NPC actual = find.byId(npc.id);
+            scientist.game_id = npc.game_id;
+            scientist.name = npc.name;
+            scientist.old = npc.old;
+            scientist.status = npc.status + 1;
+            scientist.save();
+            npc.delete();
 
-            while (npc.status != actual.status)
+            ExpressionList<NPC> saved = find.where().eq("game_id", game_id).eq("name", name);
+
+            while (saved == null || saved.findRowCount() == 0)
             {
-                actual.refresh();
+                saved = find.where().eq("game_id", game_id).eq("name", name);
             }
 
             return;
@@ -91,28 +103,20 @@ public class NPC extends Model
 
         if (npc.name.equals("maya") && npc.status < 11)
         {
-            int npcStatus = npc.status;
-            npcStatus ++;
-            npc.status = npcStatus;
-            npc.update();
+            NPC maya = new NPC();
 
-            NPC actual = find.byId(npc.id);
+            maya.game_id = npc.game_id;
+            maya.name = npc.name;
+            maya.old = npc.old;
+            maya.status = npc.status + 1;
+            maya.save();
+            npc.delete();
 
-            System.out.println(actual.name + " " + actual.id + " " + actual.status + " " + npc.status);
+            ExpressionList<NPC> saved = find.where().eq("game_id", game_id).eq("name", name);
 
-            boolean equal = false;
-
-            while (!equal)
+            while (saved == null || saved.findRowCount() == 0)
             {
-                equal = true;
-
-                if (actual.status != npc.status)
-                {
-                    equal = false;
-                }
-
-                actual = find.byId(npc.id);
-                System.out.println("loop");
+                saved = find.where().eq("game_id", game_id).eq("name", name);
             }
 
             return;

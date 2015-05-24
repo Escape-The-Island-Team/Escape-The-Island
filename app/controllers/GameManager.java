@@ -170,7 +170,8 @@ public class GameManager extends Controller
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
-        long characterId = Character.findByGameId(gameId).id;
+        Character character = Character.findByGameId(gameId);
+        long characterId = character.id;
 
         List<String> result = new ArrayList<>();
 
@@ -229,7 +230,22 @@ public class GameManager extends Controller
         //TODO remove
         System.out.println("Created item: " + item);
 
-        if (!Item.removeItems(ItemBlender.removeItems(item), characterId))
+        List<String> removeItems = ItemBlender.removeItems(item);
+
+        if (removeItems.contains("fiberCords"))
+        {
+            for (int number = 1; number < 4; number++)
+            {
+                if (Item.characterHoldsItem("fiberCords" + number, characterId))
+                {
+                    removeItems.remove("fiberCords");
+                    removeItems.add("fiberCords" + number);
+                    break;
+                }
+            }
+        }
+
+        if (!Item.removeItems(removeItems, characterId))
         {
             result.add("messageInfo");
             result.add("You filthy little java script manipulator!");
@@ -271,11 +287,11 @@ public class GameManager extends Controller
 
         String itemName = itemParameters.get(0);
 
-        if (!ItemParser.isItem(itemName))
+        /*if (!ItemParser.isItem(itemName))
         {
             result.add("ErrorUnknownItem");
             return result;
-        }
+        }*/
 
         if (Item.itemCollected(itemName, characterId))
         {
@@ -296,7 +312,8 @@ public class GameManager extends Controller
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
-        long characterId = Character.findByGameId(gameId).id;
+        Character character = Character.findByGameId(gameId);
+        long characterId = character.id;
 
         List<String> result = new ArrayList<>();
 
@@ -307,7 +324,7 @@ public class GameManager extends Controller
         }
         String location = locationParameters.get(0);
 
-        List<String> objects = ObjectParser.getObjects(location);
+        List<String> objects = ObjectParser.getObjects(location, character.old);
 
         List<Item> collectedItems = Item.getUsedItems(characterId);
 
@@ -396,9 +413,6 @@ public class GameManager extends Controller
             return result;
         }
 
-        //TODO remove
-        System.out.println("Test before idstuff");
-
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
@@ -413,9 +427,16 @@ public class GameManager extends Controller
 
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
 
-        if (!questList.get(1).equals(""))
+        if (!questList.get(3).equals("wait") && !questList.get(2).equals(""))
         {
+            //TODO remove
+            System.out.println("Test before collect");
 
+            Item.collectItem(questList.get(2), characterId);
+        }
+
+        if (questList.get(3).equals("complete"))
+        {
             //TODO remove
             System.out.println("Test remove items");
 
@@ -425,16 +446,16 @@ public class GameManager extends Controller
             Item.removeItems(remove, characterId);
         }
 
-        if (!questList.get(2).equals(""))
+        if (!questList.get(3).equals("wait"))
         {
-            //TODO remove
-            System.out.println("Test before collect");
+            if (!questList.get(2).equals(""))
+            {
+                //TODO remove
+                System.out.println("Test before collect");
 
-            Item.collectItem(questList.get(2), characterId);
-        }
+                Item.collectItem(questList.get(2), characterId);
+            }
 
-        if (!questList.get(1).equals("") || status == 0 || status % 2 == 1)
-        {
             //TODO remove
             System.out.println("Test before status");
 

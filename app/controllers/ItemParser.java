@@ -22,12 +22,34 @@ public class ItemParser
     final static String[] newArray =
             {
                     "stick",
-                    "flintstones"
+                    "flintstones",
+                    "volcanicStone",
+                    "doorHinges",
+                    "sailCloth",
+                    "fruit",
+                    "flower",
+                    "bottleEmpty",
+                    "treasureChest",
+                    "valve",
+                    "cloth",
+                    "stickHatchet",
+                    "stickFishingPole"
             };
     final static String[] messageNewArray =
             {
                     "You found a stick. This could be useful.",
-                    "There are some flintstones. Maybe you can use them to make fire."
+                    "There are some flintstones. Maybe you can use them to make fire.",
+                    "These are volcanic stones. They are lighter than expected.",
+                    "Thee old door hinges are a bit rusty, but can still be used.",
+                    "You found a large sail cloth. Undoubtable this had been the sail of a ship that crashed on the rocks.",
+                    "You found a fruit, but you have never seen this type of fruit before.",
+                    "This beautiful flower could make someone happy.",
+                    "You found an empty bottle. Maybe you can put something inside.",
+                    "You found a treasure chest! It is very heavy and cannot be opened.",
+                    "This is a valve. It can be used to regulate the flow of water.",
+                    "It seems that this piece of cloth had been part of a garment.",
+                    "You found a thick and stable stick. Maybe you can use it to build a tool.",
+                    "You found a long and stable stick. this could be useful."
             };
 
     final static ArrayList<String> oldEra = new ArrayList<String>(Arrays.asList(oldArray));
