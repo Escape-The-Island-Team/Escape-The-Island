@@ -68,7 +68,27 @@ public class Application extends Controller {
         }
     }
 
+    public static Result statistics() {
+        if(session("username") == null || session("username").equals(""))
+        {
+            return redirect(routes.Application.login());
+        }
+        else
+        {
+            return ok(statistics.render(""));
+        }
+    }
 
+    public static Result loadGame() {
+        if(session("username") == null || session("username").equals(""))
+        {
+            return redirect(routes.Application.login());
+        }
+        else
+        {
+            return ok(loadGame.render(""));
+        }
+    }
 
     public static Result about() { return ok(about.render("")); }
 

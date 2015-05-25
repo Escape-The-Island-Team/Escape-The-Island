@@ -26,6 +26,10 @@
     border-down-width: 10px;
     visibility: hidden;
 }
+.infoArea:hover
+{
+    cursor: default;
+}
 .infoTextMsgClass
 {
     font-family: sans-serif;
@@ -353,7 +357,50 @@
 
 
 
+/**************************
+	Action Points
+**************************/
 
+#actionPointsOverallContainer
+{
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    margin-left: 95%;
+    margin-top: 6%;
+    background-color: darkorange;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+#actionPointsContainer {
+    width: 43px;
+    height: 43px;
+    position: absolute;
+    margin-left: 2px;
+    margin-top: 2px;
+    background-color: #ffffe0;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+#actionPointsValue
+{
+    margin-top: 2px;
+    margin-left: 4px;
+    font-size: 25pt;
+    color: darkorange;
+}
+
+#actionPointsValue:hover
+{
+    color: orange;
+    cursor: default;
+}
 
 
 

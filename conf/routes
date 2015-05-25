@@ -17,6 +17,8 @@ GET         /about                                controllers.Application.about(
 GET         /contact                              controllers.Application.contact()
 GET         /termsofuse                           controllers.Application.termsofuse()
 GET         /home                                 controllers.Application.home()
+GET         /statistics                           controllers.Application.statistics()
+GET         /loadGame                             controllers.Application.loadGame()
 
 GET         /loadBeachMid                         controllers.Application.loadBeachMid()
 GET         /loadBeachLeft                        controllers.Application.loadBeachLeft()
@@ -47,6 +49,7 @@ POST        /getCharInteraction                   controllers.Connections.getCha
 POST        /getCombination/:itemsSelected        controllers.Connections.getCombination(itemsSelected: String)
 POST        /getAction/:itemsSelected             controllers.Connections.getAction(itemsSelected: String)
 POST        /interactWithNPC/:npc                 controllers.Connections.interactWithNPC(npc: String)
+POST        /getActionPoints                      controllers.Connections.getActionPoints()
 POST        /getLocationTest/:location            controllers.Connections.giveLocationTest(location: String)
 
 POST        /createGame/:character                controllers.Connections.createGame(character: String)
