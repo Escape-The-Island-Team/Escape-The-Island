@@ -787,7 +787,7 @@ function buildItembar()
                                 break;
                             case "volcanicStones": imgItemID = 'itemVolcanicStones';
                                 break;
-                            case "sailcloth": imgItemID = 'itemSailcloth';
+                            case "sailCloth": imgItemID = 'itemSailCloth';
                                 break;
                             case "treasureChest": imgItemID = 'itemTreasureChest';
                                 break;
@@ -805,7 +805,7 @@ function buildItembar()
                                 break;
                             case "gasCanister": imgItemID = 'itemGasCanister';
                                 break;
-                            case "bottle": imgItemID = 'itemBottle';
+                            case "bottleEmpty": imgItemID = 'itemBottleEmpty';
                                 break;
                             case "bottleFull": imgItemID = 'itemBottleFull';
                                 break;
@@ -921,7 +921,7 @@ function placeObjects(location)
                             break;
                         case "flintstones": $("#" + "objFlintstones").css({"visibility": "visible"});
                             break;
-                        case "bottle": $("#" + "objBottle").css({"visibility": "visible"});
+                        case "bottleEmpty": $("#" + "objBottleEmpty").css({"visibility": "visible"});
                             break;
                         case "fruit": $("#" + "objFruit").css({"visibility": "visible"});
                             break;
@@ -1189,8 +1189,8 @@ function useTool()
                 case document.getElementById('itemGasCanister').src:
                     itemsSelectedToReturn += "gasCanister-";
                     break;
-                case document.getElementById('itemBottle').src:
-                    itemsSelectedToReturn += "bottle-";
+                case document.getElementById('itemBottleEmpty').src:
+                    itemsSelectedToReturn += "bottleEmpty-";
                     break;
                 case document.getElementById('itemBottleFull').src:
                     itemsSelectedToReturn += "bottleFull-";
@@ -1396,8 +1396,8 @@ function getAction(object, location)
                 case document.getElementById('itemGasCanister').src:
                     itemsSelectedToReturn += "gasCanister-";
                     break;
-                case document.getElementById('itemBottle').src:
-                    itemsSelectedToReturn += "bottle-";
+                case document.getElementById('itemBottleEmpty').src:
+                    itemsSelectedToReturn += "bottleEmpty-";
                     break;
                 case document.getElementById('itemBottleFull').src:
                     itemsSelectedToReturn += "bottleFull-";
