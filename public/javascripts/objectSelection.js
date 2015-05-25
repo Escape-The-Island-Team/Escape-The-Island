@@ -1019,6 +1019,7 @@ function loadContent(location)
     buildItembar();
     getCharIngame();
     getLocationMessage(location);
+    setActionPoints();
 }
 
 
@@ -1264,6 +1265,7 @@ function useTool()
             {
                 //alert("builditembar");
                 buildItembar();
+                setActionPoints();
             }
         },
         error: function (data, request) {
@@ -1495,6 +1497,7 @@ function getAction(object, location)
                 //alert("builditembar");
                 buildItembar();
                 placeObjects(location);
+                setActionPoints();
             }
         },
         error: function (data, request) {
@@ -1542,6 +1545,7 @@ function interactWithNPC(npc)
             }
             // rebuild itembar after talking to the NPC
             buildItembar();
+            setActionPoints();
         },
         error: function (data, request) {
             alert("FAIL " + data+result);
@@ -1556,7 +1560,44 @@ function actionEditProfile()
 }
 
 
+function setActionPoints()
+{
+    var result;
+    var splitResult="";
 
+    // call of java method without parameter
+    $.ajax({
+        url: '/getActionPoints',
+        type: 'POST',
+        contentType: 'application/json',
+        data: model_data,
+        dataType: 'json html',
+        converters: {
+            'text json': true
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            result = response;
+
+            for(var i=0; i<result.length; i++)
+            {
+                if(result[i]=="-")
+                {
+                    splitResult=result.substring(i,result.size-i);
+
+                    document.getElementById('actionPointsValue').textContent = splitResult;
+
+                    // prepare for the next splitresult to read; in the basic version of this method there should be none
+                    result=result.substring(i+1);
+                    i=0;
+                }
+            }
+        },
+        error: function (data, request) {
+            alert("FAIL " + data+result);
+        }
+    });
+}
 
 
 

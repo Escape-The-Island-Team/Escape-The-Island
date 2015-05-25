@@ -167,6 +167,18 @@ public class Connections extends Controller
     }
 
 
+    public static Result getActionPoints()
+    {
+        String toReturn = "";
+
+        // call collecting items method with the info list given and another info list returned
+        // toReturn = "I am Alice, the dangerous pirate. Don't bother me or you will regret it!-";
+        toReturn = "80-";
+
+        return ok(Json.toJson(toReturn));
+    }
+
+
     /*
     user / game management
      */
