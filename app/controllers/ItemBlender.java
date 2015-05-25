@@ -31,7 +31,7 @@ public class ItemBlender
                     "fiberCords",
                     "sharpStone"
             };
-    final static ArrayList<String> hatchet = new ArrayList<String>(Arrays.asList(grapplingHookArray));
+    final static ArrayList<String> hatchet = new ArrayList<String>(Arrays.asList(hatchetArray));
 
     final static String[] fishingPoleArray =
             {

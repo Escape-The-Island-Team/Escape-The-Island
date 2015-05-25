@@ -20,23 +20,24 @@ public class ObjectParser
                     "stick",
                     "flintstones",
                     "bear",
-                    "beehive",
+                    "beehive",          // 4
                     "volcanicStones",
                     "doorHinges",
                     "sailCloth",
-                    "fruit",
+                    "fruit",            // 8
                     "flower",
                     "bottleEmpty",
                     "treasureChest",
-                    "valve",
+                    "valve",            // 12
                     "cloth",
                     "stickHatchet",
                     "stickFishingPole",
-                    "fish",
+                    "fish",             // 16
                     "clearWater",
-                    "fiberCrop1",
-                    "fiberCrop2",
-                    "fiberCrop3"
+                    "fiberCrops1",
+                    "fiberCrops2",
+                    "fiberCrops3",      // 20
+                    "thicket"           // 21
             };
     private final static ArrayList<String> objects = new ArrayList<String>(Arrays.asList(objectArray));
 
@@ -59,6 +60,8 @@ public class ObjectParser
                     "waterfall",
                     "lake",
                     "waterfall",
+                    "river",
+                    "river",
                     "river",
                     "jungle"
             };
@@ -137,9 +140,11 @@ public class ObjectParser
             return useBear(item, charId);
         case "fish":
             return useFish(item, charId);
-        case "fiberCrop1":
-        case "fiberCrop2":
-        case "fiberCrop3":
+        case "clearWater":
+            return useClearWater(item, charId);
+        case "fiberCrops1":
+        case "fiberCrops2":
+        case "fiberCrops3":
             return useFiberCrop(objectName, item, charId);
         case "thicket":
             return useThicket(item, charId);
@@ -276,5 +281,36 @@ public class ObjectParser
         }
 
         return "You can't use that item on the thicket!";
+    }
+
+    public static String useClearWater(String item, long charId)
+    {
+        if (item.equals(""))
+        {
+            return "This water seems to be very clear and tasty.";
+        }
+
+        if (item.equals("bottleEmpty"))
+        {
+            if (Item.itemCollected("bottleFull", charId))
+            {
+                return "This water seems to be very clear and tasty.";
+            }
+
+            if (!Item.characterHoldsItem("bottleEmpty", charId))
+            {
+                return "You filthy little javascript manipulator!";
+            }
+
+            List<String> removeItems = new ArrayList<String>();
+            removeItems.add("bottleEmpty");
+            Item.removeItems(removeItems, charId);
+
+            Item.collectItem("bottleFull", charId);
+
+            return "You filled some of the clear water into your bottle.";
+        }
+
+        return "You can't use that on the clear water in the waterfall.";
     }
 }

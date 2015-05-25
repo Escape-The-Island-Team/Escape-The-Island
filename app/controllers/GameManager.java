@@ -441,7 +441,7 @@ public class GameManager extends Controller
             System.out.println("Test remove items");
 
             List<String> remove = new ArrayList<>();
-            remove.add(questList.get(0));
+            remove.add(questList.get(1));
 
             Item.removeItems(remove, characterId);
         }
