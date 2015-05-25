@@ -179,8 +179,6 @@ public class DialogSystem
             return quest;
         }
 
-        System.out.println("Status: " + status);
-
         status--;
 
         // if a npc is in task, wait or complete
@@ -219,6 +217,7 @@ public class DialogSystem
             result.add(quest);
             result.add("");
             result.add("");
+            result.add("");
 
             return result;
         }
@@ -226,14 +225,17 @@ public class DialogSystem
         int secondSplitIndex = quest.indexOf('|', firstSplitIndex + 1);
         int thirdSplitIndex = quest.indexOf('|', secondSplitIndex + 1);
 
+        System.out.println(firstSplitIndex + " " + secondSplitIndex + " " + thirdSplitIndex);
+
         String message = quest.substring(0, firstSplitIndex);
         String npcRetrieves = quest.substring(firstSplitIndex + 1, secondSplitIndex);
-        String npcRewards = quest.substring(secondSplitIndex + 1);
+        String npcRewards = quest.substring(secondSplitIndex + 1, thirdSplitIndex);
         String status = "";
 
         if (quest.length() - 1 > thirdSplitIndex)
         {
             status = quest.substring(thirdSplitIndex + 1);
+            System.out.println(status);
         }
 
         List<String> questList = new ArrayList<>();
@@ -251,7 +253,7 @@ public class DialogSystem
         Character character = Character.findById(charId);
         String message = (String)statusMessage.get(state).get(npcIndex).get(quest);
 
-        if (character.old == 0)
+        if (character.old == 1)
         {
             int slash = message.indexOf('/');
 

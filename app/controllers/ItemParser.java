@@ -23,7 +23,7 @@ public class ItemParser
             {
                     "stick",
                     "flintstones",
-                    "volcanicStone",
+                    "volcanicStones",
                     "doorHinges",
                     "sailCloth",
                     "fruit",
