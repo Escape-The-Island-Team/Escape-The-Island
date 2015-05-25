@@ -40,7 +40,7 @@
                                 @if(session().isEmpty){
                                     <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="@routes.Application.login()">Login</a></li>
                                 } else {
-                                    <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="editProfile">Edit Profile</a></li>
+                                    <li class="@("active".when(request.path == controllers.routes.Application.editProfile().toString()))"><a href="home">Menu</a></li>
                                     <li class="@("active".when(request.path == controllers.routes.Application.login().toString()))"><a href="@routes.Accountmanagement.logout()">Logout</a></li>
                                 }
                             </ul>

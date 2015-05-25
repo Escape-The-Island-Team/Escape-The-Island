@@ -28,6 +28,13 @@
                     </table>
                 </div>
 
+                    <!-- Action Points -->
+                <div id="actionPointsOverallContainer">
+                    <div id="actionPointsContainer" title="your remaining action points">
+                        <p id="actionPointsValue">88</p>
+                    </div>
+                </div>
+
                     <!-- Navigation -->
                 <div class="myImg">
                     <label hidden="false">beach left</label>
@@ -39,7 +46,7 @@
                     <!-- Objects + NPC -->
 
                 <!-- NPCs -->
-                <div id="npcVersutus" onclick="talkToNPC('versutus','infoTextMsg','infoArea')">
+                <div id="npcVersutus" title="Versutus" onclick="talkToNPC('versutus','infoTextMsg','infoArea')">
                     <img id="npcVersutusImg" class="objectImgGeneralSize" src="@routes.Assets.at("images/npcs/versutus.png")" onclick="interactWithNPC('versutus')">
                 </div>
 
@@ -112,11 +119,11 @@
 
                 <div class="footerBase">
                     <div class="footer">
-                        <div class="charIcon" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
+                        <div class="charIcon" title="your character" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
                         <div class="itembar">
                             <table class="itemTable" border="I">
                                 <tr>
-                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
+                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" title="the tool used to combine items" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
                                     <td id="slot1" class="table_td"><div class="itembarItem" onclick="selectItem('slot1')"><img id="imgSlot1" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot2" class="table_td"><div class="itembarItem" onclick="selectItem('slot2')"><img id="imgSlot2" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot3" class="table_td"><div class="itembarItem" onclick="selectItem('slot3')"><img id="imgSlot3" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>

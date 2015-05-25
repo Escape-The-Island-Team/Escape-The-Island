@@ -28,13 +28,23 @@
                         </table>
                     </div>
 
-                <!-- Navigation -->
+                    <!-- Action Points -->
+                    <div id="actionPointsOverallContainer">
+                        <div id="actionPointsContainer" title="your remaining action points">
+                            <p id="actionPointsValue">88</p>
+                        </div>
+                    </div>
+
+
+                    <!-- Navigation -->
                     <div class="myImg">
                         <label hidden="false">beach left</label>
                         <div id="beach-mid_arrowLeft_container" onmouseover="makeArrowVisible('beach-mid_arrowLeft')" onmouseout="makeArrowInvisible('beach-mid_arrowLeft')"><img id="beach-mid_arrowLeft" src="@routes.Assets.at("images/systemObjects/arrowLeft.png")" onclick="getNewLocation('beachMid-beachLeft-')"></div>
                         <div id="beach-mid_arrowRight_container" onmouseover="makeArrowVisible('beach-mid_arrowRight')" onmouseout="makeArrowInvisible('beach-mid_arrowRight')"><img id="beach-mid_arrowRight" src="@routes.Assets.at("images/systemObjects/arrowRight.png")" onclick="getNewLocation('beachMid-beachRight-')"></div>
                         <div id="beach-mid_arrowTop_container" onmouseover="makeArrowVisible('beach-mid_arrowTop')" onmouseout="makeArrowInvisible('beach-mid_arrowTop')"><img id="beach-mid_arrowTop" src="@routes.Assets.at("images/systemObjects/arrowTop.png")" onclick="getNewLocation('beachMid-jungle-')"></div>
                     </div>
+
+
 
 
                 <!-- Objects -->
@@ -126,11 +136,11 @@
 
                     <div class="footerBase">
                         <div class="footer">
-                            <div class="charIcon" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
+                            <div class="charIcon" title="your character" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
                             <div class="itembar">
                                 <table class="itemTable" border="I">
                                     <tr>
-                                        <td id="slotTool" class="table_td_tool"><div class="itembarItem" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
+                                        <td id="slotTool" class="table_td_tool"><div class="itembarItem" title="the tool used to combine items" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
                                         <td id="slot1" class="table_td"><div class="itembarItem" onclick="selectItem('slot1')"><img id="imgSlot1" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                         <td id="slot2" class="table_td"><div class="itembarItem" onclick="selectItem('slot2')"><img id="imgSlot2" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                         <td id="slot3" class="table_td"><div class="itembarItem" onclick="selectItem('slot3')"><img id="imgSlot3" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>

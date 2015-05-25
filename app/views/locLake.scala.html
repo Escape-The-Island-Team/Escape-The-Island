@@ -28,6 +28,13 @@
                     </table>
                 </div>
 
+                    <!-- Action Points -->
+                <div id="actionPointsOverallContainer">
+                    <div id="actionPointsContainer" title="your remaining action points">
+                        <p id="actionPointsValue">88</p>
+                    </div>
+                </div>
+
                     <!-- Navigation -->
                 <div class="myImg">
                     <label hidden="false">beach left</label>
@@ -39,10 +46,10 @@
 
 
                     <!-- Objects -->
-                <div id="objTreasureChest">
+                <div id="objTreasureChest" title="a treasure chest">
                     <img class="objectImgGeneralSize" src="@routes.Assets.at("images/objects/treasureChest.png")" onclick="collectItem('treasureChest','objTreasureChest')">
                 </div>
-                <div id="objFish">
+                <div id="objFish" title="a yellow fish">
                     <img class="objectImgGeneralSize" src="@routes.Assets.at("images/objects/fish.png")" onclick="getAction('fish','lake')">
                 </div>
 
@@ -105,15 +112,15 @@
                 </div>
 
 
-                <!-- itembar -->
+                    <!-- itembar -->
 
                 <div class="footerBase">
                     <div class="footer">
-                        <div class="charIcon" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
+                        <div class="charIcon" title="your character" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
                         <div class="itembar">
                             <table class="itemTable" border="I">
                                 <tr>
-                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
+                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" title="the tool used to combine items" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
                                     <td id="slot1" class="table_td"><div class="itembarItem" onclick="selectItem('slot1')"><img id="imgSlot1" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot2" class="table_td"><div class="itembarItem" onclick="selectItem('slot2')"><img id="imgSlot2" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot3" class="table_td"><div class="itembarItem" onclick="selectItem('slot3')"><img id="imgSlot3" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
