@@ -277,10 +277,11 @@ public class ObjectParser
 
         if (item.equals("hatchet"))
         {
+
             Item.collectItem("lumber", charId);
             Object.useObject("thicket", Character.findById(charId).game_id);
 
-            return "You chopped some lumber out of the thicket.";
+            return "You chopped some lumber out of the thicket.[thicket]";
         }
 
         return "You can't use that item on the thicket!";
