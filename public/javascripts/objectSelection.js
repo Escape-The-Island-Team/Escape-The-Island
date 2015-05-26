@@ -811,6 +811,8 @@ function buildItembar()
                                 break;
                             case "paddle": imgItemID = 'itemPaddle';
                                 break;
+                            case "resin": imgItemID = 'itemResin';
+                                break;
                         }
                         // select the item slot and insert the fitting item image
                         document.getElementById(idComplete).setAttribute('src',document.getElementById(imgItemID).src);
@@ -1199,6 +1201,9 @@ function useTool()
                 case document.getElementById('itemPaddle').src:
                     itemsSelectedToReturn += "paddle-";
                     break;
+                case document.getElementById('itemResin').src:
+                    itemsSelectedToReturn += "resin-";
+                    break;
             }
         }
     }
@@ -1406,6 +1411,9 @@ function getAction(object, location)
                     break;
                 case document.getElementById('itemPaddle').src:
                     itemsSelectedToReturn += "paddle-";
+                    break;
+                case document.getElementById('itemResin').src:
+                    itemsSelectedToReturn += "resin-";
                     break;
             }
         }
