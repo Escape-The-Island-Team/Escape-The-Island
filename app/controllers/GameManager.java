@@ -436,6 +436,8 @@ public class GameManager extends Controller
 
         String message = ObjectParser.useObject(object, items, characterId);
 
+        System.out.println("Object message intern: " + message);
+
         if (message.equals("Error"))
         {
             result.add("notSuccessful");
@@ -488,6 +490,8 @@ public class GameManager extends Controller
         System.out.println("Test before dialog");
 
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
+
+        System.out.println("QuestList: " + questList);
 
         if (!questList.get(3).equals("wait") && !questList.get(2).equals(""))
         {
