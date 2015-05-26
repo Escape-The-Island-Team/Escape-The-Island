@@ -28,7 +28,7 @@ public class ItemBlender
     final static String[] hatchetArray =
             {
                     "stickHatchet",
-                    "fiberCords",
+                    "cords",
                     "sharpStone"
             };
     final static ArrayList<String> hatchet = new ArrayList<String>(Arrays.asList(hatchetArray));
@@ -36,7 +36,7 @@ public class ItemBlender
     final static String[] fishingPoleArray =
             {
                     "stickFishingPole",
-                    "fiberCords",
+                    "cords",
                     "fishHook"
             };
     final static ArrayList<String> fishingPole = new ArrayList<String>(Arrays.asList(fishingPoleArray));
