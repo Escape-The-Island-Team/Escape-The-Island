@@ -222,8 +222,9 @@ public class ObjectParser
             }
 
             Object.useObject("fish", Character.findById(charId).game_id);
+            Item.collectItem("fish", charId);
 
-            return "You managed to cath the yellow fish with the rope! Congratulations![fish]";
+            return "You managed to catch the yellow fish with the rope! Congratulations![fish]";
         }
 
         return "This item cannot be used on the fish.";
@@ -247,7 +248,7 @@ public class ObjectParser
 
             if (Object.objectIsUsed(object, gameId))
             {
-                return "You already have enough cords at the moment.";
+                return "You filthy little javascriptmanipulator!";
             }
 
             for (int index = 1; index < 4; index++)
