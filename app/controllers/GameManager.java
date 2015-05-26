@@ -74,7 +74,7 @@ public class GameManager extends Controller
 
         Character newCharacter = new Character();
 
-        newCharacter.action_points = 50;
+        newCharacter.action_points = 80;
         newCharacter.game_id = newGame.id;
         newCharacter.name = selectedChar;
 
@@ -225,6 +225,20 @@ public class GameManager extends Controller
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
         long characterId = Character.findByGameId(gameId).id;
+
+        if (item.contains("getScreen"))
+        {
+            int indexPipe = item.indexOf('|');
+
+            item = item.substring(indexPipe + 1);
+
+            item += Character.findById(characterId).name;
+
+            result.clear();
+            result.add("getScreen");
+            result.add(item);
+            return result;
+        }
 
         Item.collectItem(item, characterId);
 
