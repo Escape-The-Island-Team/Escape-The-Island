@@ -375,6 +375,27 @@ public class GameManager extends Controller
         Character.reduceActionPoints(characterId, cost);
     }
 
+    public static List<String> getStatistics()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+
+        Character beschder = Character.getBeschdeCharacter(userId);
+
+        List<String> result = new ArrayList<>();
+
+        if (beschder.action_points < 0)
+        {
+            result.add("Incomplete");
+            result.add("");
+            return result;
+        }
+
+        result.add(beschder.name);
+        result.add(Integer.toString(beschder.action_points));
+        return result;
+    }
+
     public static List<String> interactWithObjects(List<String> objectParameter)
     {
         System.out.println("interact");

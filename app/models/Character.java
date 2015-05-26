@@ -4,6 +4,7 @@ import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Maik Wandrei on 06.12.2014.
@@ -105,5 +106,25 @@ public class Character extends Model
         {
             actual = find.byId(charId);
         }
+    }
+
+    public static Character getBeschdeCharacter(long userId)
+    {
+        List<Game> finishedGames = Game.find.where().eq("user_id", userId).eq("completed", 1).findList();
+
+        Character beschde = new Character();
+        beschde.action_points = -1;
+
+        for (Game game: finishedGames)
+        {
+            Character character = Character.find.where().eq("game_id", game.id).findUnique();
+
+            if (character.action_points > beschde.action_points)
+            {
+                beschde = character;
+            }
+        }
+
+        return beschde;
     }
 }
