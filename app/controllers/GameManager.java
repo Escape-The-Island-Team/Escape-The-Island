@@ -74,7 +74,7 @@ public class GameManager extends Controller
 
         Character newCharacter = new Character();
 
-        newCharacter.action_points = 50;
+        newCharacter.action_points = 80;
         newCharacter.game_id = newGame.id;
         newCharacter.name = selectedChar;
 
@@ -226,6 +226,20 @@ public class GameManager extends Controller
         long gameId = Game.findActive(userId).id;
         long characterId = Character.findByGameId(gameId).id;
 
+        if (item.contains("getScreen"))
+        {
+            int indexPipe = item.indexOf('|');
+
+            item = item.substring(indexPipe + 1);
+
+            item += Character.findById(characterId).name;
+
+            result.clear();
+            result.add("getScreen");
+            result.add(item);
+            return result;
+        }
+
         Item.collectItem(item, characterId);
 
         //TODO remove
@@ -349,6 +363,51 @@ public class GameManager extends Controller
         }
 
         return objects;
+    }
+
+    public static List<String> getActionpoints()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        List<String> result = new ArrayList<>();
+
+        result.add(Integer.toString(Character.getActionpoints(characterId)));
+
+        return result;
+    }
+
+    public static void reduceActionPoints(int cost)
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        Character.reduceActionPoints(characterId, cost);
+    }
+
+    public static List<String> getStatistics()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+
+        Character beschder = Character.getBeschdeCharacter(userId);
+
+        List<String> result = new ArrayList<>();
+
+        if (beschder.action_points < 0)
+        {
+            result.add("Incomplete");
+            result.add("");
+            return result;
+        }
+
+        result.add(beschder.name);
+        result.add(Integer.toString(beschder.action_points));
+        return result;
     }
 
     public static List<String> interactWithObjects(List<String> objectParameter)
