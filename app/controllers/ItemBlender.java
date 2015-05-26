@@ -41,12 +41,45 @@ public class ItemBlender
             };
     final static ArrayList<String> fishingPole = new ArrayList<String>(Arrays.asList(fishingPoleArray));
 
+    final static String[] balloonArray =
+            {
+                    "knife",
+                    "sailCloth",
+                    "gasCanister",
+                    "cords",
+                    "torch",
+                    "rumbarrel"
+            };
+    final static ArrayList<String> balloon = new ArrayList<String>(Arrays.asList(balloonArray));
+
+    final static String[] daVinciArray =
+            {
+                    "hatchet",
+                    "lumber",
+                    "cords",
+                    "knife",
+                    "sailCloth",
+                    "resin"
+            };
+    final static ArrayList<String> daVinci = new ArrayList<String>(Arrays.asList(daVinciArray));
+
+    final static String[] raftArray =
+            {
+                    "stickFishingPole",
+                    "cords",
+                    "fishHook"
+            };
+    final static ArrayList<String> raft = new ArrayList<String>(Arrays.asList(raftArray));
+
     final static ArrayList[] itemCombinationArray =
             {
                     torch,
                     grapplingHook,
                     hatchet,
-                    fishingPole
+                    fishingPole,
+                    balloon,
+                    daVinci,
+                    raft
             };
     final static ArrayList<ArrayList> itemCombinations = new ArrayList<ArrayList>(Arrays.asList(itemCombinationArray));
 
@@ -55,7 +88,10 @@ public class ItemBlender
                     "torch",
                     "grapplingHook",
                     "hatchet",
-                    "fishingPole"
+                    "fishingPole",
+                    "getScreen|balloon",
+                    "getScreen|daVinci",
+                    "getScreen|raft"
             };
     final static ArrayList<String> combinationNames = new ArrayList<String>(Arrays.asList(combinationNameArray));
 
@@ -64,7 +100,10 @@ public class ItemBlender
                     "Congratulations! You have created a torch!",
                     "Congratulations! You have created a grapplinghook!",
                     "Congratulations! You have created a hatchet!",
-                    "Congratulations! You have created a fishing pole!"
+                    "Congratulations! You have created a fishing pole!",
+                    "getScreen|balloon",
+                    "getScreen|daVinci",
+                    "getScreen|raft"
             };
     final static ArrayList<String> messages = new ArrayList<String>(Arrays.asList(messagesArray));
 
@@ -84,7 +123,7 @@ public class ItemBlender
     final static String[] hatchetRemoveArray =
             {
                     "stickHatchet",
-                    "fiberCords",
+                    "cords",
                     "sharkStone"
             };
     final static ArrayList<String> hatchetRemoveItems = new ArrayList<String>(Arrays.asList(hatchetRemoveArray));
@@ -92,39 +131,65 @@ public class ItemBlender
     final static String[] fishingPoleRemoveArray =
             {
                     "stickFishingPole",
-                    "fiberCords",
+                    "cords",
                     "fishHook"
             };
     final static ArrayList<String> fishingPoleRemoveItems = new ArrayList<String>(Arrays.asList(fishingPoleRemoveArray));
 
+    final static String[] balloonRemoveArray =
+            {
+                    "stickFishingPole",
+                    "cords",
+                    "fishHook"
+            };
+    final static ArrayList<String> balloonRemoveItems = new ArrayList<String>(Arrays.asList(balloonArray));
+
+    final static String[] daVinciRemoveArray =
+            {
+                    "stickFishingPole",
+                    "cords",
+                    "fishHook"
+            };
+    final static ArrayList<String> daVinciRemoveItems = new ArrayList<String>(Arrays.asList(daVinciArray));
+
+    final static String[] raftRemoveArray =
+            {
+                    "stickFishingPole",
+                    "cords",
+                    "fishHook"
+            };
+    final static ArrayList<String> raftRemoveItems = new ArrayList<String>(Arrays.asList(raftRemoveArray));
 
     final static ArrayList[] removeItemsArray =
             {
                     torchRemoveItems,
                     grapplingHookRemoveItems,
                     hatchetRemoveItems,
-                    fishingPoleRemoveItems
+                    fishingPoleRemoveItems,
+                    balloonRemoveItems,
+                    daVinciRemoveItems,
+                    raftRemoveItems
             };
     final static ArrayList<ArrayList> itemsToRemove = new ArrayList<ArrayList>(Arrays.asList(removeItemsArray));
 
     public static String combineItems(List<String> items)
     {
-        if (items.contains("fiberCords1"))
+        if (items.contains("cords1"))
         {
-            items.remove("fiberCords1");
-            items.add("fiberCords");
+            items.remove("cords1");
+            items.add("cords");
         }
 
-        if (items.contains("fiberCords2"))
+        if (items.contains("cords2"))
         {
-            items.remove("fiberCords2");
-            items.add("fiberCords");
+            items.remove("cords2");
+            items.add("cords");
         }
 
-        if (items.contains("fiberCords3"))
+        if (items.contains("cords3"))
         {
-            items.remove("fiberCords3");
-            items.add("fiberCords");
+            items.remove("cords3");
+            items.add("cords");
         }
 
         if (items.size() == 1)
