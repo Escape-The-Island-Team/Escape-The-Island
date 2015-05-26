@@ -351,6 +351,30 @@ public class GameManager extends Controller
         return objects;
     }
 
+    public static List<String> getActionpoints()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        List<String> result = new ArrayList<>();
+
+        result.add(Integer.toString(Character.getActionpoints(characterId)));
+
+        return result;
+    }
+
+    public static void reduceActionPoints(int cost)
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        Character.reduceActionPoints(characterId, cost);
+    }
+
     public static List<String> interactWithObjects(List<String> objectParameter)
     {
         System.out.println("interact");

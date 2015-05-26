@@ -84,4 +84,26 @@ public class Character extends Model
         character.position = location;
         character.save();
     }
+
+    public static int getActionpoints(long charId)
+    {
+        Character character = find.byId(charId);
+
+        return character.action_points;
+    }
+
+    public static void reduceActionPoints(long charId, int cost)
+    {
+        Character character = find.byId(charId);
+
+        character.action_points -= cost;
+        character.update();
+
+        Character actual = find.byId(charId);
+
+        while (actual.action_points != character.action_points)
+        {
+            actual = find.byId(charId);
+        }
+    }
 }
