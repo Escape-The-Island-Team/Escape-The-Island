@@ -490,6 +490,7 @@ public class GameManager extends Controller
 
 
         //TODO remove
+        System.out.println("");
         System.out.println("Test before dialog");
 
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);

@@ -222,12 +222,12 @@ public class DialogSystem
         // which quest is active right now
         int quest = status / 2;
 
-        if (npcs.equals("maya") && state == 1 && quest == 2)
+        System.out.println("Index: " + npcIndex + " State: " + state + "Quest: " + quest);
+
+        if (Npc.equals("maya") && state == 1 && quest == 2)
         {
             return mayaQuest(charId, state, npcIndex, quest);
         }
-
-        System.out.println("Index: " + npcIndex + " State: " + state + "Quest: " + quest);
 
         String message = (String)statusMessage.get(state).get(npcIndex).get(quest);
         List<String> questList = splitMessage(message);
@@ -286,14 +286,21 @@ public class DialogSystem
 
     public static List<String> mayaQuest(long charId, int state, int npcIndex, int quest)
     {
+        System.out.println("mayaquest!");
+
         Character character = Character.findById(charId);
         String message = (String)statusMessage.get(state).get(npcIndex).get(quest);
 
         if (character.old == 1)
         {
+            System.out.println("Old");
             int slash = message.indexOf('/');
 
-            message = message.substring(0, slash + 1);
+            System.out.println("Message before split: " + message);
+
+            message = message.substring(0, slash);
+
+            System.out.println("Message after slash split: " + message);
 
             List<String> questList = splitMessage(message);
             List<String> items = Item.backpackContent(charId);
@@ -306,10 +313,12 @@ public class DialogSystem
             return questList;
         }
 
-
         int slash = message.indexOf('/');
 
+        System.out.println("Message before split: " + message);
+
         message = message.substring(slash + 1);
+        System.out.println("Message after slash split: " + message);
 
         List<String> questList = splitMessage(message);
         List<String> items = Item.backpackContent(charId);
