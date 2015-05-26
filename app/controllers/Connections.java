@@ -132,6 +132,8 @@ public class Connections extends Controller
         List<String> infoList = parseFromJS(itemsSelected);
         String toReturn = "";
 
+        System.out.println("GetCombination started with: "+infoList);
+
         // call collecting items method with the info list given and another info list returned
         toReturn = parseForJS(GameManager.combineItems(infoList));
 
