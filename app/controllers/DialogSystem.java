@@ -139,7 +139,7 @@ public class DialogSystem
     final static String[] scientistCompleteArray =
             {
                     "Ah, this is the very fruit that I meant. Thank you! In return, let me give you this thick rope. Maybe you can use it.|fruit|rope|complete",
-                    "Thank you again for the delicious fruit. Now, I need some volcanic stones to find out more about this island. Maybe you can find some near the volcano.|volcanicStones|hook|complete",
+                    "These volcanic stones are exactly what I was searching for. Thank you. Let me give you this stable hook.|volcanicStones|hook|complete",
                     "I cannot believe that you really found some door hinges! Thank you a lot! In return, let me give you a knife. You can use it in combination with other items, for example to build an aircraft.|doorHinges|knife|complete",
                     "Ah, this valve is exactly what I was looking for. Thank you. My plan for you to escape from this island is building a hot air balloon. And here I give you a gas canister for this balloon.|valve|gasCanister|complete"
             };
@@ -175,6 +175,42 @@ public class DialogSystem
             quest.add("");
             quest.add("");
             quest.add("welcome");
+
+            return quest;
+        }
+
+        if (Npc.equals("maya") && status == 11)
+        {
+            List<String> quest = new ArrayList<String>();
+
+            quest.add("I lied to you! You can't escape! BECAUSE I'M CRAZY! MUHAHAHAH!");
+            quest.add("");
+            quest.add("");
+            quest.add("escape");
+
+            return quest;
+        }
+
+        if (Npc.equals("versutus") && status == 7)
+        {
+            List<String> quest = new ArrayList<String>();
+
+            quest.add("I lied to you! You can't escape! BECAUSE I'M CRAZY! MUHAHAHAH!");
+            quest.add("");
+            quest.add("");
+            quest.add("escape");
+
+            return quest;
+        }
+
+        if (Npc.equals("scientist") && status == 9)
+        {
+            List<String> quest = new ArrayList<String>();
+
+            quest.add("For the hot air balloon you need the following items: a knife, some cords, a piece of sail cloth, a torch, a gas canisters and a rumbarrel.");
+            quest.add("");
+            quest.add("");
+            quest.add("escape");
 
             return quest;
         }

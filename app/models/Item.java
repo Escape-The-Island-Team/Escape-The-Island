@@ -76,6 +76,7 @@ public class Item extends Model
         for(Item item: backpack)
         {
             backpackStrings.add(item.name);
+            System.out.println("ItemId: " + item.id + " (" + item.name + ")");
         }
 
         return backpackStrings;

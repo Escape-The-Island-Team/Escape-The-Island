@@ -243,6 +243,8 @@ public class ObjectParser
         {
             int number = object.charAt(object.length() - 1) - 48;
 
+            System.out.println(number);
+
             if (Object.objectIsUsed(object, gameId))
             {
                 return "You already have enough cords at the moment.";
@@ -250,13 +252,13 @@ public class ObjectParser
 
             for (int index = 1; index < 4; index++)
             {
-                if (Item.characterHoldsItem("fiberCords" + index, charId))
+                if (Item.characterHoldsItem("cords" + index, charId))
                 {
-                    return "These are fiber crops. Their stalks can be quite strong.";
+                    return "You already have enough cords at the moment.";
                 }
             }
 
-            Item.collectItem("fiberCords" + number, charId);
+            Item.collectItem("cords" + number, charId);
             Object.useObject(object, gameId);
 
             return "You have created some cords out of these fiber crops![" + object + "]";
