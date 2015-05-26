@@ -109,25 +109,20 @@ public class ItemBlender
 
     public static String combineItems(List<String> items)
     {
-        int fiberCordNumber = 0;
-
         if (items.contains("fiberCords1"))
         {
-            fiberCordNumber = 1;
             items.remove("fiberCords1");
             items.add("fiberCords");
         }
 
         if (items.contains("fiberCords2"))
         {
-            fiberCordNumber = 2;
             items.remove("fiberCords2");
             items.add("fiberCords");
         }
 
         if (items.contains("fiberCords3"))
         {
-            fiberCordNumber = 3;
             items.remove("fiberCords3");
             items.add("fiberCords");
         }
@@ -155,6 +150,8 @@ public class ItemBlender
             checkList.add(checkList.size());
         }
 
+        System.out.println(checkList + "\n" + combinationList);
+
         // check all items
         for (String item: items)
         {
@@ -171,12 +168,14 @@ public class ItemBlender
                 // if not this combination can't be applicable
                 if (!combination.contains(item))
                 {
-                    combinationList.remove(combination);
+                    System.out.println("Remove combination: " + itemCombinations.get(check));
                     checkList.set(check, -1);
                     continue;
                 }
 
                 combination.remove(item);
+                System.out.println("Removed item: " + item);
+                System.out.println("Combination after remove: " + combination);
             }
         }
 
@@ -192,6 +191,8 @@ public class ItemBlender
             }
 
             ArrayList<String> combination = combinationList.get(check);
+
+            System.out.println("Check if correct: " + combination);
 
             if (combination.size() == 0)
             {

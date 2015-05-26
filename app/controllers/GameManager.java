@@ -202,6 +202,7 @@ public class GameManager extends Controller
 
     public static List<String> combineItems(List<String> items)
     {
+        System.out.println("combineItems");
         List<String> result = new ArrayList<String>();
 
         if (items == null)
@@ -272,6 +273,7 @@ public class GameManager extends Controller
 
     public static List<String> collectItem(List<String> itemParameters)
     {
+        System.out.println("collectItem");
         List<String> result = new ArrayList<>();
 
         String username = session().get("username");
@@ -351,6 +353,7 @@ public class GameManager extends Controller
 
     public static List<String> interactWithObjects(List<String> objectParameter)
     {
+        System.out.println("interact");
         List<String> result = new ArrayList<>();
 
         if (objectParameter.size() < 1)
@@ -448,14 +451,6 @@ public class GameManager extends Controller
 
         if (!questList.get(3).equals("wait"))
         {
-            if (!questList.get(2).equals(""))
-            {
-                //TODO remove
-                System.out.println("Test before collect");
-
-                Item.collectItem(questList.get(2), characterId);
-            }
-
             //TODO remove
             System.out.println("Test before status");
 
