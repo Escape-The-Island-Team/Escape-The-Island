@@ -130,7 +130,7 @@ public class DialogSystem
             {
                     "This is the flower we need. Thank you! In return, I want to teach you how to create cords out of fiber crops. *Teaching how to create fiber crops*|flower||complete",
                     "Our treasure chest, where was it? At the bottom of the lake? Incredible! Thank you! In return, let me give you a sharp stone. We use stones like these to build tools like hatchets.|treasureChest|sharpStone|complete",
-                    "Hm, this tasts very good! Thank you! In return I want to give you some resin from special trees here.|bottleFull|resin|complete/Hm, this tasts very good! Thank you! In return I want to give you a rum barrel that some sailors left here some years ago.|bottleFull|rumBarrel|complete",
+                    "Hm, this tasts very good! Thank you! In return I want to give you some resin from special trees here.|bottleFull|resin|complete/Hm, this tastes very good! Thank you! In return I want to give you a rum barrel that some sailors left here some years ago.|bottleFull|rumBarrel|complete",
                     "Here it is! Thank you. Was it hard to find? Let me thank you with this fishhook.|cloth|fishhook|complete",
                     "A yellow fish! Thank you! Let me reward you with a paddle. You can use it for the raft with which you can escape from this island.|fish|paddle|complete"
             };
@@ -293,7 +293,7 @@ public class DialogSystem
         {
             int slash = message.indexOf('/');
 
-            message = message.substring(0, slash);
+            message = message.substring(0, slash + 1);
 
             List<String> questList = splitMessage(message);
             List<String> items = Item.backpackContent(charId);
