@@ -240,21 +240,22 @@ public class GameManager extends Controller
             return result;
         }
 
-        Item.collectItem(item, characterId);
-
         //TODO remove
         System.out.println("Created item: " + item);
 
         List<String> removeItems = ItemBlender.removeItems(item);
 
-        if (removeItems.contains("fiberCords"))
+        System.out.println("Remove: " + removeItems);
+        System.out.println("BackPack: " + Item.backpackContent(characterId));
+        
+        if (removeItems.contains("cords"))
         {
             for (int number = 1; number < 4; number++)
             {
-                if (Item.characterHoldsItem("fiberCords" + number, characterId))
+                if (Item.characterHoldsItem("cords" + number, characterId))
                 {
-                    removeItems.remove("fiberCords");
-                    removeItems.add("fiberCords" + number);
+                    removeItems.remove("cords");
+                    removeItems.add("cords" + number);
                     break;
                 }
             }
@@ -266,6 +267,8 @@ public class GameManager extends Controller
             result.add("You filthy little java script manipulator!");
             return result;
         }
+
+        Item.collectItem(item, characterId);
 
         result.add("successful");
         result.add("messageInfo");
