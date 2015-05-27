@@ -509,16 +509,10 @@ public class GameManager extends Controller
      */
     public static void quitGame()
     {
-        // TODO umschreiben
-        if (session().containsKey("game_id"))
-        {
-            session().remove("game_id");
-        }
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
 
-        if (session().containsKey("character_id"))
-        {
-            session().remove("character_id");
-        }
+        Game.setGamesInactive(userId);
     }
 
     /**
