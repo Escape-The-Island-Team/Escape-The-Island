@@ -33,6 +33,9 @@ public class Connections extends Controller
 
         toReturn = parseForJS(GameManager.changeLocation(locations));
 
+        // reduce action points
+        GameManager.reduceActionPoints(1);
+
          return ok(Json.toJson(toReturn));
 
         //return ok(Json.toJson("beach-leftAvailable#"));
@@ -52,6 +55,9 @@ public class Connections extends Controller
         // toReturn = "successful-itembar-1-stick-messageInfo-You have found a stick!-";
 
         toReturn = parseForJS(GameManager.collectItem(infoList));
+
+        // reduce action points
+        GameManager.reduceActionPoints(1);
 
         return ok(Json.toJson(toReturn));
     }
@@ -139,6 +145,9 @@ public class Connections extends Controller
 
         System.out.println("GetCombination completed. Returns values to Javascript.");
 
+        // reduce action points
+        GameManager.reduceActionPoints(3);
+
         return ok(Json.toJson(toReturn));
     }
 
@@ -153,6 +162,9 @@ public class Connections extends Controller
         // alternative1: "notSuccessful-messageInfo-You cannot use more than one item on an object.-";
         // alternative2: "notSuccessful-messageInfo-This action would not have any effect.-";
         toReturn = parseForJS(GameManager.interactWithObjects(infoList));
+
+        // reduce action points
+        GameManager.reduceActionPoints(2);
 
         return ok(Json.toJson(toReturn));
     }

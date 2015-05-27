@@ -97,6 +97,23 @@ public class Character extends Model
     {
         Character character = find.byId(charId);
 
+        int newActionPoints = character.action_points - cost;
+
+        if (newActionPoints < 0)
+        {
+            character.action_points = 0;
+            character.update();
+
+            Character actual = find.byId(charId);
+
+            while (actual.action_points != character.action_points)
+            {
+                actual = find.byId(charId);
+            }
+
+            return;
+        }
+
         character.action_points -= cost;
         character.update();
 
@@ -106,6 +123,8 @@ public class Character extends Model
         {
             actual = find.byId(charId);
         }
+
+        return;
     }
 
     public static Character getBeschdeCharacter(long userId)
