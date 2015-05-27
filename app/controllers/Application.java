@@ -2,6 +2,8 @@ package controllers;
 
 import play.mvc.*;
 import views.html.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application extends Controller {
 
@@ -69,13 +71,22 @@ public class Application extends Controller {
     }
 
     public static Result statistics() {
+        String statisticsBestCharacter="";
+        String statisticsActionPoints="";
+
         if(session("username") == null || session("username").equals(""))
         {
             return redirect(routes.Application.login());
         }
         else
         {
-            return ok(statistics.render(""));
+            List<String> returnlist = new ArrayList<String>();
+            returnlist = GameManager.getStatistics();
+
+            statisticsBestCharacter = returnlist.get(0);
+            statisticsActionPoints = returnlist.get(1);
+
+            return ok(statistics.render("", statisticsBestCharacter, statisticsActionPoints));
         }
     }
 
