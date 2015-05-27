@@ -183,7 +183,7 @@ public class DialogSystem
         {
             List<String> quest = new ArrayList<String>();
 
-            quest.add("I lied to you! You can't escape! BECAUSE I'M CRAZY! MUHAHAHAH!");
+            quest.add("For building a raft, let me tell you what you need to build it: a hatchet, some lumber, some cords, a piece of sailcloth and a paddle.");
             quest.add("");
             quest.add("");
             quest.add("escape");
@@ -195,7 +195,7 @@ public class DialogSystem
         {
             List<String> quest = new ArrayList<String>();
 
-            quest.add("I lied to you! You can't escape! BECAUSE I'M CRAZY! MUHAHAHAH!");
+            quest.add("I have reconstructed the plans for an aircraft of Leonardo Da Vinci. Here are all the items you need to build it: a hatchet, a knife, some lumber, a piece of sailcloth, some cords and some resin.");
             quest.add("");
             quest.add("");
             quest.add("escape");
