@@ -28,6 +28,13 @@
                     </table>
                 </div>
 
+                <!-- Action Points -->
+                <div id="actionPointsOverallContainer">
+                    <div id="actionPointsContainer" title="your remaining action points">
+                        <p id="actionPointsValue"></p>
+                    </div>
+                </div>
+
                     <!-- Navigation -->
                 <div class="myImg">
                     <label hidden="false">beach left</label>
@@ -36,31 +43,54 @@
 
 
                     <!-- Objects -->
-                <div id="objBear">
+                <div id="objBear" title="a huge bear">
                     <img class="objectImgGeneralSize" src="@routes.Assets.at("images/objects/bear.png")" onclick="getAction('bear','cave')">
                 </div>
-                <div id="objBeehive">
+                <div id="objBeehive" title="a beehive">
                     <img class="objectImgGeneralSize" src="@routes.Assets.at("images/objects/beehive.png")" onclick="getAction('beehive','cave')">
                 </div>
 
 
-                <!-- image sources stored for all available items in the itembar -->
+                    <!-- image sources stored for all available items in the itembar -->
                 <div class="imgSrc"><img id="itemStick" src="@routes.Assets.at("images/objects/stick.png")"></div>
                 <div class="imgSrc"><img id="itemFlintstones" src="@routes.Assets.at("images/objects/flintstones.png")"></div>
                 <div class="imgSrc"><img id="itemTorch" src="@routes.Assets.at("images/objects/torch.png")"></div>
 
-                <div class="imgSrc"><img id="itemBeehive" src="@routes.Assets.at("images/objects/beehive.png")"></div>
                 <div class="imgSrc"><img id="itemHoneycomb" src="@routes.Assets.at("images/objects/honeycomb.png")"></div>
-                <div class="imgSrc"><img id="itemBear" src="@routes.Assets.at("images/objects/bear.png")"></div>
 
                 <div class="imgSrc"><img id="itemRope" src="@routes.Assets.at("images/objects/rope.png")"></div>
                 <div class="imgSrc"><img id="itemHook" src="@routes.Assets.at("images/objects/hook.png")"></div>
                 <div class="imgSrc"><img id="itemGrapplingHook" src="@routes.Assets.at("images/objects/grapplingHook.png")"></div>
 
-                <div class="imgSrc"><img id="itemRumbarrel" src="@routes.Assets.at("images/objects/rumbarrel.png")"></div>
+                <div class="imgSrc"><img id="itemSharpStone" src="@routes.Assets.at("images/objects/sharpStone.png")"></div>
+                <div class="imgSrc"><img id="itemStickHatchet" src="@routes.Assets.at("images/objects/stickHatchet.png")"></div>
+                <div class="imgSrc"><img id="itemHatchet" src="@routes.Assets.at("images/objects/hatchet.png")"></div>
+                <div class="imgSrc"><img id="itemLumber" src="@routes.Assets.at("images/objects/lumber.png")"></div>
+
+                <div class="imgSrc"><img id="itemFishhook" src="@routes.Assets.at("images/objects/fishhook.png")"></div>
+                <div class="imgSrc"><img id="itemStickFishingPole" src="@routes.Assets.at("images/objects/stickFishingPole.png")"></div>
+                <div class="imgSrc"><img id="itemFishingPole" src="@routes.Assets.at("images/objects/fishingPole.png")"></div>
                 <div class="imgSrc"><img id="itemFish" src="@routes.Assets.at("images/objects/fish.png")"></div>
 
+                <div class="imgSrc"><img id="itemCords1" src="@routes.Assets.at("images/objects/cords1.png")"></div>
+                <div class="imgSrc"><img id="itemCords2" src="@routes.Assets.at("images/objects/cords2.png")"></div>
+                <div class="imgSrc"><img id="itemCords3" src="@routes.Assets.at("images/objects/cords3.png")"></div>
 
+                <div class="imgSrc"><img id="itemRumbarrel" src="@routes.Assets.at("images/objects/rumbarrel.png")"></div>
+                <div class="imgSrc"><img id="itemVolcanicStones" src="@routes.Assets.at("images/objects/volcanicStones.png")"></div>
+                <div class="imgSrc"><img id="itemSailCloth" src="@routes.Assets.at("images/objects/sailCloth.png")"></div>
+                <div class="imgSrc"><img id="itemTreasureChest" src="@routes.Assets.at("images/objects/treasureChest.png")"></div>
+                <div class="imgSrc"><img id="itemValve" src="@routes.Assets.at("images/objects/valve.png")"></div>
+                <div class="imgSrc"><img id="itemCloth" src="@routes.Assets.at("images/objects/cloth.png")"></div>
+                <div class="imgSrc"><img id="itemKnife" src="@routes.Assets.at("images/objects/knife.png")"></div>
+                <div class="imgSrc"><img id="itemFruit" src="@routes.Assets.at("images/objects/fruit.png")"></div>
+                <div class="imgSrc"><img id="itemFlower" src="@routes.Assets.at("images/objects/flower.png")"></div>
+                <div class="imgSrc"><img id="itemDoorHinges" src="@routes.Assets.at("images/objects/doorHinges.png")"></div>
+                <div class="imgSrc"><img id="itemGasCanister" src="@routes.Assets.at("images/objects/gasCanister.png")"></div>
+                <div class="imgSrc"><img id="itemBottleEmpty" src="@routes.Assets.at("images/objects/bottleEmpty.png")"></div>
+                <div class="imgSrc"><img id="itemBottleFull" src="@routes.Assets.at("images/objects/bottleFull.png")"></div>
+                <div class="imgSrc"><img id="itemPaddle" src="@routes.Assets.at("images/objects/paddle.png")"></div>
+                <div class="imgSrc"><img id="itemResin" src="@routes.Assets.at("images/objects/resin.png")"></div>
 
                 <div class="imgSrc"><img id="charBob" src="@routes.Assets.at("images/Bob-avatar-mini.png")"></div>
                 <div class="imgSrc"><img id="charAlice" src="@routes.Assets.at("images/alice-mini.png")"></div>
@@ -80,15 +110,15 @@
                 </div>
 
 
-                <!-- itembar -->
+                    <!-- itembar -->
 
                 <div class="footerBase">
                     <div class="footer">
-                        <div class="charIcon" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
+                        <div class="charIcon" title="your character" onclick="getCharInteraction()"><img id="charIconImg" src="@routes.Assets.at("images/systemObjects/default_orange.png")"></div>
                         <div class="itembar">
                             <table class="itemTable" border="I">
                                 <tr>
-                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
+                                    <td id="slotTool" class="table_td_tool"><div class="itembarItem" title="the tool used to combine items" onclick="useTool()"><img class="itembarImg" src="@routes.Assets.at("images/systemObjects/tool.jpg")"></div></td>
                                     <td id="slot1" class="table_td"><div class="itembarItem" onclick="selectItem('slot1')"><img id="imgSlot1" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot2" class="table_td"><div class="itembarItem" onclick="selectItem('slot2')"><img id="imgSlot2" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>
                                     <td id="slot3" class="table_td"><div class="itembarItem" onclick="selectItem('slot3')"><img id="imgSlot3" class="itembarImg" src="@routes.Assets.at("images/systemObjects/default_white.png")"></div></td>

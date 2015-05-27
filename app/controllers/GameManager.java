@@ -74,11 +74,12 @@ public class GameManager extends Controller
 
         Character newCharacter = new Character();
 
-        newCharacter.action_points = 50;
+        newCharacter.action_points = 100;
         newCharacter.game_id = newGame.id;
         newCharacter.name = selectedChar;
 
         newCharacter.old = CharacterParser.isOld(selectedChar);
+
 
         String startPosition = "beachMid";
         newCharacter.position = startPosition;
@@ -94,7 +95,6 @@ public class GameManager extends Controller
         {
             NPC.createNpc(newGame.id, "scientist", 0);
         }
-
 
         return loadGame(Long.toString(newGame.id));
     }
@@ -170,7 +170,8 @@ public class GameManager extends Controller
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
-        long characterId = Character.findByGameId(gameId).id;
+        Character character = Character.findByGameId(gameId);
+        long characterId = character.id;
 
         List<String> result = new ArrayList<>();
 
@@ -224,17 +225,43 @@ public class GameManager extends Controller
         long gameId = Game.findActive(userId).id;
         long characterId = Character.findByGameId(gameId).id;
 
-        Item.collectItem(item, characterId);
+        if (item.contains("getScreen"))
+        {
+            int indexPipe = item.indexOf('|');
 
-        //TODO remove
-        System.out.println("Created item: " + item);
+            item = item.substring(indexPipe + 1);
 
-        if (!Item.removeItems(ItemBlender.removeItems(item), characterId))
+            item += Character.findById(characterId).name;
+
+            result.clear();
+            result.add("getScreen");
+            result.add(item);
+            return result;
+        }
+
+        List<String> removeItems = ItemBlender.removeItems(item);
+        
+        if (removeItems.contains("cords"))
+        {
+            for (int number = 1; number < 4; number++)
+            {
+                if (Item.characterHoldsItem("cords" + number, characterId))
+                {
+                    removeItems.remove("cords");
+                    removeItems.add("cords" + number);
+                    break;
+                }
+            }
+        }
+
+        if (!Item.removeItems(removeItems, characterId))
         {
             result.add("messageInfo");
             result.add("You filthy little java script manipulator!");
             return result;
         }
+
+        Item.collectItem(item, characterId);
 
         result.add("successful");
         result.add("messageInfo");
@@ -271,11 +298,11 @@ public class GameManager extends Controller
 
         String itemName = itemParameters.get(0);
 
-        if (!ItemParser.isItem(itemName))
+        /*if (!ItemParser.isItem(itemName))
         {
             result.add("ErrorUnknownItem");
             return result;
-        }
+        }*/
 
         if (Item.itemCollected(itemName, characterId))
         {
@@ -296,7 +323,8 @@ public class GameManager extends Controller
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
         long gameId = Game.findActive(userId).id;
-        long characterId = Character.findByGameId(gameId).id;
+        Character character = Character.findByGameId(gameId);
+        long characterId = character.id;
 
         List<String> result = new ArrayList<>();
 
@@ -307,7 +335,7 @@ public class GameManager extends Controller
         }
         String location = locationParameters.get(0);
 
-        List<String> objects = ObjectParser.getObjects(location);
+        List<String> objects = ObjectParser.getObjects(location, character.old);
 
         List<Item> collectedItems = Item.getUsedItems(characterId);
 
@@ -330,6 +358,51 @@ public class GameManager extends Controller
         }
 
         return objects;
+    }
+
+    public static List<String> getActionpoints()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        List<String> result = new ArrayList<>();
+
+        result.add(Integer.toString(Character.getActionpoints(characterId)));
+
+        return result;
+    }
+
+    public static void reduceActionPoints(int cost)
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        long characterId = Character.findByGameId(gameId).id;
+
+        Character.reduceActionPoints(characterId, cost);
+    }
+
+    public static List<String> getStatistics()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+
+        Character beschder = Character.getBeschdeCharacter(userId);
+
+        List<String> result = new ArrayList<>();
+
+        if (beschder.action_points < 0)
+        {
+            result.add("Incomplete");
+            result.add("");
+            return result;
+        }
+
+        result.add(beschder.name);
+        result.add(Integer.toString(beschder.action_points));
+        return result;
     }
 
     public static List<String> interactWithObjects(List<String> objectParameter)
@@ -393,7 +466,6 @@ public class GameManager extends Controller
             List<String> result = new ArrayList<>();
 
             result.add("ErrorNoParameters");
-
             return result;
         }
 
@@ -407,20 +479,20 @@ public class GameManager extends Controller
 
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
 
-        if (!questList.get(1).equals(""))
-        {
-            List<String> remove = new ArrayList<>();
-            remove.add(questList.get(0));
-
-            Item.removeItems(remove, characterId);
-        }
-
-        if (!questList.get(2).equals(""))
+        if (!questList.get(3).equals("wait") && !questList.get(2).equals(""))
         {
             Item.collectItem(questList.get(2), characterId);
         }
 
-        if (!questList.get(1).equals("") || status == 0 || status % 2 == 1)
+        if (questList.get(3).equals("complete"))
+        {
+            List<String> remove = new ArrayList<>();
+            remove.add(questList.get(1));
+
+            Item.removeItems(remove, characterId);
+        }
+
+        if (!questList.get(3).equals("wait"))
         {
             NPC.increaseStatus(gameId, npc);
         }
@@ -437,16 +509,10 @@ public class GameManager extends Controller
      */
     public static void quitGame()
     {
-        // TODO umschreiben
-        if (session().containsKey("game_id"))
-        {
-            session().remove("game_id");
-        }
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
 
-        if (session().containsKey("character_id"))
-        {
-            session().remove("character_id");
-        }
+        Game.setGamesInactive(userId);
     }
 
     /**

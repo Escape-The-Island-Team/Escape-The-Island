@@ -53,7 +53,7 @@ public class Item extends Model
 
     public static boolean characterHoldsItem(String itemName, long characterId)
     {
-        List<Item> items = Item.findByCharId(characterId);
+        List<Item> items = find.where().eq("character_id", characterId).where().eq("used", 0).findList();
 
         for(Item item: items)
         {
@@ -105,7 +105,7 @@ public class Item extends Model
         collectedItem.save();
 
         //TODO remove
-        System.out.println(itemName);
+        System.out.println("Collected item: " + itemName);
 
         while (collectedItem.id == 0)
         {

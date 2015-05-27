@@ -54,8 +54,8 @@ create table npc (
   id                        bigint not null,
   game_id                   bigint,
   name                      varchar(255),
-  old                       boolean,
-  position                  varchar(255),
+  old                       integer,
+  status                    integer,
   constraint pk_npc primary key (id))
 ;
 

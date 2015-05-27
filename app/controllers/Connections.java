@@ -33,6 +33,9 @@ public class Connections extends Controller
 
         toReturn = parseForJS(GameManager.changeLocation(locations));
 
+        // reduce action points
+        GameManager.reduceActionPoints(1);
+
          return ok(Json.toJson(toReturn));
 
         //return ok(Json.toJson("beach-leftAvailable#"));
@@ -52,6 +55,9 @@ public class Connections extends Controller
         // toReturn = "successful-itembar-1-stick-messageInfo-You have found a stick!-";
 
         toReturn = parseForJS(GameManager.collectItem(infoList));
+
+        // reduce action points
+        GameManager.reduceActionPoints(1);
 
         return ok(Json.toJson(toReturn));
     }
@@ -132,10 +138,15 @@ public class Connections extends Controller
         List<String> infoList = parseFromJS(itemsSelected);
         String toReturn = "";
 
+        System.out.println("GetCombination started with: "+infoList);
+
         // call collecting items method with the info list given and another info list returned
         toReturn = parseForJS(GameManager.combineItems(infoList));
 
         System.out.println("GetCombination completed. Returns values to Javascript.");
+
+        // reduce action points
+        GameManager.reduceActionPoints(3);
 
         return ok(Json.toJson(toReturn));
     }
@@ -152,6 +163,9 @@ public class Connections extends Controller
         // alternative2: "notSuccessful-messageInfo-This action would not have any effect.-";
         toReturn = parseForJS(GameManager.interactWithObjects(infoList));
 
+        // reduce action points
+        GameManager.reduceActionPoints(2);
+
         return ok(Json.toJson(toReturn));
     }
 
@@ -161,7 +175,19 @@ public class Connections extends Controller
         List<String> infoList = parseFromJS(npc);
         String toReturn = "";
 
-        toReturn = "Ah, welcome back! I see you bring me the bottle with water that i asked you for. Please take this hook in turn. Thank you again!-";
+        toReturn = parseForJS(GameManager.talkToNpc(infoList));
+
+        return ok(Json.toJson(toReturn));
+    }
+
+
+    public static Result getActionPoints()
+    {
+        String toReturn = "";
+
+        // call collecting items method with the info list given and another info list returned
+        // toReturn = "I am Alice, the dangerous pirate. Don't bother me or you will regret it!-";
+        toReturn = parseForJS(GameManager.getActionpoints());
 
         return ok(Json.toJson(toReturn));
     }

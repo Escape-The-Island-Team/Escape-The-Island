@@ -26,6 +26,10 @@
     border-down-width: 10px;
     visibility: hidden;
 }
+.infoArea:hover
+{
+    cursor: default;
+}
 .infoTextMsgClass
 {
     font-family: sans-serif;
@@ -72,14 +76,58 @@
 
 #objFlintstones
 {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    margin-left: 80%;
-    margin-top: 25%;
+    margin-left: 87%;
+    margin-top: 26%;
     visibility: hidden;
 }
 
+#objBottleEmpty
+{
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    margin-left: 40%;
+    margin-top: 30%;
+    visibility: hidden;
+}
+
+/**************************
+	location jungle
+**************************/
+
+#objFruit
+{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-left: 26%;
+    margin-top: 31%;
+    visibility: hidden;
+}
+
+
+#objStickHatchet
+{
+    width: 75px;
+    height: 25px;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 22%;
+    visibility: hidden;
+}
+
+#objThicket
+{
+    width: 300px;
+    height: 273px;
+    position: absolute;
+    margin-left: 60%;
+    margin-top: 4%;
+    visibility: hidden;
+}
 
 /**************************
 	location temple
@@ -94,6 +142,79 @@
     margin-top: 30%;
 }
 
+/**************************
+	location river
+**************************/
+
+#objFiberCrops1
+{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 30%;
+    visibility: hidden;
+}
+
+#objFiberCrops2
+{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    margin-left: 24%;
+    margin-top: 12%;
+    visibility: hidden;
+}
+
+#objFiberCrops3
+{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    margin-left: 80%;
+    margin-top: 22%;
+    visibility: hidden;
+}
+
+
+/**************************
+	location opening
+**************************/
+
+#objFlower
+{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-left: 70%;
+    margin-top: 25%;
+    visibility: hidden;
+}
+
+
+/**************************
+	location lake
+**************************/
+
+#objFish
+{
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    margin-left: 36%;
+    margin-top: 40%;
+    visibility: hidden;
+}
+
+#objTreasureChest
+{
+    width: 100px;
+    height: 80px;
+    position: absolute;
+    margin-left: 67%;
+    margin-top: 40%;
+    visibility: hidden;
+}
 
 /**************************
 	location cave
@@ -119,6 +240,81 @@
     visibility: hidden;
 }
 
+/**************************
+	location cliff
+**************************/
+
+#objSailCloth
+{
+    width: 150px;
+    height: 130px;
+    position: absolute;
+    margin-left: 14%;
+    margin-top: 25%;
+    visibility: hidden;
+}
+
+#objDoorHinges
+{
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    margin-left: 60%;
+    margin-top: 25%;
+    visibility: hidden;
+}
+
+/**************************
+	location rocks
+**************************/
+
+#objCloth
+{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    margin-left: 63%;
+    margin-top: 33%;
+    visibility: hidden;
+}
+
+/**************************
+	location volcano
+**************************/
+
+#objVolcanicStones
+{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 35%;
+    visibility: hidden;
+}
+
+/**************************
+	location waterfall
+**************************/
+
+#objClearWater
+{
+    width: 120px;
+    height: 100px;
+    position: absolute;
+    margin-left: 46%;
+    margin-top: 10%;
+    visibility: hidden;
+}
+
+#objStickFishingPole
+{
+    width: 110px;
+    height: 20px;
+    position: absolute;
+    margin-left: 32%;
+    margin-top: 43%;
+    visibility: hidden;
+}
 
 /**************************
 	location laboratory
@@ -133,6 +329,15 @@
     margin-top: 22%;
 }
 
+#objValve
+{
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    margin-left: 96%;
+    margin-top: 40%;
+    visibility: hidden;
+}
 
 /**************************
 	location treehouse
@@ -152,7 +357,50 @@
 
 
 
+/**************************
+	Action Points
+**************************/
 
+#actionPointsOverallContainer
+{
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    margin-left: 95%;
+    margin-top: 6%;
+    background-color: darkorange;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+#actionPointsContainer {
+    width: 43px;
+    height: 43px;
+    position: absolute;
+    margin-left: 2px;
+    margin-top: 2px;
+    background-color: #ffffe0;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+#actionPointsValue
+{
+    margin-top: 2px;
+    margin-left: 4px;
+    font-size: 25pt;
+    color: darkorange;
+}
+
+#actionPointsValue:hover
+{
+    color: orange;
+    cursor: default;
+}
 
 
 

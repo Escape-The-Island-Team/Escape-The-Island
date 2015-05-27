@@ -1,0 +1,29 @@
+@(message: String)
+
+@main(title = "LoadGame") {
+
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="btn-group-vertical">
+                    <a class="btn btn-primary" href="home" title="Home">Home</a>
+                    <a class="btn btn-primary" href="characterSelection" title="Start a new game and try to escape from the island!">New Game</a>
+                    <a class="btn btn-primary" href="loadGame" title="Continue an existing game">Load Game</a>
+                    <a class="btn btn-primary" href="editProfile" title="Make changes on your profile">Edit Profile</a>
+                    <a class="btn btn-primary" href="statistics" title="View your statistics">View Your Statistics</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="col-sm-8">
+                    <p id="error-message">@message</p>
+                    <p id="p-center">LoadGame</p>
+                    <div id="loadGameContainer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

@@ -4,6 +4,7 @@ import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Maik Wandrei on 06.12.2014.
@@ -83,5 +84,66 @@ public class Character extends Model
 
         character.position = location;
         character.save();
+    }
+
+    public static int getActionpoints(long charId)
+    {
+        Character character = find.byId(charId);
+
+        return character.action_points;
+    }
+
+    public static void reduceActionPoints(long charId, int cost)
+    {
+        Character character = find.byId(charId);
+
+        int newActionPoints = character.action_points - cost;
+
+        if (newActionPoints < 0)
+        {
+            character.action_points = 0;
+            character.update();
+
+            Character actual = find.byId(charId);
+
+            while (actual.action_points != character.action_points)
+            {
+                actual = find.byId(charId);
+            }
+
+            return;
+        }
+
+        character.action_points -= cost;
+        character.update();
+
+        Character actual = find.byId(charId);
+
+        while (actual.action_points != character.action_points)
+        {
+            actual = find.byId(charId);
+        }
+
+        return;
+    }
+
+    public static Character getBeschdeCharacter(long userId)
+    {
+        List<Game> finishedGames = Game.find.where().eq("user_id", userId).eq("completed", 1).findList();
+
+        Character beschde = new Character();
+        beschde.action_points = -1;
+
+        for (Game game: finishedGames)
+        {
+            Character character = Character.find.where().eq("game_id", game.id).findUnique();
+
+            if (character.action_points > beschde.action_points)
+            {
+                beschde = character;
+            }
+        }
+
+        return beschde;
     }
 }
