@@ -202,7 +202,6 @@ public class GameManager extends Controller
 
     public static List<String> combineItems(List<String> items)
     {
-        System.out.println("combineItems");
         List<String> result = new ArrayList<String>();
 
         if (items == null)
@@ -241,9 +240,6 @@ public class GameManager extends Controller
         }
 
         List<String> removeItems = ItemBlender.removeItems(item);
-
-        System.out.println("Remove: " + removeItems);
-        System.out.println("BackPack: " + Item.backpackContent(characterId));
         
         if (removeItems.contains("cords"))
         {
@@ -287,7 +283,6 @@ public class GameManager extends Controller
 
     public static List<String> collectItem(List<String> itemParameters)
     {
-        System.out.println("collectItem");
         List<String> result = new ArrayList<>();
 
         String username = session().get("username");
@@ -412,7 +407,6 @@ public class GameManager extends Controller
 
     public static List<String> interactWithObjects(List<String> objectParameter)
     {
-        System.out.println("interact");
         List<String> result = new ArrayList<>();
 
         if (objectParameter.size() < 1)
@@ -435,8 +429,6 @@ public class GameManager extends Controller
         long characterId = Character.findByGameId(gameId).id;
 
         String message = ObjectParser.useObject(object, items, characterId);
-
-        System.out.println("Object message intern: " + message);
 
         if (message.equals("Error"))
         {
@@ -486,8 +478,6 @@ public class GameManager extends Controller
         int status = NPC.getStatus(gameId, npc);
 
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
-
-        System.out.println("QuestList: " + questList);
 
         if (!questList.get(3).equals("wait") && !questList.get(2).equals(""))
         {
