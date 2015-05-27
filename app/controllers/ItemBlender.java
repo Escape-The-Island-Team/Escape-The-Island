@@ -65,9 +65,11 @@ public class ItemBlender
 
     final static String[] raftArray =
             {
-                    "stickFishingPole",
+                    "hatchet",
                     "cords",
-                    "fishHook"
+                    "paddle",
+                    "lumber",
+                    "sailCloth"
             };
     final static ArrayList<String> raft = new ArrayList<String>(Arrays.asList(raftArray));
 
@@ -154,9 +156,9 @@ public class ItemBlender
 
     final static String[] raftRemoveArray =
             {
-                    "stickFishingPole",
                     "cords",
-                    "fishHook"
+                    "lumber",
+                    "sailCloth"
             };
     final static ArrayList<String> raftRemoveItems = new ArrayList<String>(Arrays.asList(raftRemoveArray));
 

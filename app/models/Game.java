@@ -87,6 +87,17 @@ public class Game extends Model
         Game loadedGame = find.byId(game_id);
     }
 
+    public static void setGamesInactive(long userId)
+    {
+        List<Game> games = find.where().eq("user_id", userId).findList();
+
+        for(Game game: games)
+        {
+            game.active = 0;
+            game.update();
+        }
+    }
+
     public static boolean findIncompleteCharacter(String character, long user_id)
     {
         ExpressionList<Game> games = find.where().eq("user_id", user_id);
