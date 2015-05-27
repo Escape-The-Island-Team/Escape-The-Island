@@ -76,7 +76,6 @@ public class Item extends Model
         for(Item item: backpack)
         {
             backpackStrings.add(item.name);
-            System.out.println("ItemId: " + item.id + " (" + item.name + ")");
         }
 
         return backpackStrings;
@@ -106,7 +105,7 @@ public class Item extends Model
         collectedItem.save();
 
         //TODO remove
-        System.out.println(itemName);
+        System.out.println("Collected item: " + itemName);
 
         while (collectedItem.id == 0)
         {

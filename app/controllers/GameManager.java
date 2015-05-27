@@ -80,6 +80,7 @@ public class GameManager extends Controller
 
         newCharacter.old = CharacterParser.isOld(selectedChar);
 
+
         String startPosition = "beachMid";
         newCharacter.position = startPosition;
         newCharacter.save();
@@ -95,6 +96,11 @@ public class GameManager extends Controller
             NPC.createNpc(newGame.id, "scientist", 0);
         }
 
+        //TODO remove
+        Item.collectItem("treasureChest", newCharacter.id);
+        Item.collectItem("bottleFull", newCharacter.id);
+        Item.collectItem("cloth", newCharacter.id);
+        Item.collectItem("flower", newCharacter.id);
 
         return loadGame(Long.toString(newGame.id));
     }
@@ -239,9 +245,6 @@ public class GameManager extends Controller
             result.add(item);
             return result;
         }
-
-        //TODO remove
-        System.out.println("Created item: " + item);
 
         List<String> removeItems = ItemBlender.removeItems(item);
 
@@ -488,28 +491,17 @@ public class GameManager extends Controller
         String npc = npcParameter.get(0);
         int status = NPC.getStatus(gameId, npc);
 
-
-        //TODO remove
-        System.out.println("");
-        System.out.println("Test before dialog");
-
         List<String> questList = DialogSystem.retieveMessage(npcParameter.get(0), status, characterId);
 
         System.out.println("QuestList: " + questList);
 
         if (!questList.get(3).equals("wait") && !questList.get(2).equals(""))
         {
-            //TODO remove
-            System.out.println("Test before collect");
-
             Item.collectItem(questList.get(2), characterId);
         }
 
         if (questList.get(3).equals("complete"))
         {
-            //TODO remove
-            System.out.println("Test remove items");
-
             List<String> remove = new ArrayList<>();
             remove.add(questList.get(1));
 
@@ -518,9 +510,6 @@ public class GameManager extends Controller
 
         if (!questList.get(3).equals("wait"))
         {
-            //TODO remove
-            System.out.println("Test before status");
-
             NPC.increaseStatus(gameId, npc);
         }
 
@@ -528,8 +517,6 @@ public class GameManager extends Controller
 
         result.add(questList.get(0));
 
-        //TODO: remove
-        System.out.println("result "+result);
         return result;
     }
 
