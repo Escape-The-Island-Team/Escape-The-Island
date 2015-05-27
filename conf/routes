@@ -50,6 +50,7 @@ POST        /getCombination/:itemsSelected        controllers.Connections.getCom
 POST        /getAction/:itemsSelected             controllers.Connections.getAction(itemsSelected: String)
 POST        /interactWithNPC/:npc                 controllers.Connections.interactWithNPC(npc: String)
 POST        /getActionPoints                      controllers.Connections.getActionPoints()
+POST        /getStatistics                        controllers.Connections.getStatistics()
 POST        /getLocationTest/:location            controllers.Connections.giveLocationTest(location: String)
 
 POST        /createGame/:character                controllers.Connections.createGame(character: String)

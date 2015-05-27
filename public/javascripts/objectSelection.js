@@ -1616,9 +1616,3 @@ function setActionPoints()
 
 
 
-
-
-
-
-
-

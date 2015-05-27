@@ -175,7 +175,7 @@ public class Connections extends Controller
 
         // call collecting items method with the info list given and another info list returned
         // toReturn = "I am Alice, the dangerous pirate. Don't bother me or you will regret it!-";
-        toReturn = "80-";
+        toReturn = parseForJS(GameManager.getActionpoints());
 
         return ok(Json.toJson(toReturn));
     }
