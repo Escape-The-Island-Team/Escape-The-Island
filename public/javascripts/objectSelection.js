@@ -559,6 +559,7 @@ function collectItem(nameItemToCollect, idItemToCollect)
             if(successful)
             {
                 buildItembar();
+                setActionPoints();
             }
         },
         error: function (data, request) {
@@ -1270,8 +1271,8 @@ function useTool()
             {
                 //alert("builditembar");
                 buildItembar();
-                setActionPoints();
             }
+            setActionPoints();
         },
         error: function (data, request) {
             alert("FAIL " + data+result);
@@ -1505,8 +1506,8 @@ function getAction(object, location)
                 //alert("builditembar");
                 buildItembar();
                 placeObjects(location);
-                setActionPoints();
             }
+            setActionPoints();
         },
         error: function (data, request) {
             alert("FAIL " + data+result);

@@ -192,6 +192,11 @@ public class ItemBlender
             items.add("cords");
         }
 
+        if (items.size() == 0)
+        {
+            return "This is your hammer. You can combine items with it!";
+        }
+
         if (items.size() == 1)
         {
             return "You cannot combine an item with itself.";

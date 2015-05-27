@@ -74,7 +74,7 @@ public class GameManager extends Controller
 
         Character newCharacter = new Character();
 
-        newCharacter.action_points = 80;
+        newCharacter.action_points = 100;
         newCharacter.game_id = newGame.id;
         newCharacter.name = selectedChar;
 
