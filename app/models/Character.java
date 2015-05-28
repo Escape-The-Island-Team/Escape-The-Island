@@ -90,6 +90,8 @@ public class Character extends Model
     {
         Character character = find.byId(charId);
 
+        System.out.println("Retrieved AP count: " + character.action_points);
+
         return character.action_points;
     }
 
