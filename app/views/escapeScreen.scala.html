@@ -1,0 +1,43 @@
+@(message: String)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game Completed</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/mainIngame.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ingameObjectManagement.css")">
+        <script src=@routes.Assets.at("javascripts/selection.js") type="text/javascript"></script>
+        <script src=@routes.Assets.at("javascripts/jquery-1.9.0.min.js") type="text/javascript"></script>
+        <script src=@routes.Assets.at("javascripts/objectSelection.js") type="text/javascript"></script>
+    </head>
+
+    <body class="body_location" onload="loadEscapeScreen()">
+
+        <div class="overallContainer">
+            <div class="innerOverallContainer">
+                <div class="locationBackgroundImgContainer"><img class="locationBackgroundImg" src="@routes.Assets.at("images/escapeScreens/balloonBob.png")"></div>
+
+                    <!--  Ingame Menu -->
+                <div class="containerIngameMenu">
+                    <img class="ingameMenuLogo" src="@routes.Assets.at("images/logo.png")">
+                    <table class="ingameMenuTable">
+                        <tr>
+                            <td><button type="text" class="buttonsSave" name="save" onclick="window.location='home'">Back to menu</button></td>
+                            <td><button type="text" class="buttonsSave" name="save and exit" onclick="window.location='@routes.Accountmanagement.logout()'">Exit</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                    <!-- info message bar -->
+                <div class="infoArea" onclick="makeInvisibleClass('infoArea')">
+                    <p id="infoTextMsg" class="infoTextMsgClass">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+>

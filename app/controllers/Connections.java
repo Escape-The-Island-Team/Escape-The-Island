@@ -146,7 +146,7 @@ public class Connections extends Controller
         System.out.println("GetCombination completed. Returns values to Javascript.");
 
         // reduce action points
-        GameManager.reduceActionPoints(3);
+        GameManager.reduceActionPoints(2);
 
         return ok(Json.toJson(toReturn));
     }

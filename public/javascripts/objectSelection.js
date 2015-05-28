@@ -1093,6 +1093,9 @@ function useTool()
     var successful = false;
     var messageNext = false;
 
+    // for escape screen
+    var getScreenNext = false;
+
 
     // for all item slots find out which of them are selected
     for(var i=1; i<=20; i++)
@@ -1237,6 +1240,12 @@ function useTool()
                         showInfoMessage(splitResult);
                         messageNext = false;
                     }
+                    if(getScreenNext)
+                    {
+                        window.location = "loadEscapeScreen";
+                        getScreenNext = false;
+                    }
+
                     else
                         {
                             switch(splitResult)
@@ -1251,6 +1260,9 @@ function useTool()
                                     break;
                                 case "messageInfo":
                                     messageNext = true;
+                                    break;
+                                case "getScreen":
+                                    getScreenNext = true;
                                     break;
                             }
                         }
@@ -1607,6 +1619,47 @@ function setActionPoints()
         }
     });
 }
+
+
+function setEscapeScreen()
+{
+    var result;
+    var splitResult="";
+
+    // call of java method without parameter
+    $.ajax({
+        url: '/getActionPoints',
+        type: 'POST',
+        contentType: 'application/json',
+        data: model_data,
+        dataType: 'json html',
+        converters: {
+            'text json': true
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            result = response;
+
+            for(var i=0; i<result.length; i++)
+            {
+                if(result[i]=="-")
+                {
+                    splitResult=result.substring(i,result.size-i);
+
+                    document.getElementById('actionPointsValue').textContent = splitResult;
+
+                    // prepare for the next splitresult to read; in the basic version of this method there should be none
+                    result=result.substring(i+1);
+                    i=0;
+                }
+            }
+        },
+        error: function (data, request) {
+            alert("FAIL " + data+result);
+        }
+    });
+}
+
 
 
 

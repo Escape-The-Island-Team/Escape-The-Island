@@ -114,4 +114,13 @@ public class Game extends Model
 
         return true;
     }
+
+    public static void setGameComplete(long gameId)
+    {
+        Game completed = Game.findById(gameId);
+
+        completed.completed = 1;
+
+        completed.update();
+    }
 }
