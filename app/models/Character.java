@@ -95,6 +95,9 @@ public class Character extends Model
 
     public static void reduceActionPoints(long charId, int cost)
     {
+        //TODO remove
+        System.out.println("Reduce AP by " + cost + " points.");
+
         Character character = find.byId(charId);
 
         int newActionPoints = character.action_points - cost;
