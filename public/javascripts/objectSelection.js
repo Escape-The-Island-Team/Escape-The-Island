@@ -1628,7 +1628,7 @@ function setEscapeScreen()
 
     // call of java method without parameter
     $.ajax({
-        url: '/getActionPoints',
+        url: '/getEscapeScreen',
         type: 'POST',
         contentType: 'application/json',
         data: model_data,
@@ -1646,7 +1646,48 @@ function setEscapeScreen()
                 {
                     splitResult=result.substring(i,result.size-i);
 
-                    document.getElementById('actionPointsValue').textContent = splitResult;
+                    switch(splitResult)
+                    {
+                        case "balloonBob": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonBob').src;
+                            break;
+                        case "balloonNova": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonNova').src;
+                            break;
+                        case "balloonHomTanks": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonHomTanks').src;
+                            break;
+                        case "balloonBerryStraw": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonBerryStraw').src;
+                            break;
+                        case "daVinciAlice": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('daVinciAlice').src;
+                            break;
+                        case "daVinciCaptainSpeckJarrow": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('daVinciCaptainSpeckJarrow').src;
+                            break;
+                        case "raftBob": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftBob').src;
+                            break;
+                        case "raftAlice": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftAlice').src;
+                            break;
+                        case "raftNova": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftNova').src;
+                            break;
+                        case "raftHomTanks": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftHomTanks').src;
+                            break;
+                        case "raftBerryStraw": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftBerryStraw').src;
+                            break;
+                        case "raftCaptainSpeckJarrow": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftCaptainSpeckJarrow').src;
+                            break;
+                    }
+
+
+
 
                     // prepare for the next splitresult to read; in the basic version of this method there should be none
                     result=result.substring(i+1);
