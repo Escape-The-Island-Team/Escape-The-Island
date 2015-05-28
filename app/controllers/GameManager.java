@@ -243,16 +243,27 @@ public class GameManager extends Controller
         if (item.contains("getScreen"))
         {
             int indexPipe = item.indexOf('|');
+            long completion = 0;
 
             item = item.substring(indexPipe + 1);
 
-            item += Character.findById(characterId).name;
+            switch (item)
+            {
+            case "raft" :
+                completion = 1l;
+                break;
+            case "daVinci" :
+                completion = 2l;
+                break;
+            case "balloon" :
+                completion = 3l;
+                break;
+            }
 
-            Game.setGameComplete(gameId);
+            Game.setGameComplete(gameId, completion);
 
             result.clear();
             result.add("getScreen");
-            result.add(item);
             return result;
         }
 
@@ -517,6 +528,34 @@ public class GameManager extends Controller
         List<String> result = new ArrayList<>();
 
         result.add(questList.get(0));
+
+        return result;
+    }
+
+    public static List<String> getCompletion()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+
+        Game completedGame = Game.findActive(gameId);
+        int completionType = (int)completedGame.completed;
+
+        Character completedCharacter = Character.findByGameId(completedGame.id);
+
+        List<String> result = new ArrayList<>();
+
+        switch (completionType)
+        {
+        case 1:
+            result.add("raft" + completedCharacter.name);
+        case 2:
+            result.add("daVinci" + completedCharacter.name);
+        case 3:
+            result.add("balloon" + completedCharacter.name);
+        default:
+            result.add("DuDooferDoofi");
+        }
 
         return result;
     }
