@@ -101,7 +101,7 @@ public class Game extends Model
     public static boolean findIncompleteCharacter(String character, long user_id)
     {
         ExpressionList<Game> games = find.where().eq("user_id", user_id);
-        ExpressionList<Game> incompleteGames = games.where().eq("completed", true);
+        ExpressionList<Game> incompleteGames = games.where().eq("completed", 0);
 
         for(Game game: incompleteGames.findList())
         {
@@ -115,11 +115,11 @@ public class Game extends Model
         return true;
     }
 
-    public static void setGameComplete(long gameId)
+    public static void setGameComplete(long gameId, long complete)
     {
         Game completed = Game.findById(gameId);
 
-        completed.completed = 1;
+        completed.completed = complete;
 
         completed.update();
     }
