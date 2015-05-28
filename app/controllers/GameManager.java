@@ -72,31 +72,18 @@ public class GameManager extends Controller
 
         newGame.save();
 
-        Game savedGame = Game.findById(newGame.id);
-
-        while (savedGame == null)
-        {
-            savedGame = Game.findById(newGame.id);
-        }
-
         Character newCharacter = new Character();
 
-        newCharacter.action_points = 91;
+        newCharacter.action_points = 90;
         newCharacter.game_id = newGame.id;
         newCharacter.name = selectedChar;
 
         newCharacter.old = CharacterParser.isOld(selectedChar);
 
+
         String startPosition = "beachMid";
         newCharacter.position = startPosition;
         newCharacter.save();
-
-        Character savedCharacter = Character.findById(newGame.id);
-
-        while (savedCharacter == null)
-        {
-            savedCharacter = Character.findById(newGame.id);
-        }
 
         NPC.createNpc(newGame.id, "maya", newCharacter.old);
         if (newCharacter.old == 1)
@@ -108,8 +95,6 @@ public class GameManager extends Controller
         {
             NPC.createNpc(newGame.id, "scientist", 0);
         }
-
-        for (long time = 0; time < 1000000; time++);
 
         return loadGame(Long.toString(newGame.id));
     }
@@ -247,6 +232,8 @@ public class GameManager extends Controller
             item = item.substring(indexPipe + 1);
 
             item += Character.findById(characterId).name;
+
+            Game.setGameComplete(gameId);
 
             result.clear();
             result.add("getScreen");

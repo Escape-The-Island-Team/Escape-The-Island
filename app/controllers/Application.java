@@ -127,5 +127,7 @@ public class Application extends Controller {
     public static Result loadTreehouse() { return ok(locTreehouse.render("")); }
     public static Result loadLaboratory() { return ok(locLaboratory.render("")); }
 
+    public static Result loadEscapeScreen() { return ok(escapeScreen.render("")); }
+
     public static Result loadImg() { return ok(); }
 }
