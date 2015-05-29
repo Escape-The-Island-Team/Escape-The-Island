@@ -385,6 +385,17 @@ public class GameManager extends Controller
             }
         }
 
+        if ("cave".equals(location))
+        {
+            if (Object.objectIsUsed("bear", gameId))
+            {
+                if (!Object.objectIsUsed("spinach", gameId))
+                {
+                    objects.add("spinach");
+                }
+            }
+        }
+
         return objects;
     }
 
