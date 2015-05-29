@@ -39,7 +39,6 @@
     padding-bottom: 5px;
 }
 
-
 #charIconImg
 {
     margin-left: 15%;
@@ -227,7 +226,7 @@
     position: absolute;
     margin-left: 11%;
     margin-top: 14%;
-    visibility: hidden;
+    visibility: visible;
 }
 
 #objBeehive
@@ -237,6 +236,16 @@
     position: absolute;
     margin-left: 84%;
     margin-top: 21%;
+    visibility: hidden;
+}
+
+#objSpinach
+{
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    margin-left: 16%;
+    margin-top: 17%;
     visibility: hidden;
 }
 

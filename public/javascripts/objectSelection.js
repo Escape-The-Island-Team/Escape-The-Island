@@ -918,6 +918,8 @@ function placeObjects(location)
                             break;
                         case "fiberCrops3": $("#" + "objFiberCrops3").css({"visibility": "visible"});
                             break;
+                        case "spinach": $("#" + "objSpinach").css({"visibility": "visible"});
+                            break;
 
                         // item objects
                         case "stick": $("#" + "objStick").css({"visibility": "visible"});
