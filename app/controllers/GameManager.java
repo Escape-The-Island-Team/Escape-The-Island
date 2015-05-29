@@ -536,9 +536,7 @@ public class GameManager extends Controller
     {
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
-        long gameId = Game.findActive(userId).id;
-
-        Game completedGame = Game.findActive(gameId);
+        Game completedGame = Game.findActive(userId);
         int completionType = (int)completedGame.completed;
 
         Character completedCharacter = Character.findByGameId(completedGame.id);
@@ -547,6 +545,8 @@ public class GameManager extends Controller
 
         switch (completionType)
         {
+        case 0:
+            result.add("Incomplete" + completedCharacter.name);
         case 1:
             result.add("raft" + completedCharacter.name);
         case 2:
