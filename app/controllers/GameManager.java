@@ -376,9 +376,10 @@ public class GameManager extends Controller
         }
 
         List<Object> usedObjects = Object.findUsedGameObjects(gameId);
-
+        System.out.println("location objects: "+objects);
         for (Object object: usedObjects)
         {
+            System.out.println("Object used: " + object.name);
             if (objects.contains(object.name))
             {
                 objects.remove(object.name);

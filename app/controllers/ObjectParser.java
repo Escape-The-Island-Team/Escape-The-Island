@@ -327,7 +327,7 @@ public class ObjectParser
             List<String> removeItems = new ArrayList<String>();
             Object.useObject("spinach",Character.findById(charId).game_id);
             Character.reduceActionPoints(charId,-15);
-            return "The spinach makes you strong. You increased your action points.";
+            return "The spinach makes you strong. You increased your action points.[spinach]";
         }
         return "You can't use that item on the spinach can!";
     }

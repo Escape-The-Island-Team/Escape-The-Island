@@ -1471,6 +1471,8 @@ function getAction(object, location)
                                 break;
                             case "fiberCrops3": $("#" + "objFiberCrops3").css({"visibility": "hidden"});
                                 break;
+                            case "spinach": $("#" + "objSpinach").css({"visibility": "hidden"});
+                                break;
                         }
                         removeObject = false;
                     }
