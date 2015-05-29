@@ -1093,9 +1093,6 @@ function useTool()
     var successful = false;
     var messageNext = false;
 
-    // for escape screen
-    var getScreenNext = false;
-
 
     // for all item slots find out which of them are selected
     for(var i=1; i<=20; i++)
@@ -1240,11 +1237,6 @@ function useTool()
                         showInfoMessage(splitResult);
                         messageNext = false;
                     }
-                    if(getScreenNext)
-                    {
-                        window.location = "loadEscapeScreen";
-                        getScreenNext = false;
-                    }
 
                     else
                         {
@@ -1262,7 +1254,7 @@ function useTool()
                                     messageNext = true;
                                     break;
                                 case "getScreen":
-                                    getScreenNext = true;
+                                    window.location = "loadEscapeScreen";
                                     break;
                             }
                         }
@@ -1621,14 +1613,101 @@ function setActionPoints()
 }
 
 
+function setEnding()
+{
+    var result;
+    var splitResult="";
+
+    model_data = JSON.stringify("");
+
+    // call of java method
+    $.ajax({
+        url: '/testEscape',
+        type: 'POST',
+        contentType: 'application/json',
+        data: model_data,
+        dataType: 'json html',
+        converters: {
+            'text json': true
+        },
+        success: function (response) {
+
+            response = JSON.parse(response);
+            result = response;
+
+            for(var i=0; i<result.length; i++)
+            {
+                if(result[i]=="-")
+                {
+                    splitResult=result.substring(i,result.size-i);
+
+                    switch(splitResult)
+                    {
+                        case "balloonBob":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonBob').src);
+                            break;
+                        case "balloonNova":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonNova').src);
+                            break;
+                        case "balloonHomTanks":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonHomTanks').src);
+                            break;
+                        case "balloonBerryStraw":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonBerryStraw').src);
+                            break;
+                        case "daVinciAlice":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('daVinciAlice').src);
+                            break;
+                        case "daVinciCaptainSpeckJarrow":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('daVinciCaptainSpeckJarrow').src);
+                            break;
+                        case "raftBob":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftBob').src);
+                            break;
+                        case "raftAlice":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftAlice').src);
+                            break;
+                        case "raftNova":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftNova').src);
+                            break;
+                        case "raftHomTanks":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftHomTanks').src);
+                            break;
+                        case "raftBerryStraw":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftBerryStraw').src);
+                            break;
+                        case "raftCaptainSpeckJarrow":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftCaptainSpeckJarrow').src);
+                            break;
+
+                    }
+
+                    showInfoMessage("Congratulations! You escaped the island!");
+
+                    // prepare for the next splitresult to read; in the basic version there should be none
+                    result=result.substring(i+1);
+                    i=0;
+                }
+            }
+        },
+        error: function (data, request) {
+            alert("FAIL " + data+result);
+        }
+    });
+}
+
+
+
 function setEscapeScreen()
 {
     var result;
     var splitResult="";
 
+
+
     // call of java method without parameter
     $.ajax({
-        url: '/getEscapeScreen',
+        url: '/getEscapeContent/',
         type: 'POST',
         contentType: 'application/json',
         data: model_data,
@@ -1639,6 +1718,8 @@ function setEscapeScreen()
         success: function (response) {
             response = JSON.parse(response);
             result = response;
+
+            alert(response);
 
             for(var i=0; i<result.length; i++)
             {
@@ -1686,8 +1767,7 @@ function setEscapeScreen()
                             break;
                     }
 
-
-
+                    showInfoMessage("Congratulations! You escaped the island!");
 
                     // prepare for the next splitresult to read; in the basic version of this method there should be none
                     result=result.substring(i+1);
@@ -1700,7 +1780,6 @@ function setEscapeScreen()
         }
     });
 }
-
 
 
 

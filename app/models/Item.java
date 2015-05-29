@@ -122,6 +122,8 @@ public class Item extends Model
     {
         List<Item> backpack = find.where().eq("character_id", character_id).eq("used", 0).findList();
 
+        System.out.println("Backpack: " + backpack + "\nRemove: " + items);
+
         for (String item: items)
         {
             boolean found = false;
