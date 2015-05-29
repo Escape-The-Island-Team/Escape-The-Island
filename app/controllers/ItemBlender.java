@@ -264,7 +264,7 @@ public class ItemBlender
 
             ArrayList<String> combination = combinationList.get(check);
 
-            System.out.println("Check if correct: " + combination);
+            System.out.println("Check if correct: " + itemCombinations.get(check));
 
             if (combination.size() == 0)
             {

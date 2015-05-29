@@ -270,7 +270,7 @@ public class GameManager extends Controller
         if (!Item.removeItems(removeItems, characterId))
         {
             result.add("messageInfo");
-            result.add("You filthy little java script manipulator!");
+            result.add("Error javascript!");
             return result;
         }
 
@@ -526,22 +526,26 @@ public class GameManager extends Controller
 
         Character completedCharacter = Character.findByGameId(completedGame.id);
 
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
 
         switch (completionType)
         {
         case 0:
             result.add("Incomplete" + completedCharacter.name);
+            break;
         case 1:
             result.add("raft" + completedCharacter.name);
+            break;
         case 2:
             result.add("daVinci" + completedCharacter.name);
+            break;
         case 3:
             result.add("balloon" + completedCharacter.name);
+            break;
         default:
-            result.add("DuDooferDoofi");
+            result.add("error: no completion found");
+            break;
         }
-
         return result;
     }
 
