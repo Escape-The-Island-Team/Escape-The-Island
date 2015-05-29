@@ -71,6 +71,12 @@ public class GameManager extends Controller
         newGame.active = 0;
 
         newGame.save();
+        Game savedGame = Game.findById(newGame.id);
+
+        while (savedGame == null)
+        {
+            savedGame = Game.findById(newGame.id);
+        }
 
         Character newCharacter = new Character();
 
@@ -85,6 +91,13 @@ public class GameManager extends Controller
         newCharacter.position = startPosition;
         newCharacter.save();
 
+        Character savedCharacter = Character.findById(newGame.id);
+
+        while (savedCharacter == null)
+        {
+            savedCharacter = Character.findById(newGame.id);
+        }
+
         NPC.createNpc(newGame.id, "maya", newCharacter.old);
         if (newCharacter.old == 1)
         {
@@ -95,6 +108,8 @@ public class GameManager extends Controller
         {
             NPC.createNpc(newGame.id, "scientist", 0);
         }
+
+        for (long time = 0; time < 1000000; time++);
 
         return loadGame(Long.toString(newGame.id));
     }
@@ -370,6 +385,17 @@ public class GameManager extends Controller
             }
         }
 
+        if ("cave".equals(location))
+        {
+            if (Object.objectIsUsed("bear", gameId))
+            {
+                if (!Object.objectIsUsed("spinach", gameId))
+                {
+                    objects.add("spinach");
+                }
+            }
+        }
+
         return objects;
     }
 
@@ -546,6 +572,7 @@ public class GameManager extends Controller
             result.add("error: no completion found");
             break;
         }
+
         return result;
     }
 

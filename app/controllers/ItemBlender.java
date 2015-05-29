@@ -37,7 +37,7 @@ public class ItemBlender
             {
                     "stickFishingPole",
                     "cords",
-                    "fishHook"
+                    "fishhook"
             };
     final static ArrayList<String> fishingPole = new ArrayList<String>(Arrays.asList(fishingPoleArray));
 
@@ -126,7 +126,11 @@ public class ItemBlender
             {
                     "stickHatchet",
                     "cords",
+<<<<<<< HEAD
                     "sharkStone"
+=======
+                    "sharpStone"
+>>>>>>> dev
             };
     final static ArrayList<String> hatchetRemoveItems = new ArrayList<String>(Arrays.asList(hatchetRemoveArray));
 
@@ -134,7 +138,11 @@ public class ItemBlender
             {
                     "stickFishingPole",
                     "cords",
+<<<<<<< HEAD
                     "fishHook"
+=======
+                    "fishhook"
+>>>>>>> dev
             };
     final static ArrayList<String> fishingPoleRemoveItems = new ArrayList<String>(Arrays.asList(fishingPoleRemoveArray));
 

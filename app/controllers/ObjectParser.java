@@ -148,6 +148,8 @@ public class ObjectParser
             return useFiberCrop(objectName, item, charId);
         case "thicket":
             return useThicket(item, charId);
+        case "spinach":
+            return useSpinach(item, charId);
         default:
             return "Error";
         }
@@ -317,6 +319,21 @@ public class ObjectParser
 
         return "You can't use that on the clear water in the waterfall.";
     }
+<<<<<<< HEAD
+=======
+
+    public static String useSpinach(String item, long charId)
+    {
+        if ("".equals(item))
+        {
+            List<String> removeItems = new ArrayList<String>();
+            Object.useObject("spinach",Character.findById(charId).game_id);
+            Character.reduceActionPoints(charId,-15);
+            return "The spinach makes you strong. You increased your action points.[spinach]";
+        }
+        return "You can't use that item on the spinach can!";
+    }
+>>>>>>> dev
 }
 
 

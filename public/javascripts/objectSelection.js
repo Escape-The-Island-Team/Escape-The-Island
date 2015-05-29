@@ -918,6 +918,8 @@ function placeObjects(location)
                             break;
                         case "fiberCrops3": $("#" + "objFiberCrops3").css({"visibility": "visible"});
                             break;
+                        case "spinach": $("#" + "objSpinach").css({"visibility": "visible"});
+                            break;
 
                         // item objects
                         case "stick": $("#" + "objStick").css({"visibility": "visible"});
@@ -1468,6 +1470,8 @@ function getAction(object, location)
                             case "fiberCrops2": $("#" + "objFiberCrops2").css({"visibility": "hidden"});
                                 break;
                             case "fiberCrops3": $("#" + "objFiberCrops3").css({"visibility": "hidden"});
+                                break;
+                            case "spinach": $("#" + "objSpinach").css({"visibility": "hidden"});
                                 break;
                         }
                         removeObject = false;
