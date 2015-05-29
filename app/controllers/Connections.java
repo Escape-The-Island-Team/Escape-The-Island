@@ -156,7 +156,7 @@ public class Connections extends Controller
         if(reduceActionPoints)
         {
             // reduce action points
-            GameManager.reduceActionPoints(2);
+            GameManager.reduceActionPoints(1);
         }
 
         return ok(Json.toJson(toReturn));
@@ -175,7 +175,7 @@ public class Connections extends Controller
         toReturn = parseForJS(GameManager.interactWithObjects(infoList));
 
         // reduce action points
-        GameManager.reduceActionPoints(2);
+        GameManager.reduceActionPoints(1);
 
         return ok(Json.toJson(toReturn));
     }
