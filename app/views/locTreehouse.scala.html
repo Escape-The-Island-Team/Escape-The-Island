@@ -23,7 +23,7 @@
                     <table class="ingameMenuTable">
                         <tr>
                             <td><button type="text" class="buttonsSave" name="save" onclick="window.location='home'">Back to menu</button></td>
-                            <td><button type="text" class="buttonsSave" name="save and exit" onclick="window.location='loadingGame'">Exit</button></td>
+                            <td><button type="text" class="buttonsSave" name="save and exit" onclick="window.location='@routes.Accountmanagement.logout()'">Exit</button></td>
                         </tr>
                     </table>
                 </div>
@@ -46,8 +46,8 @@
                     <!-- Objects + NPC -->
 
                 <!-- NPCs -->
-                <div id="npcVersutus" title="Versutus" onclick="talkToNPC('versutus','infoTextMsg','infoArea')">
-                    <img id="npcVersutusImg" class="objectImgGeneralSize" src="@routes.Assets.at("images/npcs/versutus.png")" onclick="interactWithNPC('versutus')">
+                <div id="npcVersutus" title="Versutus" onclick="interactWithNPC('versutus')">
+                    <img id="npcVersutusImg" class="objectImgGeneralSize" src="@routes.Assets.at("images/npcs/versutus.png")">
                 </div>
 
 

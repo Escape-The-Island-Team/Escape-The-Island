@@ -72,18 +72,31 @@ public class GameManager extends Controller
 
         newGame.save();
 
+        Game savedGame = Game.findById(newGame.id);
+
+        while (savedGame == null)
+        {
+            savedGame = Game.findById(newGame.id);
+        }
+
         Character newCharacter = new Character();
 
-        newCharacter.action_points = 100;
+        newCharacter.action_points = 91;
         newCharacter.game_id = newGame.id;
         newCharacter.name = selectedChar;
 
         newCharacter.old = CharacterParser.isOld(selectedChar);
 
-
         String startPosition = "beachMid";
         newCharacter.position = startPosition;
         newCharacter.save();
+
+        Character savedCharacter = Character.findById(newGame.id);
+
+        while (savedCharacter == null)
+        {
+            savedCharacter = Character.findById(newGame.id);
+        }
 
         NPC.createNpc(newGame.id, "maya", newCharacter.old);
         if (newCharacter.old == 1)
@@ -95,6 +108,8 @@ public class GameManager extends Controller
         {
             NPC.createNpc(newGame.id, "scientist", 0);
         }
+
+        for (long time = 0; time < 1000000; time++);
 
         return loadGame(Long.toString(newGame.id));
     }
@@ -228,14 +243,27 @@ public class GameManager extends Controller
         if (item.contains("getScreen"))
         {
             int indexPipe = item.indexOf('|');
+            long completion = 0;
 
             item = item.substring(indexPipe + 1);
 
-            item += Character.findById(characterId).name;
+            switch (item)
+            {
+            case "raft" :
+                completion = 1l;
+                break;
+            case "daVinci" :
+                completion = 2l;
+                break;
+            case "balloon" :
+                completion = 3l;
+                break;
+            }
+
+            Game.setGameComplete(gameId, completion);
 
             result.clear();
             result.add("getScreen");
-            result.add(item);
             return result;
         }
 
@@ -257,7 +285,7 @@ public class GameManager extends Controller
         if (!Item.removeItems(removeItems, characterId))
         {
             result.add("messageInfo");
-            result.add("You filthy little java script manipulator!");
+            result.add("Error javascript!");
             return result;
         }
 
@@ -501,6 +529,38 @@ public class GameManager extends Controller
 
         result.add(questList.get(0));
 
+        return result;
+    }
+
+    public static List<String> getCompletion()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        Game completedGame = Game.findActive(userId);
+        int completionType = (int)completedGame.completed;
+
+        Character completedCharacter = Character.findByGameId(completedGame.id);
+
+        List<String> result = new ArrayList<String>();
+
+        switch (completionType)
+        {
+        case 0:
+            result.add("Incomplete" + completedCharacter.name);
+            break;
+        case 1:
+            result.add("raft" + completedCharacter.name);
+            break;
+        case 2:
+            result.add("daVinci" + completedCharacter.name);
+            break;
+        case 3:
+            result.add("balloon" + completedCharacter.name);
+            break;
+        default:
+            result.add("error: no completion found");
+            break;
+        }
         return result;
     }
 

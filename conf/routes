@@ -36,6 +36,8 @@ GET         /loadWaterfall                        controllers.Application.loadWa
 GET         /loadTreehouse                        controllers.Application.loadTreehouse()
 GET         /loadLaboratory                       controllers.Application.loadLaboratory()
 
+GET         /loadEscapeScreen                     controllers.Application.loadEscapeScreen()
+
 GET         /loadImage                            controllers.Application.loadImg()
 
 POST        /getValue/:variable                   controllers.Connections.zweipluszwei(variable: Long)
@@ -50,7 +52,9 @@ POST        /getCombination/:itemsSelected        controllers.Connections.getCom
 POST        /getAction/:itemsSelected             controllers.Connections.getAction(itemsSelected: String)
 POST        /interactWithNPC/:npc                 controllers.Connections.interactWithNPC(npc: String)
 POST        /getActionPoints                      controllers.Connections.getActionPoints()
+POST        /testEscape                           controllers.Connections.testEscape()
 POST        /getLocationTest/:location            controllers.Connections.giveLocationTest(location: String)
+POST        /getEscapeContent                     controllers.Connections.getEscapeContent()
 
 POST        /createGame/:character                controllers.Connections.createGame(character: String)
 

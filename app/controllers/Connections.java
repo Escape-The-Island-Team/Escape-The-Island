@@ -137,16 +137,27 @@ public class Connections extends Controller
     {
         List<String> infoList = parseFromJS(itemsSelected);
         String toReturn = "";
+        boolean reduceActionPoints = true;
 
         System.out.println("GetCombination started with: "+infoList);
 
-        // call collecting items method with the info list given and another info list returned
-        toReturn = parseForJS(GameManager.combineItems(infoList));
+        List<String> returnList = GameManager.combineItems(infoList);
+        if(returnList.get(0).equals("getScreen"))
+        {
+            reduceActionPoints = false;
+        }
 
+        // call get combinations method with the info list given and another info list returned
+        toReturn = parseForJS(returnList);
+
+        System.out.println("GetCombination return values:"+toReturn);
         System.out.println("GetCombination completed. Returns values to Javascript.");
 
-        // reduce action points
-        GameManager.reduceActionPoints(3);
+        if(reduceActionPoints)
+        {
+            // reduce action points
+            GameManager.reduceActionPoints(1);
+        }
 
         return ok(Json.toJson(toReturn));
     }
@@ -164,7 +175,7 @@ public class Connections extends Controller
         toReturn = parseForJS(GameManager.interactWithObjects(infoList));
 
         // reduce action points
-        GameManager.reduceActionPoints(2);
+        GameManager.reduceActionPoints(1);
 
         return ok(Json.toJson(toReturn));
     }
@@ -191,6 +202,30 @@ public class Connections extends Controller
 
         return ok(Json.toJson(toReturn));
     }
+
+    public static Result getEscapeContent()
+    {
+        String toReturn = "";
+
+        // call collecting items method with the info list given and another info list returned
+        // toReturn = "I am Alice, the dangerous pirate. Don't bother me or you will regret it!-";
+        toReturn = parseForJS(GameManager.getCompletion());
+
+        return ok(Json.toJson(toReturn));
+    }
+
+
+    public static Result testEscape()
+    {
+        String toReturn = "";
+
+        // call collecting items method with the info list given and another info list returned
+        // toReturn = "I am Alice, the dangerous pirate. Don't bother me or you will regret it!-";
+        toReturn = parseForJS(GameManager.getCompletion());
+
+        return ok(Json.toJson(toReturn));
+    }
+
 
 
     /*

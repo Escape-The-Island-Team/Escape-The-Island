@@ -1237,6 +1237,7 @@ function useTool()
                         showInfoMessage(splitResult);
                         messageNext = false;
                     }
+
                     else
                         {
                             switch(splitResult)
@@ -1251,6 +1252,9 @@ function useTool()
                                     break;
                                 case "messageInfo":
                                     messageNext = true;
+                                    break;
+                                case "getScreen":
+                                    window.location = "loadEscapeScreen";
                                     break;
                             }
                         }
@@ -1595,6 +1599,175 @@ function setActionPoints()
                     splitResult=result.substring(i,result.size-i);
 
                     document.getElementById('actionPointsValue').textContent = splitResult;
+
+                    // prepare for the next splitresult to read; in the basic version of this method there should be none
+                    result=result.substring(i+1);
+                    i=0;
+                }
+            }
+        },
+        error: function (data, request) {
+            alert("FAIL " + data+result);
+        }
+    });
+}
+
+
+function setEnding()
+{
+    var result;
+    var splitResult="";
+
+    model_data = JSON.stringify("");
+
+    // call of java method
+    $.ajax({
+        url: '/testEscape',
+        type: 'POST',
+        contentType: 'application/json',
+        data: model_data,
+        dataType: 'json html',
+        converters: {
+            'text json': true
+        },
+        success: function (response) {
+
+            response = JSON.parse(response);
+            result = response;
+
+            for(var i=0; i<result.length; i++)
+            {
+                if(result[i]=="-")
+                {
+                    splitResult=result.substring(i,result.size-i);
+
+                    switch(splitResult)
+                    {
+                        case "balloonBob":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonBob').src);
+                            break;
+                        case "balloonNova":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonNova').src);
+                            break;
+                        case "balloonHomTanks":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonHomTanks').src);
+                            break;
+                        case "balloonBerryStraw":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('balloonBerryStraw').src);
+                            break;
+                        case "daVinciAlice":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('daVinciAlice').src);
+                            break;
+                        case "daVinciCaptainSpeckJarrow":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('daVinciCaptainSpeckJarrow').src);
+                            break;
+                        case "raftBob":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftBob').src);
+                            break;
+                        case "raftAlice":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftAlice').src);
+                            break;
+                        case "raftNova":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftNova').src);
+                            break;
+                        case "raftHomTanks":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftHomTanks').src);
+                            break;
+                        case "raftBerryStraw":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftBerryStraw').src);
+                            break;
+                        case "raftCaptainSpeckJarrow":
+                            document.getElementById('imgEscapeScreen').setAttribute('src',document.getElementById('raftCaptainSpeckJarrow').src);
+                            break;
+
+                    }
+
+                    showInfoMessage("Congratulations! You escaped the island!");
+
+                    // prepare for the next splitresult to read; in the basic version there should be none
+                    result=result.substring(i+1);
+                    i=0;
+                }
+            }
+        },
+        error: function (data, request) {
+            alert("FAIL " + data+result);
+        }
+    });
+}
+
+
+
+function setEscapeScreen()
+{
+    var result;
+    var splitResult="";
+
+
+
+    // call of java method without parameter
+    $.ajax({
+        url: '/getEscapeContent/',
+        type: 'POST',
+        contentType: 'application/json',
+        data: model_data,
+        dataType: 'json html',
+        converters: {
+            'text json': true
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            result = response;
+
+            alert(response);
+
+            for(var i=0; i<result.length; i++)
+            {
+                if(result[i]=="-")
+                {
+                    splitResult=result.substring(i,result.size-i);
+
+                    switch(splitResult)
+                    {
+                        case "balloonBob": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonBob').src;
+                            break;
+                        case "balloonNova": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonNova').src;
+                            break;
+                        case "balloonHomTanks": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonHomTanks').src;
+                            break;
+                        case "balloonBerryStraw": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('balloonBerryStraw').src;
+                            break;
+                        case "daVinciAlice": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('daVinciAlice').src;
+                            break;
+                        case "daVinciCaptainSpeckJarrow": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('daVinciCaptainSpeckJarrow').src;
+                            break;
+                        case "raftBob": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftBob').src;
+                            break;
+                        case "raftAlice": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftAlice').src;
+                            break;
+                        case "raftNova": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftNova').src;
+                            break;
+                        case "raftHomTanks": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftHomTanks').src;
+                            break;
+                        case "raftBerryStraw": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftBerryStraw').src;
+                            break;
+                        case "raftCaptainSpeckJarrow": document.getElementById('locationBackgroundImg').src =
+                            document.getElementById('raftCaptainSpeckJarrow').src;
+                            break;
+                    }
+
+                    showInfoMessage("Congratulations! You escaped the island!");
 
                     // prepare for the next splitresult to read; in the basic version of this method there should be none
                     result=result.substring(i+1);
