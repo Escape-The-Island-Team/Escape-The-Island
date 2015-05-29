@@ -57,12 +57,6 @@ public class GameManager extends Controller
             return result;
         }
 
-        /*if (Game.findIncomplete(selectedChar, currentUser.id))
-        {
-            result.add("ErrorCharacterAlreadyUsed");
-            return result;
-        }*/
-
         Game newGame = new Game();
 
         newGame.user_id = currentUser.id;
