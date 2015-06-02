@@ -10,7 +10,7 @@ function select(name) {
 
     switch (name) {
         case "Bob":
-            document.getElementById('description').value='Bob (20 Years) is a normal business administration student from Germany. His grades are like the average and he has his moments. Some years ago he had a girlfriend, but not for long because he is very pessimistic and heartless. He was flying to a student exchange when the plane went down in a heavy storm and he reached the beach of an island.';
+            document.getElementById('description').value='Bob (20 Years) is an average business administration student from Germany. His grades are like the average and he has his moments. Sometimes he can be quite pessimistic. He was flying to a student exchange when the plane went down in a heavy storm and he reached the beach of an island.';
             document.getElementById('Bob').style.border = "2px solid red";
             break;
         case "Alice":
