@@ -219,10 +219,16 @@ public class GameManager extends Controller
     {
         List<String> result = new ArrayList<String>();
 
-        if (items == null)
+        //TODO remove
+        System.out.println("Test combine: " + items);
+
+        if (null == items || 0 == items.size() || "".equals(items.get(0)))
         {
             result.add("messageInfo");
             result.add(ItemBlender.combineItems(new ArrayList<String>()));
+
+            System.out.println(result.get(0));
+
             return result;
         }
 
