@@ -16,17 +16,9 @@ public class Item extends Model
     @Id
     @OrderBy
     public long id;
-
-    @Constraints.Required
     public long character_id;
-
-    @Constraints.Required
     public String name;
-
-    @Constraints.Required
     public int old;
-
-    @Constraints.Required
     public int used;
 
     // -- Queries
@@ -104,9 +96,6 @@ public class Item extends Model
 
         collectedItem.save();
 
-        //TODO remove
-        System.out.println("Collected item: " + itemName);
-
         while (collectedItem.id == 0)
         {
             collectedItem.refresh();
@@ -121,8 +110,6 @@ public class Item extends Model
     public static boolean removeItems(List<String> items, long character_id)
     {
         List<Item> backpack = find.where().eq("character_id", character_id).eq("used", 0).findList();
-
-        System.out.println("Backpack: " + backpack + "\nRemove: " + items);
 
         for (String item: items)
         {
@@ -179,8 +166,6 @@ public class Item extends Model
             Item actual = find.byId(expected.id);
 
             identical = true;
-
-            System.out.println("Wait for " + expected.name + " set used to " + expected.used);
 
             if (expected.used != actual.used)
             {

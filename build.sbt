@@ -1,5 +1,6 @@
 import com.github.play2war.plugin._
-name := "playproject"
+
+name := "escapeTheIsland"
 
 version := "1.0-SNAPSHOT"
 
@@ -10,7 +11,8 @@ Play2WarKeys.servletVersion := "3.0"
 libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
-  cache
+  cache,
+  "org.apache.directory.studio" % "org.apache.commons.io" % "2.4"
 )     
 
 play.Project.playJavaSettings

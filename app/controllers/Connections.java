@@ -77,20 +77,17 @@ public class Connections extends Controller
         // toReturn = "itembar-1-stick-";
         toReturn = parseForJS(GameManager.getBackpack());
 
-        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
     public static Result getObjects(String location)
     {
-        System.out.println(location);
         List<String> infoList = parseFromJS(location);
         String toReturn = "";
 
         // call collecting items method with the info list given and another info list returned
 
         toReturn = parseForJS(GameManager.objectsOnLocation(infoList));
-        System.out.println(toReturn);
         return ok(Json.toJson(toReturn));
     }
 
@@ -139,8 +136,6 @@ public class Connections extends Controller
         String toReturn = "";
         boolean reduceActionPoints = true;
 
-        System.out.println("GetCombination started with: "+infoList);
-
         List<String> returnList = GameManager.combineItems(infoList);
         if(returnList.get(0).equals("getScreen")||"".equals(infoList.get(0)))
         {
@@ -149,9 +144,6 @@ public class Connections extends Controller
 
         // call get combinations method with the info list given and another info list returned
         toReturn = parseForJS(returnList);
-
-        System.out.println("GetCombination return values:"+toReturn);
-        System.out.println("GetCombination completed. Returns values to Javascript.");
 
         if(reduceActionPoints)
         {

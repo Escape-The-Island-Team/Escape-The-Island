@@ -19,31 +19,11 @@ public class User extends Model
 {
     @Id
     public Long id;
-
-    @Constraints.Required
-    @Formats.NonEmpty
-    @Column(unique = true)
     public String e_mail;
-
-    @Constraints.Required
-    @Formats.NonEmpty
-    @Column(unique = true)
     public String nickname;
-
-    @Constraints.Required
-    @Formats.NonEmpty
     public String password_salt;
-
-    @Constraints.Required
-    @Formats.NonEmpty
     public String password_hash;
-
-    @Constraints.Required
-    @Formats.NonEmpty
     public Date time_creation;
-
-    @Constraints.Required
-    @Formats.NonEmpty
     public Date time_password;
 
     // -- Queries
