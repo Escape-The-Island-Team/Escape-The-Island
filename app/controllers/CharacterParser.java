@@ -5,6 +5,7 @@ import java.security.InvalidParameterException;
 /**
  * Created by Maik Wandrei on 03.05.2015.
  */
+
 public class CharacterParser
 {
     public static int isCharacter(String character)

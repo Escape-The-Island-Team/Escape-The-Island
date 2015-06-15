@@ -6,6 +6,7 @@ import java.util.Arrays;
 /**
  * Created by Maik Wandrei on 18.05.2015.
  */
+
 public class CharacterMessages
 {
     final static String[] bobArray =

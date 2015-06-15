@@ -26,6 +26,7 @@ public class Accountmanagement extends Controller
     *
     * @return the respective html result
     */
+
    public static Result register()
    {
        //field-names: nickname, email, password, repeat-password, termsOfUse

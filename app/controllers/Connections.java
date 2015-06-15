@@ -18,6 +18,7 @@ public class Connections extends Controller
     // obsolete but still used for testing purposes
     public static Result zweipluszwei(long variable)
     {
+
         return ok(Json.toJson(variable));
     }
 

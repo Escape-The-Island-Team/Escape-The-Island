@@ -101,6 +101,7 @@ public class Application extends Controller {
         }
     }
 
+
     public static Result about() { return ok(about.render("")); }
 
     public static Result contact() { return ok(contact.render("")); }

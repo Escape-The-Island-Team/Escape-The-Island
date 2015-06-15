@@ -1,20 +1,20 @@
-@foo
-Feature: Create character
+# encoding: utf-8
+Feature:	Use Case 3 - Create Character
 
-  Scenario: Create Bob as character
-    Given there are several character for choosing
-    When you click on 'Bob' as character
-    When you click on the button 'Start Game' on the left side
-    Then the game starts
+  Scenario: The logged in user create his character Bob
 
-  Scenario: Create Alice as character
-    Given there are several character for choosing
-    When you click on 'Alice' as character
-    When you click on the button 'Start Game' on the left side
-    Then the game starts
+    Given 	user is on the characterSelection page
+    When 	user clicks on Bob as character <characterBob>
+    And 	user clicks on the Start Game <buttonStart>
 
-  Scenario: User does not chosen
-    Given there are several character for choosing
-    When you not click on any character
-    When you click on the button 'Start Game' on the left side
-    Then the game does not  start
+    Then 	the game starts on loadingGame page
+
+
+  Scenario: The logged in user create his character Alice
+
+    Given 	user is on the characterSelection page
+    When 	user clicks on Alice as character <characterAlice>
+    And 	user clicks on the Start Game <buttonStart>
+
+    Then 	the game starts on loadingGame page
+
