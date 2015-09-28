@@ -143,22 +143,6 @@ public class Application extends Controller {
         return ok(locBeachMid.render(""));
     }
 
-    public static Result loadBeachMid() { return ok(locBeachMid.render("")); }
-    public static Result loadBeachLeft() { return ok(locBeachLeft.render("")); }
-    public static Result loadBeachRight() { return ok(locBeachRight.render("")); }
-    public static Result loadJungle() { return ok(locJungle.render("")); }
-    public static Result loadTemple() { return ok(locTemple.render("")); }
-    public static Result loadRiver() { return ok(locRiver.render("")); }
-    public static Result loadOpening() { return ok(locOpening.render("")); }
-    public static Result loadLake() { return ok(locLake.render("")); }
-    public static Result loadCave() { return ok(locCave.render("")); }
-    public static Result loadCliff() { return ok(locCliff.render("")); }
-    public static Result loadRocks() { return ok(locRocks.render("")); }
-    public static Result loadVolcano() { return ok(locVolcano.render("")); }
-    public static Result loadWaterfall() { return ok(locWaterfall.render("")); }
-    public static Result loadTreehouse() { return ok(locTreehouse.render("")); }
-    public static Result loadLaboratory() { return ok(locLaboratory.render("")); }
-
     public static Result loadEscapeScreen() { return ok(escapeScreen.render("")); }
 
     public static Result loadImg() { return ok(); }
