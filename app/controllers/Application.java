@@ -4,6 +4,8 @@ import models.*;
 import models.Character;
 import play.mvc.*;
 import views.html.*;
+
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,8 +119,14 @@ public class Application extends Controller {
     {
         String username = session().get("username");
         long userId = User.findByUsername(username).id;
-        long gameId = Game.findActive(userId).id;
-        Character character = Character.findByGameId(gameId);
+        Game game = Game.findActive(userId);
+
+        if (game.completed > 0)
+        {
+            return ok(escapeScreen.render(("")));
+        }
+
+        Character character = Character.findByGameId(game.id);
         String location = character.position;
 
         switch (location)
@@ -139,6 +147,8 @@ public class Application extends Controller {
             case "treehouse": return ok(locTreehouse.render(""));
             case "laboratory": return ok(locLaboratory.render(""));
         }
+
+        System.out.println(character.position);
 
         return ok(locBeachMid.render(""));
     }

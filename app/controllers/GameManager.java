@@ -202,8 +202,15 @@ public class GameManager extends Controller
 
         String pathResult = LocationContent.pathChangeResult(position, target, username);
 
+        System.out.println("ChangeLocation(" + position + ", " + target + ")");
+
         if ("available".equals(pathResult))
         {
+            if ("timeLocation".equals(target))
+            {
+                target = (character.old > 0)? "treehouse" : "laboratory";
+            }
+
             Character.changeLocation(characterId, target);
 
             result.add(pathResult);
