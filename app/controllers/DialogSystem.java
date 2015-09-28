@@ -222,8 +222,6 @@ public class DialogSystem
         // which quest is active right now
         int quest = status / 2;
 
-        System.out.println("Index: " + npcIndex + " State: " + state + "Quest: " + quest);
-
         if (Npc.equals("maya") && state == 1 && quest == 2)
         {
             return mayaQuest(charId, state, npcIndex, quest);
@@ -232,8 +230,6 @@ public class DialogSystem
         String message = (String)statusMessage.get(state).get(npcIndex).get(quest);
         List<String> questList = splitMessage(message);
         List<String> items = Item.backpackContent(charId);
-
-        System.out.println(items + "\n" + questList);
 
         if (!questList.get(1).equals("") && items.contains(questList.get(1)))
         {
@@ -261,8 +257,6 @@ public class DialogSystem
         int secondSplitIndex = quest.indexOf('|', firstSplitIndex + 1);
         int thirdSplitIndex = quest.indexOf('|', secondSplitIndex + 1);
 
-        System.out.println(firstSplitIndex + " " + secondSplitIndex + " " + thirdSplitIndex);
-
         String message = quest.substring(0, firstSplitIndex);
         String npcRetrieves = quest.substring(firstSplitIndex + 1, secondSplitIndex);
         String npcRewards = quest.substring(secondSplitIndex + 1, thirdSplitIndex);
@@ -271,7 +265,6 @@ public class DialogSystem
         if (quest.length() - 1 > thirdSplitIndex)
         {
             status = quest.substring(thirdSplitIndex + 1);
-            System.out.println(status);
         }
 
         List<String> questList = new ArrayList<>();
@@ -288,8 +281,6 @@ public class DialogSystem
     {
         Character character = Character.findById(charId);
         String message = (String)statusMessage.get(state).get(npcIndex).get(quest);
-
-        System.out.println(message);
 
         List<String> items = Item.backpackContent(charId);
         List<String> questList = splitMessage(message);

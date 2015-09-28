@@ -15,17 +15,9 @@ public class NPC extends Model
 {
     @Id
     long id;
-
-    @Constraints.Required
     long game_id;
-
-    @Constraints.Required
     String name;
-
-    @Constraints.Required
     int old;
-
-    @Constraints.Required
     int status;
 
     // -- Queries
@@ -55,9 +47,6 @@ public class NPC extends Model
     public static void increaseStatus(long game_id, String name)
     {
         NPC npc = find.where().eq("game_id", game_id).eq("name", name).findUnique();
-
-        System.out.println("Name: " + npc.name);
-        System.out.println("Name: " + name);
 
         if (npc.name.equals("versutus") && npc.status < 7)
         {

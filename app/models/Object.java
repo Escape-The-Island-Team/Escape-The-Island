@@ -16,19 +16,9 @@ public class Object extends Model
 {
     @Id
     public long id;
-
-    @Constraints.Required
-    @Formats.NonEmpty
     public long game_id;
-
-    @Constraints.Required
-    @Formats.NonEmpty
     public String name;
-
-    @Constraints.Required
     public int old;
-
-    @Constraints.Required
     public int used;
 
     public int usages_left; //negativ bei unbegrenzten usages

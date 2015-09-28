@@ -13,14 +13,8 @@ public class Location extends Model
 {
     @Id
     public long id;
-
-    @Constraints.Required
     public String name;
-
-    @Constraints.Required
     public long game_id;
-
-    @Constraints.Required
     public int visited;
 
     // -- Queries

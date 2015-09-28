@@ -16,17 +16,9 @@ public class Game extends Model
 {
     @Id
     public long id;
-
-    @Constraints.Required
     public long user_id;
-
-    @Constraints.Required
     public Date start_time;
-
-    @Constraints.Required
     public long completed;
-
-    @Constraints.Required
     public long active;
 
     // -- Queries
