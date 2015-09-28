@@ -79,36 +79,11 @@ function getNewLocation(info) {
                             messageNext = true;
                             break;
 
-                        case "beachMidAvailable": window.location ="loadBeachMid";
+                        // loads the current location
+                        case "available":
+                            getLocationGeneral();
                              break;
-                        case "beachLeftAvailable": window.location ="loadBeachLeft";
-                            break;
-                        case "beachRightAvailable": window.location ="loadBeachRight";
-                            break;
-                        case "jungleAvailable": window.location ="loadJungle";
-                            break;
-                        case "templeAvailable": window.location ="loadTemple";
-                            break;
-                        case "riverAvailable": window.location ="loadRiver";
-                            break;
-                        case "openingAvailable": window.location ="loadOpening";
-                            break;
-                        case "lakeAvailable": window.location ="loadLake";
-                            break;
-                        case "caveAvailable": window.location ="loadCave";
-                            break;
-                        case "cliffAvailable": window.location ="loadCliff";
-                            break;
-                        case "rocksAvailable": window.location ="loadRocks";
-                            break;
-                        case "volcanoAvailable": window.location ="loadVolcano";
-                            break;
-                        case "waterfallAvailable": window.location ="loadWaterfall";
-                            break;
-                        case "treehouseAvailable": window.location ="loadTreehouse";
-                            break;
-                        case "laboratoryAvailable": window.location ="loadLaboratory";
-                            break;
+
                         default: break;
                     }
                     result=result.substring(i+1);
@@ -122,7 +97,6 @@ function getNewLocation(info) {
         }
     });
 }
-
 
 
 function getNewLocation2(info)
@@ -264,8 +238,11 @@ function getNewLocation2(info)
 
 
 
-
-
+// used to direct to the new location. the location is already set in the database before by getNewLocation()
+function getLocationGeneral()
+{
+    window.location ="play";
+}
 
 
 

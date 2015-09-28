@@ -236,6 +236,16 @@ public class Connections extends Controller
 
 
 
+    public static Result getCurrentLocation()
+    {
+
+
+
+        return ok(Json.toJson("notUsedText"));
+    }
+
+
+
 
 
 
