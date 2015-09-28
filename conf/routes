@@ -40,6 +40,8 @@ GET         /loadEscapeScreen                     controllers.Application.loadEs
 
 GET         /loadImage                            controllers.Application.loadImg()
 
+GET         /play                                 controllers.Application.loadLocation()
+
 POST        /getValue/:variable                   controllers.Connections.zweipluszwei(variable: Long)
 POST        /getLocation/:location                controllers.Connections.giveLocation(location: String)
 POST        /collectItem/:item                    controllers.Connections.collectItem(item: String)

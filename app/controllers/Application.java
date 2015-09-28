@@ -1,5 +1,7 @@
 package controllers;
 
+import models.*;
+import models.Character;
 import play.mvc.*;
 import views.html.*;
 import java.util.ArrayList;
@@ -110,6 +112,36 @@ public class Application extends Controller {
     //public static Result loadingGame() { return ok(gameSurface.render("")); }
     //public static Result loadingGame() { return ok(loadingScreen.render("")); }
     //public static Result loadingScreen() { return ok(gameSurface.render(""));}
+
+    public static Result loadLocation()
+    {
+        String username = session().get("username");
+        long userId = User.findByUsername(username).id;
+        long gameId = Game.findActive(userId).id;
+        Character character = Character.findByGameId(gameId);
+        String location = character.position;
+
+        switch (location)
+        {
+            case "beachMid": return ok(locBeachMid.render(""));
+            case "beachLeft": return ok(locBeachLeft.render(""));
+            case "beachRight": return ok(locBeachRight.render(""));
+            case "jungle": return ok(locJungle.render(""));
+            case "temple": return ok(locTemple.render(""));
+            case "river": return ok(locRiver.render(""));
+            case "opening": return ok(locOpening.render(""));
+            case "lake": return ok(locLake.render(""));
+            case "cave": return ok(locCave.render(""));
+            case "cliff": return ok(locCliff.render(""));
+            case "rocks": return ok(locRocks.render(""));
+            case "volcano": return ok(locVolcano.render(""));
+            case "waterfall": return ok(locWaterfall.render(""));
+            case "treehouse": return ok(locTreehouse.render(""));
+            case "laboratory": return ok(locLaboratory.render(""));
+        }
+
+        return ok(locBeachMid.render(""));
+    }
 
     public static Result loadBeachMid() { return ok(locBeachMid.render("")); }
     public static Result loadBeachLeft() { return ok(locBeachLeft.render("")); }

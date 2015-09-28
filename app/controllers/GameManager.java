@@ -202,7 +202,7 @@ public class GameManager extends Controller
 
         String pathResult = LocationContent.pathChangeResult(position, target, username);
 
-        if (pathResult.endsWith("Available"))
+        if ("available".equals(pathResult))
         {
             Character.changeLocation(characterId, target);
 
@@ -211,7 +211,7 @@ public class GameManager extends Controller
         }
 
         result.add("messageInfo");
-        result.add(pathResult);
+        result.add((pathResult == null)? "" : pathResult);
         return result;
     }
 

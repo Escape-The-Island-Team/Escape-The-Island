@@ -182,7 +182,7 @@ public class LocationContent
     {
         if (position.equals("getStartLocation"))
         {
-            return "beachMidAvailable";
+            return "available";
         }
         switch(position)
         {
@@ -190,15 +190,15 @@ public class LocationContent
             switch(target)
             {
             case "beachLeft":
-                return "beachLeftAvailable";
+                return "available";
             case "beachRight":
-                return "beachRightAvailable";
+                return "available";
             case "jungle":
                 long userId = User.findByUsername(username).id;
                 long gameId = Game.findActive(userId).id;
                 if (Location.visited(gameId, target) || Item.characterHoldsItem("torch", Character.findByGameId(gameId).id))
                 {
-                    return "jungleAvailable";
+                    return "available";
                 }
                 return "The jungle is a dangerous place with many wild animals. It is not save to go there right now.";
             }
@@ -206,62 +206,62 @@ public class LocationContent
             switch(target)
             {
             case "beachMid":
-                return "beachMidAvailable";
+                return "available";
             }
         case "beachRight":
             switch(target)
             {
             case "beachMid":
-                return "beachMidAvailable";
+                return "available";
             }
         case "jungle":
             switch(target)
             {
             case "beachMid":
-                return "beachMidAvailable";
+                return "available";
             case "temple":
-                return "templeAvailable";
+                return "available";
             case "river":
-                return "riverAvailable";
+                return "available";
             }
         case "temple":
             switch(target)
             {
             case "jungle":
-                return "jungleAvailable";
+                return "available";
             }
         case "river":
             switch(target)
             {
             case "jungle":
-                return "jungleAvailable";
+                return "available";
             case "opening":
-                return "openingAvailable";
+                return "available";
             }
         case "opening":
             switch(target)
             {
             case "river":
-                return "riverAvailable";
+                return "available";
             case "lake":
-                return "lakeAvailable";
+                return "available";
             case "rocks":
-                return "rocksAvailable";
+                return "available";
             }
         case "lake":
             switch(target)
             {
             case "opening":
-                return "openingAvailable";
+                return "available";
             case "cave":
-                return "caveAvailable";
+                return "available";
             case "cliff":
                 long userId = User.findByUsername(username).id;
                 long gameId = Game.findActive(userId).id;
                 if (Location.visited(gameId, target) || Item.characterHoldsItem("grapplingHook", Character.findByGameId(gameId).id))
                 {
                     //TODO using items ----> remove from backpack
-                    return "cliffAvailable";
+                    return "available";
                 }
                 return "These rocks are too high. You need something to surmount them.";
             }
@@ -269,39 +269,39 @@ public class LocationContent
             switch(target)
             {
             case "lake":
-                return "lakeAvailable";
+                return "available";
             }
         case "cliff":
             switch(target)
             {
             case "lake":
-                return "lakeAvailable";
+                return "available";
             }
         case "rocks":
             switch(target)
             {
             case "opening":
-                return "openingAvailable";
+                return "available";
             case "volcano":
-                return "volcanoAvailable";
+                return "available";
             case "waterfall":
-                return "waterfallAvailable";
+                return "available";
             }
         case "volcano":
             switch(target)
             {
             case "rocks":
-                return "rocksAvailable";
+                return "available";
             }
         case "waterfall":
             switch(target)
             {
             case "rocks":
-                return "rocksAvailable";
+                return "available";
             case "treehouse":
-                return "treehouseAvailable";
+                return "available";
             case "laboratory":
-                return "laboratoryAvailable";
+                return "available";
             case "timeLocation":
                 long userId = User.findByUsername(username).id;
                 long gameId = Game.findActive(userId).id;
@@ -309,25 +309,25 @@ public class LocationContent
 
                 if (old == 1)
                 {
-                    return "treehouseAvailable";
+                    return "available";
                 }
 
-                return "laboratoryAvailable";
+                return "available";
             }
         case "treehouse":
             switch(target)
             {
             case "waterfall":
-                return "waterfallAvailable";
+                return "available";
             }
         case "laboratory":
             switch(target)
             {
             case "waterfall":
-                return "waterfallAvailable";
+                return "available";
             }
         }
 
-        return "ErrorPathInvalid";
+        return "*GLaDOS voice* JAVASCRIPT-MANIPULATION DETECTED!!! Selfdestruction iminent.";
     }
 }
