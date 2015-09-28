@@ -142,7 +142,7 @@ public class Connections extends Controller
         System.out.println("GetCombination started with: "+infoList);
 
         List<String> returnList = GameManager.combineItems(infoList);
-        if(returnList.get(0).equals("getScreen"))
+        if(returnList.get(0).equals("getScreen")||"".equals(infoList.get(0)))
         {
             reduceActionPoints = false;
         }

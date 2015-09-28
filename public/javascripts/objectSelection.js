@@ -1207,10 +1207,14 @@ function useTool()
                 case document.getElementById('itemResin').src:
                     itemsSelectedToReturn += "resin-";
                     break;
+                default: break;
             }
         }
     }
-
+    if(itemsSelectedToReturn == (""))
+    {
+        itemsSelectedToReturn+="-";
+    }
     model_data = JSON.stringify(itemsSelectedToReturn);
 
     $.ajax({
