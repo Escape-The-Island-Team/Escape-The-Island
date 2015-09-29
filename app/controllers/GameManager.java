@@ -227,7 +227,7 @@ public class GameManager extends Controller
         List<String> result = new ArrayList<String>();
 
         //TODO remove
-        System.out.println("Test combine: " + items);
+        System.out.println("CombineItems(" + items + ")");
 
         if (null == items || 0 == items.size() || "".equals(items.get(0)))
         {
@@ -319,12 +319,14 @@ public class GameManager extends Controller
 
         List<String> items = Item.backpackContent(characterId);
 
+        System.out.println("BackPack(" + items + ")");
+
         return items;
     }
 
     public static List<String> collectItem(List<String> itemParameters)
     {
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
 
         String username = session().get("username");
         long userId = User.findByUsername(username).id;

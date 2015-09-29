@@ -4,6 +4,7 @@ import com.avaje.ebean.ExpressionList;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -116,7 +117,15 @@ public class Character extends Model
 
     public static Character getBeschdeCharacter(long userId)
     {
-        List<Game> finishedGames = Game.find.where().eq("user_id", userId).eq("completed", 1).findList();
+        List<Game> finishedGamesRaft = Game.find.where().eq("user_id", userId).eq("completed", 1).findList();
+        List<Game> finishedGamesDaVinci = Game.find.where().eq("user_id", userId).eq("completed", 2).findList();
+        List<Game> finishedGamesBalloon = Game.find.where().eq("user_id", userId).eq("completed", 3).findList();
+
+        List<Game> finishedGames = new ArrayList<Game>();
+
+        finishedGames.addAll(finishedGamesRaft);
+        finishedGames.addAll(finishedGamesDaVinci);
+        finishedGames.addAll(finishedGamesBalloon);
 
         Character beschde = new Character();
         beschde.action_points = -1;
