@@ -1237,7 +1237,7 @@ function useTool()
                                     messageNext = true;
                                     break;
                                 case "getScreen":
-                                    window.location = "loadEscapeScreen";
+                                    getLocationGeneral();
                                     break;
                             }
                         }
